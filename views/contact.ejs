@@ -1,0 +1,70 @@
+<%- include ("_partial/_header.ejs") %>
+
+    <div style="padding: 10%; display: flex;">
+
+        <div style="width: 40%;">
+            <img src="https://dsm01pap001files.storage.live.com/y4m6oeox3_MdhLtFpGtjYk9QgSZ912CYBCNepYmnncSMYqkVK__Y38M87T1vC6cgqhzd8YR1r_myDSC7Hqk1eghVrmn_lKY4YC8xDiiwif793jzhTbhoklrMEt5WUP0H3MR4LrafUG5k6s0S_qopuvcrAljVGDgBLC0rcF2ceEpTAxptmVeJ7IzGlhLds1rCXxk?width=3000&height=3000&cropmode=none"
+                alt="small branch of blue orchids" width="100%">
+        </div>
+
+        <div style="width: 20%;"></div>
+
+        <div style="width: 40%; ">
+
+            <h1 class="display-5">Couldn't find what you were looking for?</h1>
+            <br>
+            <h3 class="display-6">Don't worry, send us a message</h3>
+            <br>
+
+            <form>
+                <!-- Name input -->
+                <div class="form-outline mb-4">
+                    <input type="text" id="form4Example1" class="form-control"
+                        style="border: 1px solid rgb(183, 183, 183);" />
+                    <label class="form-label" for="form4Example1">Name</label>
+                </div>
+
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    <input type="email" id="form4Example2" class="form-control"
+                        style="border: 1px solid rgb(183, 183, 183);" />
+                    <label class="form-label" for="form4Example2">Email address</label>
+                </div>
+
+                <!-- Message input -->
+                <div class="form-outline mb-4">
+                    <textarea class="form-control" id="form4Example3" rows="4" maxlength="100"
+                        style="border: 1px solid rgb(183, 183, 183);"></textarea>
+                    <label class="form-label" for="form4Example3">Message</label>
+                    <div id="the-count">
+                        <span id="current">0</span>
+                        <span id="maximum">/ 100</span>
+                    </div>
+                </div>
+
+                <!-- Checkbox -->
+                <div class="form-check d-flex justify-content-center mb-4">
+                    <input class="form-check-input me-2" type="checkbox" value="" id="form4Example4" checked />
+                    <label class="form-check-label" for="form4Example4">
+                        Send me a copy of this message
+                    </label>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        $('textarea').keyup(function () {
+
+            var characterCount = $(this).val().length,
+                current = $('#current');
+
+            current.text(characterCount);
+        });
+    </script>
+
+    <%- include ("_partial/_footer.ejs") %>
