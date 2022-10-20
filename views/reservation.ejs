@@ -1,0 +1,129 @@
+<%- include ("_partial/_header.ejs") %>
+
+    <div style="padding: 10%; display: flex; ">
+        <div style="width: 50%;">
+
+
+
+            <div class="card-body px-lg-5 pt-0" style="border: 1px solid rgb(183, 183, 183); border-radius: 30px;">
+                <br>
+                <h3 class="display-6">Make a Reservation</h3><br>
+                <form>
+
+                    <!-- Title -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form4Example1">Title</label>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                value="option1" />
+                            <label class="form-check-label" for="inlineRadio1">Mr.</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                value="option2" />
+                            <label class="form-check-label" for="inlineRadio2">Mrs.</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
+                                value="option3" />
+                            <label class="form-check-label" for="inlineRadio3">Ms.</label>
+                        </div>
+                    </div>
+
+                    <!-- Name input -->
+                    <div class="form-outline mb-4">
+                        <input type="text" id="fName" class="form-control"
+                            style="border: 1px solid rgb(183, 183, 183);" />
+                        <label class="form-label" for="form4Example1">First Name</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <input type="text" id="lName" class="form-control"
+                            style="border: 1px solid rgb(183, 183, 183);" />
+                        <label class="form-label" for="form4Example1">Last Name</label>
+                    </div>
+
+                    <!-- NIC -->
+                    <div class="form-outline mb-4">
+                        <input type="text" id="nic" class="form-control"
+                            style="border: 1px solid rgb(183, 183, 183);" />
+                        <label class="form-label" for="form4Example1">NIC</label>
+                    </div>
+
+                    <!-- Address -->
+                    <div class="form-outline mb-4">
+                        <input type="text" id="address" class="form-control"
+                            style="border: 1px solid rgb(183, 183, 183);" />
+                        <label class="form-label" for="form4Example1">Address</label>
+                    </div>
+
+                    <!-- Contact Number -->
+                    <div class="form-outline mb-4">
+                        <input type="text" id="contactNumber" class="form-control"
+                            style="border: 1px solid rgb(183, 183, 183);" />
+                        <label class="form-label" for="form4Example1">Contact Number</label>
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input type="email" id="emailUser" class="form-control"
+                            style="border: 1px solid rgb(183, 183, 183);" />
+                        <label class="form-label" for="form4Example2">Email address</label>
+                    </div>
+
+                    <!-- Hall Type -->
+                    <div class="form-outline mb-4">
+                        <select name="hallType" id="hallType" class="form-control"
+                            style="border: 1px solid rgb(183, 183, 183);">
+                            <option value="0"></option>
+                            <option value="1">Hall A</option>
+                            <option value="2">Hall B</option>
+                            <option value="3">Hall C</option>
+                            <option value="4">Hall D</option>
+                        </select>
+                        <label class="form-label" for="form4Example2">Hall Type</label>
+                    </div>
+
+                    <!-- Date -->
+                    <div class="form-outline mb-4">
+                        <input type="date" name="eventDate" id="eventDate" class="form-control"
+                            style="border: 1px solid rgb(183, 183, 183);" min="" />
+                        <!--<label class="form-label" for="form4Example2">Date</label>-->
+                    </div>
+
+                    <!-- Message input -->
+                    <div class="form-outline mb-4">
+                        <textarea class="form-control" id="message" rows="4"
+                            style="border: 1px solid rgb(183, 183, 183);"></textarea>
+                        <label class="form-label" for="form4Example3">Message (Optional)</label>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect"
+                        style="color: #2a3353; border-color: #2a3353;">Send</button>
+
+                </form>
+            </div>
+        </div>
+
+        <div style="width: 10%;">
+
+        </div>
+
+        <div style="width: 40%; padding: 10%;">
+            <h3 class="display-4">Tell us what you want...</h3><br>
+        </div>
+
+    </div>
+
+    <script>
+        var today = new Date().toISOString().split('T')[0];
+        document.getElementsByName("eventDate")[0].setAttribute('min', today);
+        document.getElementsByName("eventDate")[0].setAttribute('value', today);
+    </script>
+
+
+    <%- include ("_partial/_footer.ejs") %>

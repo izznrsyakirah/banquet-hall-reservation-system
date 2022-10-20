@@ -8,8 +8,19 @@ router.get("/", function(req, res){
 });
 
 router.get("/about", function(req, res){
-    //console.log("Hi, I'm on the start page");
     res.render("about");
+})
+
+router.get("/contact", function(req, res){
+    res.render("contact");
+})
+
+router.get("/halls", function(req, res){
+    res.render("halls");
+})
+
+router.get("/reservation", function(req, res){
+    res.render("reservation");
 })
 
 module.exports = router;
