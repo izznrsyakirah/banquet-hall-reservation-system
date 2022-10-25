@@ -130,6 +130,18 @@
                             </a>
                         </li>-->
 
+                        <% if(currentUser != null ){ %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Welcome <%= curentUser.email %></a>
+                            </li>
+                        <%}%>
+
+                        <% if(currentUser == null ){ %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Hello</a>
+                            </li>
+                        <%}%>
+
                     </ul>
                 </div>
             </div>

@@ -3,22 +3,23 @@
     <div style="padding: 10%; ">
 
         <div style="width: 50%; margin-left: auto; margin-right: auto;">
-            <form>
+
+            <form method="POST", action="/login">
+
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                    <input type="email" id="staffEmail" class="form-control" required />
+                    <input type="email" id="staffEmail" class="form-control" name="email" required />
                     <label class="form-label" for="staffEmail">Email address</label>
                 </div>
 
                 <!-- Password input -->
                 <div class="form-outline mb-4">
-                    <input type="password" id="staffPassword" class="form-control" required />
+                    <input type="password" id="staffPassword" class="form-control" name="password" required />
                     <label class="form-label" for="staffPassword">Password</label>
                 </div>
 
                 <!-- Submit button -->
-                <button type="button" class="btn btn-primary btn-block mb-4" style="background-color: #2a3353;"
-                    onclick="navigate()">
+                <button type="submit" class="btn btn-primary btn-block mb-4" style="background-color: #2a3353;">
                     Sign in
                 </button>
 
