@@ -17,12 +17,12 @@ setUpPassport();
 app.set("port", process.env.PORT || 5000);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
-    secret:"jkgdf96t6hg6g6g6ghjf5gf5gf6",
-    resave:false,
-    saveUninitialized:false
+    secret: "lsd64fkbs345alnkf55sdkbj",
+    resave: false,
+    saveUninitialized: false
 }));
 
 app.use(passport.initialize());
@@ -31,6 +31,6 @@ app.use(flash());
 
 app.use(routes);
 
-app.listen(app.get("port"), () => { 
-    console.log("Now listening on port " + app.get("port")); 
+app.listen(app.get("port"), () => {
+    console.log("Now listening on port " + app.get("port"));
 });

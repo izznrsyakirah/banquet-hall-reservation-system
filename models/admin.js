@@ -8,8 +8,6 @@ var adminSchema = mongoose.Schema({
     password:{type:String, required:false}
 });
 
-
-
 adminSchema.methods.checkPassword = function(guess, done){
     if(this.password != null){
         bcrypt.compare(guess, this.password, function(err, isMatch){
@@ -17,8 +15,6 @@ adminSchema.methods.checkPassword = function(guess, done){
         });
     }
 }
-
-
 
 var Admin = mongoose.model("admin", adminSchema);
 
