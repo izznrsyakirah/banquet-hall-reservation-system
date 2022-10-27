@@ -4,6 +4,8 @@
 	<section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
 		style="background-color: #222222;">
 		<div>
+
+			<!-- Social media icons -->
 			<div style="display: flex;">
 
 				<div class="me-5 d-none d-lg-block">
@@ -26,32 +28,34 @@
 				</div>
 
 			</div>
-			
+
 
 			<div class="container text-center text-md-start mt-5">
 				<!-- Grid row -->
 				<div class="row mt-3">
-					<!-- Grid column -->
+
+					<!-- First column -->
 					<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 						<!-- Content -->
 						<h6 class="text-uppercase fw-bold mb-4">
 							<div style="display: flex;">
-							<div>
-								<img src="https://dsm01pap001files.storage.live.com/y4m9L7-YkjiGfJlZOb3p7AQmEmdGzJN1LQGKZ2eTGm_L9mQz-awf4dwhZhJeMvKfiof-6tcdsIJty3MGOguz8C_nCekr2JEmDmlge5YIUG0bJbqu_qprxqjcPd2sM9zAPuxhMbIkYC9Wei1w7Uu3Vls22nM8l64zGpECe5wtdYIiOyDvHKVEtUzfyHIFK_GCi4h?width=315&height=764&cropmode=none" 
-								width="15"/>
+								<div>
+									<img src="https://dsm01pap001files.storage.live.com/y4m9L7-YkjiGfJlZOb3p7AQmEmdGzJN1LQGKZ2eTGm_L9mQz-awf4dwhZhJeMvKfiof-6tcdsIJty3MGOguz8C_nCekr2JEmDmlge5YIUG0bJbqu_qprxqjcPd2sM9zAPuxhMbIkYC9Wei1w7Uu3Vls22nM8l64zGpECe5wtdYIiOyDvHKVEtUzfyHIFK_GCi4h?width=315&height=764&cropmode=none"
+										width="15" />
+								</div>
+
+								<div style="position: relative;"><span style="bottom: 0; position:absolute;"> Blue
+										Orchid</span></div>
 							</div>
-							
-							<div style="position: relative;"><span style="bottom: 0; position:absolute;"> Blue Orchid</span></div>
-						</div>
 						</h6>
 						<p>
 							Here you can use rows and columns to organize your footer content. Lorem ipsum
 							dolor sit amet, consectetur adipisicing elit.
 						</p>
 					</div>
-					<!-- Grid column -->
+					<!-- First column end -->
 
-					<!-- Grid column -->
+					<!-- Second column -->
 					<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
 						<!-- Links -->
 						<h6 class="text-uppercase fw-bold mb-4">
@@ -70,33 +74,55 @@
 							<a href="#!" class="text-reset">Laravel</a>
 						</p>
 					</div>
-					<!-- Grid column -->
+					<!-- Second column end -->
 
-					<!-- Grid column -->
+					<!-- Third column -->
 					<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 						<!-- Links -->
 						<h6 class="text-uppercase fw-bold mb-4">
 							Useful links
 						</h6>
-						<p>
-							<a href="/about" class="text-reset">About</a>
-						</p>
-						<p>
-							<a href="/contact" class="text-reset">Contact Us</a>
-						</p>
-						<p>
-							<a href="/halls" class="text-reset">View Halls</a>
-						</p>
-						<p>
-							<a href="/reservation" class="text-reset" target="_blank">Make a Reservation</a>
-						</p>
-						<p>
-							<a href="/login" class="text-reset">Admin Login</a>
-						</p>
-					</div>
-					<!-- Grid column -->
 
-					<!-- Grid column -->
+						<% if(currentUser !=null ) { %>
+							<p>
+								<a href="/contactList" class="text-reset">Contact List</a>
+							</p>
+							<p>
+								<a href="/addHalls" class="text-reset">Add Halls</a>
+							</p>
+							<p>
+								<a href="/eventsList" class="text-reset">Events List</a>
+							</p>
+							<p>
+								<a href="/calendar" class="text-reset">Calendar</a>
+							</p>
+							<p>
+								<a href="/logout" class="text-reset">Log out</a>
+							</p>
+						<% } %>
+
+						<% if(currentUser==null ) { %>
+							<p>
+								<a href="/about" class="text-reset">About</a>
+							</p>
+							<p>
+								<a href="/contact" class="text-reset">Contact Us</a>
+							</p>
+							<p>
+								<a href="/halls" class="text-reset">View Halls</a>
+							</p>
+							<p>
+								<a href="/reservation" class="text-reset" target="_blank">Make a Reservation</a>
+							</p>
+							<p>
+								<a href="/login" class="text-reset">Admin Login</a>
+							</p>
+						<% } %>
+
+					</div>
+					<!-- Third column end -->
+
+					<!-- Fourth column -->
 					<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
 						<!-- Links -->
 						<h6 class="text-uppercase fw-bold mb-4">Contact</h6>
@@ -108,7 +134,8 @@
 						<p><i class="fas fa-phone me-3 text-secondary"></i> + 94 11 5678 888</p>
 						<p><i class="fas fa-print me-3 text-secondary"></i> + 94 11 5678 888</p>
 					</div>
-					<!-- Grid column -->
+					<!-- Fourth column end -->
+
 				</div>
 				<!-- Grid row -->
 			</div>
@@ -122,6 +149,7 @@
 		<a class="text-reset fw-bold" href="">blueorchid.com</a>
 	</div>
 	<!-- Copyright -->
+
 </footer>
 <!-- Footer -->
 

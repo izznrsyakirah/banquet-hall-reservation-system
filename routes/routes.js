@@ -52,8 +52,22 @@ router.post("/login", passport.authenticate("login", {
     failureFlash: true
 }));
 
-
 //router.use("/", require("./admin"));
 
+router.get("/contactList", function (req, res) {
+    res.render("admin/pages/contactList");
+});
+
+router.get("/addHalls", function (req, res) {
+    res.render("admin/pages/addHalls");
+});
+
+router.get("/eventsList", function (req, res) {
+    res.render("admin/pages/eventsList");
+});
+
+router.get("/calendar", function (req, res) {
+    res.render("admin/pages/calendar");
+});
 
 module.exports = router;

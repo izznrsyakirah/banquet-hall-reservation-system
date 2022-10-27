@@ -5,9 +5,10 @@ var cookieParser = require("cookie-parser");
 var passport = require("passport");
 var session = require("express-session");
 var flash = require("connect-flash");
+const bodyParser = require('body-parser');
+
 var params = require("./params/params");
 var routes = require("./routes/routes");
-const bodyParser = require('body-parser');
 var setUpPassport = require("./setuppassport");
 
 var app = express();
