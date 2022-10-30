@@ -1,7 +1,129 @@
 <%- include ("../../_partial/_header.ejs") %>
 
-    <div style="padding-top: 10%;">
-        Contacts List Page
+    <div style="padding: 8% 5% 5% 5%;">
+
+        <h3 class="display-6">Contact History</h3>
+
+
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <div class="ms-3">
+                                <p class="fw-bold mb-1">John Doe</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <p class="text-normal mb-0">john.doe@gmail.com</p>
+                    </td>
+                    <td>
+                        <p class="text-normal mb-0">
+                            Short paragraphs are easier to read and understand. Writing experts recommend
+                            paragraphs of no more than 150 words in three to eight sentences. Paragraphs
+                            should never be longer than 250 words. Vary the lengths of your paragraphs to
+                            make them more interesting.
+                        </p>
+                    </td>
+                    <td>
+                        <p class="text-normal mb-0">30.10.2022</p>
+                    </td>
+                    <td>
+                        <p class="text-normal mb-0">1345h</p>
+                    </td>
+                    <td>
+                        <span class="badge badge-success rounded-pill d-inline">Responded</span>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-link btn-sm btn-rounded">
+                            Edit
+                        </button>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <div class="ms-3">
+                                <p class="fw-bold mb-1">Alex Ray</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <p class="text-normal mb-0">alex.ray@gmail.com</p>
+                    </td>
+                    <td>
+                        <p class="text-normal mb-0">
+                            Short paragraphs are easier to read and understand. Writing experts recommend
+                            paragraphs of no more than 150 words in three to eight sentences.
+                        </p>
+                    </td>
+                    <td>
+                        <p class="text-normal mb-0">26.10.2022</p>
+                    </td>
+                    <td>
+                        <p class="text-normal mb-0">0927h</p>
+                    </td>
+                    <td>
+                        <span class="badge badge-primary rounded-pill d-inline">Onboarding</span>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold"
+                            data-mdb-ripple-color="dark">
+                            Edit
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <div class="ms-3">
+                                <p class="fw-bold mb-1">Kate Hunington</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <p class="text-normal mb-0">kate.hunington@gmail.com</p>
+                    </td>
+                    <td>
+                        <p class="text-normal mb-0">
+                            Short paragraphs are easier to read and understand. Writing experts recommend
+                            paragraphs of no more than 150 words in three to eight sentences.
+                        </p>
+                    </td>
+                    <td>
+                        <p class="text-normal mb-0">15.09.2022</p>
+                    </td>
+                    <td>
+                        <p class="text-normal mb-0">0847h</p>
+                    </td>
+                    <td>
+                        <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold"
+                            data-mdb-ripple-color="dark">
+                            Edit
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
     </div>
-    
+
     <%- include ("../../_partial/_footer.ejs") %>
