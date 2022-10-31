@@ -166,64 +166,163 @@
 
             </div>
 
-            <div class="tab-pane fade" id="ex3-pills-2" role="tabpanel" aria-labelledby="ex3-tab-2">
-                
-                <form>
-                    <!-- 2 column grid layout with text inputs for the first and last names -->
-                    <div class="row mb-4">
-                      <div class="col">
-                        <div class="form-outline">
-                          <input type="text" id="form6Example1" class="form-control" style="border: 1px solid rgb(183, 183, 183);"/>
-                          <label class="form-label" for="form6Example1">Hall name</label>
+            <div class="tab-pane fade" id="ex3-pills-2" role="tabpanel" aria-labelledby="ex3-tab-2"
+                style="display: flex;">
+
+                <div style="width: 50%; padding-right: 1%;">
+
+                    <table class="table table-striped table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th colspan="2">Hall</th>
+                                <th colspan="2">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img src="https://images.unsplash.com/photo-1524824267900-2fa9cbf7a506?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                                        alt="hall-a" height="50px" width="50px">
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="ms-3">
+                                            <p class="fw-bold mb-1">Hall A</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                        Update
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1198&q=80"
+                                        alt="hall-a" height="50px" width="50px">
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="ms-3">
+                                            <p class="fw-bold mb-1">Hall B</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                        Update
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <img src="https://images.unsplash.com/photo-1524824267900-2fa9cbf7a506?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                                        alt="hall-a" height="50px" width="50px">
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="ms-3">
+                                            <p class="fw-bold mb-1">Hall C</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                        Update
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="width: 50%;">
+                    <form>
+                        <!-- 2 column grid layout with text inputs for the first and last names -->
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input type="text" id="form6Example1" class="form-control"
+                                        style="border: 1px solid rgb(183, 183, 183);" />
+                                    <label class="form-label" for="form6Example1">Hall name</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input type="text" id="form6Example2" class="form-control"
+                                        style="border: 1px solid rgb(183, 183, 183);" />
+                                    <label class="form-label" for="form6Example2">Last name</label>
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                      <div class="col">
-                        <div class="form-outline">
-                          <input type="text" id="form6Example2" class="form-control" style="border: 1px solid rgb(183, 183, 183);" />
-                          <label class="form-label" for="form6Example2">Last name</label>
+
+                        <!-- Text input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" id="form6Example3" class="form-control"
+                                style="border: 1px solid rgb(183, 183, 183);" />
+                            <label class="form-label" for="form6Example3">Company name</label>
                         </div>
-                      </div>
-                    </div>
-                  
-                    <!-- Text input -->
-                    <div class="form-outline mb-4">
-                      <input type="text" id="form6Example3" class="form-control" style="border: 1px solid rgb(183, 183, 183);" />
-                      <label class="form-label" for="form6Example3">Company name</label>
-                    </div>
-                  
-                    <!-- Text input -->
-                    <div class="form-outline mb-4">
-                      <input type="text" id="form6Example4" class="form-control" style="border: 1px solid rgb(183, 183, 183);" />
-                      <label class="form-label" for="form6Example4">Address</label>
-                    </div>
-                  
-                    <!-- Email input -->
-                    <div class="form-outline mb-4">
-                      <input type="email" id="form6Example5" class="form-control" style="border: 1px solid rgb(183, 183, 183);" />
-                      <label class="form-label" for="form6Example5">Email</label>
-                    </div>
-                  
-                    <!-- Number input -->
-                    <div class="form-outline mb-4">
-                      <input type="number" id="form6Example6" class="form-control" style="border: 1px solid rgb(183, 183, 183);" />
-                      <label class="form-label" for="form6Example6">Phone</label>
-                    </div>
-                  
-                    <!-- Message input -->
-                    <div class="form-outline mb-4" style="border: 1px solid rgb(183, 183, 183);">
-                      <textarea class="form-control" id="form6Example7" rows="4"></textarea>
-                      <label class="form-label" for="form6Example7">Description</label>
-                    </div>
-                  
-                    <!-- Checkbox 
-                    <div class="form-check d-flex justify-content-center mb-4">
-                      <input class="form-check-input me-2" type="checkbox" value="" id="form6Example8" checked />
-                      <label class="form-check-label" for="form6Example8"> Create an account? </label>
-                    </div>-->
-                  
-                    <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-block mb-4">Place order</button>
-                  </form>
+
+                        <!-- Text input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" id="form6Example4" class="form-control"
+                                style="border: 1px solid rgb(183, 183, 183);" />
+                            <label class="form-label" for="form6Example4">Address</label>
+                        </div>
+
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input type="email" id="form6Example5" class="form-control"
+                                style="border: 1px solid rgb(183, 183, 183);" />
+                            <label class="form-label" for="form6Example5">Email</label>
+                        </div>
+
+                        <!-- Number input -->
+                        <div class="form-outline mb-4">
+                            <input type="number" id="form6Example6" class="form-control"
+                                style="border: 1px solid rgb(183, 183, 183);" />
+                            <label class="form-label" for="form6Example6">Phone</label>
+                        </div>
+
+                        <!-- Message input -->
+                        <div class="form-outline mb-4" style="border: 1px solid rgb(183, 183, 183);">
+                            <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+                            <label class="form-label" for="form6Example7">Description</label>
+                        </div>
+
+                        <!-- Checkbox 
+                        <div class="form-check d-flex justify-content-center mb-4">
+                          <input class="form-check-input me-2" type="checkbox" value="" id="form6Example8" checked />
+                          <label class="form-check-label" for="form6Example8"> Create an account? </label>
+                        </div>-->
+
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block mb-4">Add Hall</button>
+                    </form>
+                </div>
+
+
 
             </div>
 

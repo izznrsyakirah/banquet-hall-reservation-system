@@ -16,24 +16,24 @@
             <h3 class="display-6">Don't worry, send us a message</h3>
             <br>
 
-            <form>
+            <form action="/addContact" method="POST">
                 <!-- Name input -->
                 <div class="form-outline mb-4">
-                    <input type="text" id="form4Example1" class="form-control"
+                    <input type="text" id="name" class="form-control" name="contactName"
                         style="border: 1px solid rgb(183, 183, 183);" />
                     <label class="form-label" for="form4Example1">Name</label>
                 </div>
 
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                    <input type="email" id="form4Example2" class="form-control"
+                    <input type="email" id="email" class="form-control" name="contactEmail"
                         style="border: 1px solid rgb(183, 183, 183);" />
                     <label class="form-label" for="form4Example2">Email address</label>
                 </div>
 
                 <!-- Message input -->
                 <div class="form-outline mb-4">
-                    <textarea class="form-control" id="form4Example3" rows="4" maxlength="350"
+                    <textarea class="form-control" id="message" rows="4" maxlength="350" name="contactMessage"
                         style="border: 1px solid rgb(183, 183, 183);"></textarea>
                     <label class="form-label" for="form4Example3">Message</label>
                     <div id="the-count">
@@ -41,6 +41,9 @@
                         <span id="maximum">/ 350</span>
                     </div>
                 </div>
+
+                <!-- Status -->
+                <input type="hidden" id="status" name="contactStatus" value="awaiting"/>
 
                 <!-- Checkbox -->
                 <div class="form-check d-flex justify-content-center mb-4">
@@ -51,7 +54,7 @@
                 </div>
 
                 <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
+                <button type="submit" class="btn btn-primary btn-block mb-4">Send Message</button>
             </form>
         </div>
 

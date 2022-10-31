@@ -3,6 +3,9 @@ var passport = require("passport");
 var flash = require("connect-flash");
 
 var Admin = require("../models/admin");
+var Contact = require("../models/contact");
+
+var ensureAuthenticated = require("../auth/auth").ensureAuthenticated;
 
 var router = express.Router();
 
@@ -13,9 +16,8 @@ router.use(function (req, res, next) {
     next();
 });
 
-
+/* ********************************************************Customer Routes ******************************************************/
 router.get("/", function (req, res) {
-    //console.log("Hi, I'm on the start page");
     res.render("user/index");
 });
 
@@ -39,6 +41,7 @@ router.get("/login", function (req, res) {
     res.render("admin/login");
 });
 
+/************************************************************** Admin Routes ******************************************************/
 router.get("/logout", function (req, res) {
     req.logout(function (err) {
         if (err) { return next(err); }
@@ -55,19 +58,39 @@ router.post("/login", passport.authenticate("login", {
 //router.use("/", require("./admin"));
 
 router.get("/contactList", function (req, res) {
-    res.render("admin/pages/contactList");
+    Contact.find().exec(function (err, contacts) {
+        if (err) { console.log(err); }
+
+        res.render("admin/pages/contactList", { contacts: contacts });
+    });
 });
 
-router.get("/addHalls", function (req, res) {
+router.get("/addHalls", ensureAuthenticated, function (req, res) {
     res.render("admin/pages/addHalls");
 });
 
-router.get("/eventsList", function (req, res) {
+router.get("/eventsList", ensureAuthenticated, function (req, res) {
     res.render("admin/pages/eventsList");
 });
 
-router.get("/calendar", function (req, res) {
+router.get("/calendar", ensureAuthenticated, function (req, res) {
     res.render("admin/pages/calendar");
+});
+
+/*********************************************************** Contact Form Submission **************************************************/
+router.post("/addContact", function (req, res) {
+
+    var newContact = new Contact({
+        name: req.body.contactName,
+        email: req.body.contactEmail,
+        message: req.body.contactMessage,
+        status: req.body.contactStatus
+    });
+
+    newContact.save(function (err, post) {
+        if (err) { console.log(err); }
+        res.redirect("/contact");
+    });
 });
 
 module.exports = router;
