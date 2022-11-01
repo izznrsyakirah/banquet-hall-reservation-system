@@ -50,7 +50,7 @@ router.get("/logout", function (req, res) {
 });
 
 router.post("/login", passport.authenticate("login", {
-    successRedirect: "/",
+    successRedirect: "/contactList",
     failureRedirect: "/login",
     failureFlash: true
 }));
@@ -91,6 +91,7 @@ router.post("/addContact", function (req, res) {
         if (err) { console.log(err); }
         res.redirect("/contact");
     });
+
 });
 
 module.exports = router;

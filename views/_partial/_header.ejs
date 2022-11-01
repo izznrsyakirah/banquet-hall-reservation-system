@@ -85,38 +85,12 @@
 
                     </ul>
 
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-
-
-                        <!-- Icons -->
-
-                        <!--<li class="nav-item">
-                            <a class="nav-link pe-2" href="https://www.youtube.com/channel/UC5CF7mLQZhvx8O5GODZAhdA"
-                                rel="nofollow" target="_blank">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-2" href="https://www.facebook.com/mdbootstrap" rel="nofollow"
-                                target="_blank">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-2" href="https://twitter.com/MDBootstrap" rel="nofollow"
-                                target="_blank">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link ps-2" href="https://github.com/mdbootstrap/mdb-ui-kit" rel="nofollow"
-                                target="_blank">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </li>-->
-
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
+                        
                         <% if(currentUser !=null ) { %>
+                            <li class="nav-item"> <!--<%= currentUser.email %>-->
+                                <a class="nav-link" href="#">Welcome Admin</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/contactList">Contact List</a>
                             </li>
@@ -124,14 +98,12 @@
                                 <a class="nav-link" href="/addHalls">Add Halls</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="eventsList">Events List</a>
+                                <a class="nav-link" href="/eventsList">Events List</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="calendar">Calendar</a>
+                                <a class="nav-link" href="/calendar">Calendar</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Welcome <%= currentUser.email %></a>
-                            </li>
+                            
                             <li class="nav-item">
                                 <a class="nav-link" href="/logout">Log out</a>
                             </li>
@@ -148,7 +120,7 @@
                                 <a class="nav-link" href="/contact">Contact Us</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/halls">View Halls</a>
+                                <a class="nav-link" href="/halls">Halls</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/reservation" target="_blank">Make a Reservation</a>
