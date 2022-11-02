@@ -41,6 +41,7 @@
                         </td>
 
                         <td style="text-align: center;">
+
                             <% if (contact.status=='Responded' ) { %>
                                 <span class="badge badge-success rounded-pill d-inline">
                                     <%= contact.status %>
@@ -50,11 +51,21 @@
                                     <%= contact.status %>
                                 </span>
                                 <p></p>
-                                <button type="button" class="btn btn-outline-success btn-rounded" 
-                                    data-mdb-ripple-color="dark" style="padding: 4% 5% 4% 5%; font-size: x-small;">
-                                    &#10004;Responded
-                                </button>
+
+                                <form action="/updateContactList" method="post">
+
+                                    <input type="hidden" name="contactId" value=<%= contact._id %>>
+
+                                    <input type="hidden" id="status" name="contactStatus" value="Responded"/>
+
+                                    <button type="submit" class="btn btn-outline-success btn-rounded" 
+                                        data-mdb-ripple-color="dark" style="padding: 4% 5% 4% 5%; font-size: x-small;">
+                                        &#10004;Responded
+                                    </button>
+                                </form>
+
                             <% } %>
+
                         </td>
                     </tr>
 

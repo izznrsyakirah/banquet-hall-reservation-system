@@ -55,10 +55,11 @@ router.post("/login", passport.authenticate("login", {
     failureFlash: true
 }));
 
-//router.use("/", require("./admin"));
+router.get("/contactList", ensureAuthenticated, function (req, res) {
 
-router.get("/contactList", function (req, res) {
-    Contact.find().exec(function (err, contacts) {
+    var sortBy = { submittedAt: -1 }; //{ name: 1 } ascending, { name: -1 } descending
+
+    Contact.find().sort(sortBy).exec(function (err, contacts) {
         if (err) { console.log(err); }
 
         res.render("admin/pages/contactList", { contacts: contacts });
@@ -93,5 +94,24 @@ router.post("/addContact", function (req, res) {
     });
 
 });
+
+/******************************************************* Contact Form Response Update **************************************************/
+router.post("/updateContactList", async function (req, res) {
+
+    const contact = await Contact.findById(req.body.contactId);
+
+    contact.status = req.body.contactStatus;
+
+    try {
+        let updateContact = await contact.save();
+        //console.log("updatecontact", updateContact);
+        res.redirect("/contactList");
+    } catch (err) {
+        console.log("error occured");
+        res.status(500).send(err);
+    }
+
+});
+
 
 module.exports = router;
