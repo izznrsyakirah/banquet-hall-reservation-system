@@ -5,7 +5,7 @@ var contactSchema = mongoose.Schema({
     email: { type: String, required: true },
     message: { type: String, required: true },
     submittedAt: { type: Date, default: Date.now },
-    status: { type: String, required: false } /* warning, primary, success */
+    status: { type: String, required: false } /* Awaiting, Responded */
 });
 
 var Contact = mongoose.model("Contact", contactSchema);
