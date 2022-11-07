@@ -14,5 +14,5 @@ var hallSchema = mongoose.Schema({
     description: { type: String, required: true }
 });
 
-var Hall = mongoose.model("Contact", hallSchema);
-module.exports = Contact;
+var Hall = mongoose.model("Hall", hallSchema);
+module.exports = Hall;

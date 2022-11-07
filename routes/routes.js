@@ -4,6 +4,7 @@ var flash = require("connect-flash");
 
 var Admin = require("../models/admin");
 var Contact = require("../models/contact");
+var Hall = require("../models/halls");
 
 var ensureAuthenticated = require("../auth/auth").ensureAuthenticated;
 
@@ -30,7 +31,13 @@ router.get("/contact", function (req, res) {
 })
 
 router.get("/halls", function (req, res) {
-    res.render("user/halls");
+
+    Hall.find().exec(function (err, halls) {
+        if (err) { console.log(err); }
+
+        res.render("user/halls", { halls: halls });
+    });
+
 })
 
 router.get("/reservation", function (req, res) {
@@ -67,7 +74,13 @@ router.get("/contactList", ensureAuthenticated, function (req, res) {
 });
 
 router.get("/addHalls", ensureAuthenticated, function (req, res) {
-    res.render("admin/pages/addHalls");
+
+    Hall.find().exec(function (err, halls) {
+        if (err) { console.log(err); }
+
+        res.render("admin/pages/addHalls", { halls: halls });
+    });
+    
 });
 
 router.get("/eventsList", ensureAuthenticated, function (req, res) {
@@ -110,6 +123,29 @@ router.post("/updateContactList", async function (req, res) {
         console.log("error occured");
         res.status(500).send(err);
     }
+
+});
+
+/******************************************************** Add Hall Form Submission **************************************************/
+router.post("/manageHall", function (req, res) {
+
+    var newHall = new Hall({
+        name: req.body.hallName,
+        seatingPlan: req.body.seatingPlan,
+        hallType: req.body.hallType,
+        capacity: req.body.hallCapacity,
+        lightingSystem: req.body.lightingSystem,
+        soundSystem: req.body.soundingSystem,
+        buffet: req.body.buffet,
+        priceFrom: req.body.priceFrom,
+        priceTo: req.body.priceTo,
+        description: req.body.hallDescription
+    })
+
+    newHall.save(function (err, post) {
+        if (err) { console.log(err); }
+        res.redirect("/addHalls");
+    });
 
 });
 
