@@ -1,10 +1,12 @@
 <%- include ("../_partial/_header.ejs") %>
 
-    <div style="padding: 10% 5%;">
+    <div style="padding: 5%;">
 
         <% halls.forEach(function(hall,index) { %>
             
             <% if(index % 2 != 1) { %>
+
+                <br><br>
 
                 <div class="card">
                     <div style="display: flex;">
@@ -220,6 +222,8 @@
                 </div>
         
             <% } %>
+
+            
 
         <% }) %>
 

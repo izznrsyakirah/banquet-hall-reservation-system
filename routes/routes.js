@@ -5,6 +5,7 @@ var flash = require("connect-flash");
 var Admin = require("../models/admin");
 var Contact = require("../models/contact");
 var Hall = require("../models/halls");
+var Reservation = require("../models/reservation");
 
 var ensureAuthenticated = require("../auth/auth").ensureAuthenticated;
 
@@ -41,7 +42,12 @@ router.get("/halls", function (req, res) {
 })
 
 router.get("/reservation", function (req, res) {
-    res.render("user/reservation");
+
+    Hall.find().exec(function (err, halls) {
+        if (err) { console.log(err); }
+
+        res.render("user/reservation", { halls: halls });
+    });
 })
 
 router.get("/login", function (req, res) {
@@ -80,7 +86,7 @@ router.get("/addHalls", ensureAuthenticated, function (req, res) {
 
         res.render("admin/pages/addHalls", { halls: halls });
     });
-    
+
 });
 
 router.get("/eventsList", ensureAuthenticated, function (req, res) {
@@ -149,5 +155,28 @@ router.post("/manageHall", function (req, res) {
 
 });
 
+/******************************************************** Reservation Form Submission **************************************************/
+router.post("/makeReservation", function (req, res) {
+
+    var newReservation = new Reservation({
+        title: req.body.personTitle,
+        firstname: req.body.personFirstName,
+        lastname: req.body.personLastName,
+        nic: req.body.personNic,
+        address: req.body.personAddress,
+        contact: req.body.personContact,
+        email: req.body.personEmail,
+        hallType: req.body.hallType,
+        eventDate: req.body.eventDate,
+        eventTime: req.body.eventTime,
+        message: req.body.optionalMessage,
+    })
+
+    newReservation.save(function (err, post) {
+        if (err) { console.log(err); }
+        res.redirect("/reservation");
+    });
+
+});
 
 module.exports = router;

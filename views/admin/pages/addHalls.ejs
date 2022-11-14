@@ -28,74 +28,88 @@
             <div class="tab-pane fade show active" id="ex3-pills-1" role="tabpanel" aria-labelledby="ex3-tab-1">
 
                 <% halls.forEach(function(hall,index) { %>
-            
-                    <% if(index % 2 != 1) { %>
-        
+
+                    <% if(index % 2 !=1) { %>
+
+                        <br><br>
+
                         <div class="card">
                             <div style="display: flex;">
-        
+
                                 <div style="width: 50%; padding: 5%;">
-        
-                                    <h3 class="display-6"><%= hall.name %></h3>
+
+                                    <h3 class="display-6">
+                                        <%= hall.name %>
+                                    </h3>
                                     <p style="text-align: justify;" class="lead">
                                         <%= hall.description %>
                                     </p>
-        
-                                    <button type="button" class="btn btn-primary hall-01" style="background-color: #2a3353;"
-                                        id=<%= hall._id %>>
+
+                                    <button type="button" class="btn btn-primary hall-01"
+                                        style="background-color: #2a3353;" id=<%=hall._id %>>
                                         Read More
                                         <i class="fas fa-angle-double-right"></i>
                                     </button>
-        
+
                                 </div>
-        
+
                                 <div style="width: 50%; border-radius: 0px 10px 10px 0px; " class="bg-image hover-zoom">
                                     <img src="https://images.unsplash.com/photo-1524824267900-2fa9cbf7a506?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
                                         alt="hall one" width="100%" height="auto">
                                 </div>
-        
+
                             </div>
-        
+
                             <div class="content" style="width: 100%; position: relative;" id="display-<%= hall._id %>">
-        
+
                                 <div style="padding: 5%;">
-        
+
                                     <div style="display: flex;">
-                                        <div style="width: 25%; border-radius: 0px; padding: 1%;" class="bg-image hover-zoom">
+                                        <div style="width: 25%; border-radius: 0px; padding: 1%;"
+                                            class="bg-image hover-zoom">
                                             <img src="https://images.unsplash.com/photo-1524824267900-2fa9cbf7a506?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
                                                 alt="hall one one" width="100%" height="100%">
                                         </div>
-                                        <div style="width: 25%; border-radius: 0px; padding: 1%;" class="bg-image hover-zoom">
+                                        <div style="width: 25%; border-radius: 0px; padding: 1%;"
+                                            class="bg-image hover-zoom">
                                             <img src="https://images.unsplash.com/photo-1524824267900-2fa9cbf7a506?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
                                                 alt="hall one one" width="100%" height="100%">
                                         </div>
-                                        <div style="width: 25%; border-radius: 0px; padding: 1%;" class="bg-image hover-zoom">
+                                        <div style="width: 25%; border-radius: 0px; padding: 1%;"
+                                            class="bg-image hover-zoom">
                                             <img src="https://images.unsplash.com/photo-1524824267900-2fa9cbf7a506?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
                                                 alt="hall one one" width="100%" height="100%">
                                         </div>
-                                        <div style="width: 25%; border-radius: 0px; padding: 1%;" class="bg-image hover-zoom">
+                                        <div style="width: 25%; border-radius: 0px; padding: 1%;"
+                                            class="bg-image hover-zoom">
                                             <img src="https://images.unsplash.com/photo-1524824267900-2fa9cbf7a506?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
                                                 alt="hall one one" width="100%" height="100%">
                                         </div>
-        
+
                                     </div>
-        
+
                                     <div style="width: 100%; text-align: justify; padding: 1%; display: flex; ">
-        
+
                                         <div style="width: 50%; padding: 1%;">
                                             <table class="table table-striped">
                                                 <tbody>
                                                     <tr>
                                                         <th scope="row">Hall Type: </th>
-                                                        <td><%= hall.hallType %></td>
+                                                        <td>
+                                                            <%= hall.hallType %>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">Seating Plan: </th>
-                                                        <td><%= hall.seatingPlan %></td>
+                                                        <td>
+                                                            <%= hall.seatingPlan %>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">Capacity: </th>
-                                                        <td><%= hall.capacity %> Guests</td>
+                                                        <td>
+                                                            <%= hall.capacity %> Guests
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">Available Dates: </th>
@@ -104,149 +118,179 @@
                                                 </tbody>
                                             </table>
                                         </div>
-        
+
                                         <div style="width: 50%; padding: 1%;">
                                             <table class="table table-striped">
                                                 <tbody>
                                                     <tr>
                                                         <th scope="row">Lighting System: </th>
-                                                        <td><%= hall.lightingSystem %></td>
+                                                        <td>
+                                                            <%= hall.lightingSystem %>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">Sound System: </th>
-                                                        <td><%= hall.soundSystem %></td>
+                                                        <td>
+                                                            <%= hall.soundSystem %>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">Buffet: </th>
-                                                        <td><%= hall.buffet %></td>
+                                                        <td>
+                                                            <%= hall.buffet %>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">Price Range: </th>
-                                                        <td><%= hall.priceFrom %> to <%= hall.priceTo %> LKR</td>
+                                                        <td>
+                                                            <%= hall.priceFrom %> to <%= hall.priceTo %> LKR
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
-        
+
                                     </div>
-        
+
                                 </div>
-        
+
                             </div>
-        
+
                         </div>
-        
-                    <% } else { %>
-                
-                        <br><br>
-        
-                        <div class="card">
-                            <div style="display: flex;">
-        
-                                <div style="width: 50%; border-radius: 10px 0px 0px 10px;" class="bg-image hover-zoom">
-                                    <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1198&q=80"
-                                        alt="hall two" width="100%" height="auto">
-                                </div>
-        
-                                <div style="width: 50%; padding: 5%;">
-                                    <h3 class="display-6"><%= hall.name %></h3>
-                                    <p style="text-align: justify;" class="lead">
-                                        <%= hall.description %>
-                                    </p>
-        
-                                    <button type="button" class="btn btn-primary hall-02" style="background-color: #2a3353;"
-                                        id=<%= hall._id %>>
-                                        Read More
-                                        <i class="fas fa-angle-double-right"></i>
-                                    </button>
-        
-                                </div>
-        
-                            </div>
-        
-                            <div class="content" class="content" style="width: 100%; position: relative;" id="display-<%= hall._id %>">
-        
-                                <div style="padding: 5%;">
-        
-                                    <div style="display: flex;">
-                                        <div style="width: 25%; border-radius: 0px; padding: 1%; " class="bg-image hover-zoom">
-                                            <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1198&q=80"
-                                                alt="hall one one" width="100%" height="100%">
-                                        </div>
-                                        <div style="width: 25%; border-radius: 0px; padding: 1%; " class="bg-image hover-zoom">
-                                            <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1198&q=80"
-                                                alt="hall one one" width="100%" height="100%">
-                                        </div>
-                                        <div style="width: 25%; border-radius: 0px; padding: 1%; " class="bg-image hover-zoom">
-                                            <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1198&q=80"
-                                                alt="hall one one" width="100%" height="100%">
-                                        </div>
-                                        <div style="width: 25%; border-radius: 0px; padding: 1%; " class="bg-image hover-zoom">
-                                            <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1198&q=80"
-                                                alt="hall one one" width="100%" height="100%">
-                                        </div>
-        
+
+                        <% } else { %>
+
+                            <br><br>
+
+                            <div class="card">
+                                <div style="display: flex;">
+
+                                    <div style="width: 50%; border-radius: 10px 0px 0px 10px;"
+                                        class="bg-image hover-zoom">
+                                        <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1198&q=80"
+                                            alt="hall two" width="100%" height="auto">
                                     </div>
-        
-                                    <div style="width: 100%; text-align: justify; padding: 1%; display: flex; ">
-        
-                                        <div style="width: 50%; padding: 1%;">
-                                            <table class="table table-striped">
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">Hall Type: </th>
-                                                        <td><%= hall.hallType %></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Seating Plan: </th>
-                                                        <td><%= hall.seatingPlan %></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Capacity: </th>
-                                                        <td><%= hall.capacity %> Guest</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Available Dates: </th>
-                                                        <td>xx.xx.xxxx</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-        
-                                        <div style="width: 50%; padding: 1%;">
-                                            <table class="table table-striped">
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">Lighting System: </th>
-                                                        <td><%= hall.lightingSystem %></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Sound System: </th>
-                                                        <td><%= hall.soundSystem %></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Buffet: </th>
-                                                        <td><%= hall.buffet %></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Price Range: </th>
-                                                        <td><%= hall.priceFrom %> to <%= hall.priceTo %> LKR</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-        
+
+                                    <div style="width: 50%; padding: 5%;">
+                                        <h3 class="display-6">
+                                            <%= hall.name %>
+                                        </h3>
+                                        <p style="text-align: justify;" class="lead">
+                                            <%= hall.description %>
+                                        </p>
+
+                                        <button type="button" class="btn btn-primary hall-02"
+                                            style="background-color: #2a3353;" id=<%=hall._id %>>
+                                            Read More
+                                            <i class="fas fa-angle-double-right"></i>
+                                        </button>
+
                                     </div>
-        
+
                                 </div>
-        
+
+                                <div class="content" class="content" style="width: 100%; position: relative;"
+                                    id="display-<%= hall._id %>">
+
+                                    <div style="padding: 5%;">
+
+                                        <div style="display: flex;">
+                                            <div style="width: 25%; border-radius: 0px; padding: 1%; "
+                                                class="bg-image hover-zoom">
+                                                <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1198&q=80"
+                                                    alt="hall one one" width="100%" height="100%">
+                                            </div>
+                                            <div style="width: 25%; border-radius: 0px; padding: 1%; "
+                                                class="bg-image hover-zoom">
+                                                <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1198&q=80"
+                                                    alt="hall one one" width="100%" height="100%">
+                                            </div>
+                                            <div style="width: 25%; border-radius: 0px; padding: 1%; "
+                                                class="bg-image hover-zoom">
+                                                <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1198&q=80"
+                                                    alt="hall one one" width="100%" height="100%">
+                                            </div>
+                                            <div style="width: 25%; border-radius: 0px; padding: 1%; "
+                                                class="bg-image hover-zoom">
+                                                <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1198&q=80"
+                                                    alt="hall one one" width="100%" height="100%">
+                                            </div>
+
+                                        </div>
+
+                                        <div style="width: 100%; text-align: justify; padding: 1%; display: flex; ">
+
+                                            <div style="width: 50%; padding: 1%;">
+                                                <table class="table table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">Hall Type: </th>
+                                                            <td>
+                                                                <%= hall.hallType %>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Seating Plan: </th>
+                                                            <td>
+                                                                <%= hall.seatingPlan %>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Capacity: </th>
+                                                            <td>
+                                                                <%= hall.capacity %> Guest
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Available Dates: </th>
+                                                            <td>xx.xx.xxxx</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <div style="width: 50%; padding: 1%;">
+                                                <table class="table table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">Lighting System: </th>
+                                                            <td>
+                                                                <%= hall.lightingSystem %>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Sound System: </th>
+                                                            <td>
+                                                                <%= hall.soundSystem %>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Buffet: </th>
+                                                            <td>
+                                                                <%= hall.buffet %>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Price Range: </th>
+                                                            <td>
+                                                                <%= hall.priceFrom %> to <%= hall.priceTo %> LKR
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
                             </div>
-        
-                        </div>
-                
-                    <% } %>
-        
-                <% }) %>
+
+                        <% } %>
+
+                    <% }) %>
 
             </div>
 
@@ -265,53 +309,6 @@
                         </thead>
                         <tbody style="text-align: center;">
                             <% halls.forEach(function(hall,index) { %>
-                                <tr>
-                                    <td>
-                                        <img src="https://images.unsplash.com/photo-1524824267900-2fa9cbf7a506?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                                            alt="hall-a" height="50px" width="50px">
-                                    </td>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <div class="ms-3">
-                                                <p class="fw-bold mb-1"><%= hall.name %></p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-link btn-sm btn-rounded">
-                                            Update
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-link btn-sm btn-rounded">
-                                            Delete
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <!--<tr>
-                                    <td>
-                                        <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1198&q=80"
-                                            alt="hall-a" height="50px" width="50px">
-                                    </td>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <div class="ms-3">
-                                                <p class="fw-bold mb-1">Hall B</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-link btn-sm btn-rounded">
-                                            Update
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-link btn-sm btn-rounded">
-                                            Delete
-                                        </button>
-                                    </td>
-                                </tr>
 
                                 <tr>
                                     <td>
@@ -321,29 +318,36 @@
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <div class="ms-3">
-                                                <p class="fw-bold mb-1">Hall C</p>
+                                                <p class="fw-bold mb-1">
+                                                    <%= hall.name %>
+                                                </p>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                        <button type="button" class="btn btn-link btn-sm btn-rounded" id="update-button"
+                                            value="<%= hall._id %>" onclick="change()">
                                             Update
                                         </button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                        <button type="button" class="btn btn-link btn-sm btn-rounded" id="delete-button"
+                                            value="<%= hall._id %>">
                                             Delete
                                         </button>
                                     </td>
-                                </tr>-->
-                            
-                            <% }) %>
+                                </tr>
+
+                                <% }) %>
                         </tbody>
                     </table>
                 </div>
 
                 <!-- Halls Form -->
                 <div style="width: 50%;">
+
+                    
+
                     <form action="/manageHall" method="POST">
 
                         <table class="table table-bordered">
@@ -521,7 +525,8 @@
                                     <th scope="row">Images: </th>
                                     <td>
                                         <div class="form-outline" style="border: 1px solid rgb(183, 183, 183);">
-                                            <input class="form-control" type="file" id="hallImages" name="hallImages" multiple required/>
+                                            <input class="form-control" type="file" id="hallImages" name="hallImages"
+                                                multiple required />
                                         </div>
                                     </td>
                                 </tr>
@@ -529,8 +534,8 @@
                                 <!-- Submit Button -->
                                 <tr>
                                     <td colspan="2">
-                                        <button type="submit" class="btn btn-primary btn-block mb-4"
-                                            style="background-color: #303454;">Add Hall</button>
+                                        <button type="submit" class="btn btn-primary btn-block mb-4" id="form-submit-button"
+                                            style="background-color: #303454;" value="add hall">Add Hall</button>
                                     </td>
                                 </tr>
 
@@ -560,6 +565,14 @@
                 content.style.maxHeight = content.scrollHeight + "px";
             }
         });
+
+        function change() {
+            var updateButton = document.getElementById("form-submit-button");
+            updateButton.value = 'update hall';
+            updateButton.innerHTML = 'Update Hall';
+        }
+
+        
     </script>
 
-    <%- include ("../../_partial/_footer.ejs") %>
+<%- include ("../../_partial/_footer.ejs") %>
