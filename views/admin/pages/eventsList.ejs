@@ -19,143 +19,72 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <div class="ms-3">
-                                <p class="fw-bold mb-1">John Doe</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p class="text-normal mb-0">200201756855</p>
-                    </td>
-                    <td>
-                        <p class="text-normal mb-0">
-                            55/6 Flower Road, Colombo
-                        </p>
-                    </td>
-                    <td>
-                        <p class="text-normal mb-0">0758982572</p>
-                    </td>
-                    <td>
-                        <p class="text-normal mb-0">johndoe@gmail.com</p>
-                    </td>
-                    <td>
-                        <p class="text-normal mb-0">Hall A</p>
-                    </td>
-                    <td>
-                        <p class="text-normal mb-0">26.09.2022</p>
-                    </td>
-                    <td>
-                        <p class="text-normal mb-0" style="text-align: justify;">
-                            Short paragraphs are easier to read and understand. Writing experts recommend
-                            paragraphs of no more than 150 words in three to eight sentences.
-                        </p>
-                    </td>
-                    <td>
-                        <span class="badge badge-success rounded-pill d-inline">Confirmed</span>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-link btn-sm btn-rounded">
-                            Edit
-                        </button>
-                    </td>
-                </tr>
 
-                <tr>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <div class="ms-3">
-                                <p class="fw-bold mb-1">John Doe</p>
+                <% reservations.forEach(function(reservation) { %>
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="ms-3">
+                                    <p class="fw-bold mb-1">
+                                        <%= reservation.title %>. <%= reservation.firstname %>
+                                                <%= reservation.lastname %>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p class="text-normal mb-0">200201756855</p>
-                    </td>
-                    <td>
-                        <p class="text-normal mb-0">
-                            55/6 Flower Road, Colombo
-                        </p>
-                    </td>
-                    <td>
-                        <p class="text-normal mb-0">0758982572</p>
-                    </td>
-                    <td>
-                        <p class="text-normal mb-0">johndoe@gmail.com</p>
-                    </td>
-                    <td>
-                        <p class="text-normal mb-0">Hall A</p>
-                    </td>
-                    <td>
-                        <p class="text-normal mb-0">26.09.2022</p>
-                    </td>
-                    <td>
-                        <p class="text-normal mb-0">
-                            Short paragraphs are easier to read and understand. Writing experts recommend
-                            paragraphs of no more than 150 words in three to eight sentences.
-                        </p>
-                    </td>
-                    <td>
-                        <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-link btn-sm btn-rounded">
-                            Edit
-                        </button>
-                    </td>
-                </tr>
+                        </td>
+                        <td>
+                            <p class="text-normal mb-0">
+                                <%= reservation.nic %>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="text-normal mb-0">
+                                <%= reservation.address %>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="text-normal mb-0">
+                                <%= reservation.contact %>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="text-normal mb-0">
+                                <%= reservation.email %>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="text-normal mb-0">
+                                <%= reservation.hallType %>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="text-normal mb-0">
+                                <%= reservation.eventDate %>
+                                    <%= reservation.eventTime %>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="text-normal mb-0" style="text-align: justify;">
+                                <%= reservation.message %>
+                            </p>
+                        </td>
+                        <td>
+                            <span class="badge badge-success rounded-pill d-inline">Confirmed</span>
+                            <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
+                            <span class="badge badge-primary rounded-pill d-inline">Onboarding</span>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                Edit
+                            </button>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <div class="ms-3">
-                                <p class="fw-bold mb-1">John Doe</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p class="text-normal mb-0">200201756855</p>
-                    </td>
-                    <td>
-                        <p class="text-normal mb-0">
-                            55/6 Flower Road, Colombo
-                        </p>
-                    </td>
-                    <td>
-                        <p class="text-normal mb-0">0758982572</p>
-                    </td>
-                    <td>
-                        <p class="text-normal mb-0">johndoe@gmail.com</p>
-                    </td>
-                    <td>
-                        <p class="text-normal mb-0">Hall A</p>
-                    </td>
-                    <td>
-                        <p class="text-normal mb-0">26.09.2022</p>
-                    </td>
-                    <td>
-                        <p class="text-normal mb-0">
-                            Short paragraphs are easier to read and understand. Writing experts recommend
-                            paragraphs of no more than 150 words in three to eight sentences.
-                        </p>
-                    </td>
-                    <td>
-                        <span class="badge badge-primary rounded-pill d-inline">Onboarding</span>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-link btn-sm btn-rounded">
-                            Edit
-                        </button>
-                    </td>
-                </tr>
-                
-
+                <% }) %>
 
             </tbody>
         </table>
 
     </div>
 
-    <%- include ("../../_partial/_footer.ejs") %>
+<%- include ("../../_partial/_footer.ejs") %>

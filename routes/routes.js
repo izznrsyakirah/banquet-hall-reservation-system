@@ -90,7 +90,11 @@ router.get("/addHalls", ensureAuthenticated, function (req, res) {
 });
 
 router.get("/eventsList", ensureAuthenticated, function (req, res) {
-    res.render("admin/pages/eventsList");
+    Reservation.find().exec(function (err, reservations) {
+        if (err) { console.log(err); }
+
+        res.render("admin/pages/eventsList", { reservations: reservations });
+    });
 });
 
 router.get("/calendar", ensureAuthenticated, function (req, res) {
