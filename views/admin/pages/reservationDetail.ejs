@@ -1,0 +1,117 @@
+<%- include ("../../_partial/_header.ejs") %>
+
+    <div style="padding-left: 15%;">
+        <table class="table table-striped table-hover" style="background-color: white;">
+
+            <tr>
+                <th class="table-dark" style="width: 20%;">Reservation ID</th>
+                <td>
+                    <p class="fw-bold mb-1">
+                        <%= reservationDetails._id %>
+                    </p>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="table-dark">Name</th>
+                <td>
+                    <p class="text-normal mb-0">
+                        <%= reservationDetails.title %>. <%= reservationDetails.firstname %>
+                                <%= reservationDetails.lastname %>
+                    </p>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="table-dark">NIC</th>
+                <td>
+                    <p class="text-normal mb-0">
+                        <%= reservationDetails.nic %>
+                    </p>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="table-dark">Contact</th>
+                <td>
+                    <p class="text-normal mb-0">
+                        <%= reservationDetails.contact %>
+                    </p>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="table-dark">Email</th>
+                <td>
+                    <p class="text-normal mb-0">
+                        <%= reservationDetails.email %>
+                    </p>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="table-dark">Address</th>
+                <td>
+                    <p class="text-normal mb-0">
+                        <%= reservationDetails.address %>
+                    </p>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="table-dark">Hall</th>
+                <td>
+                    <p class="text-normal mb-0">
+                        <%= reservationDetails.hallType %>
+                    </p>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="table-dark">Date</th>
+                <td>
+                    <p class="text-normal mb-0">
+                        <%= reservationDetails.eventDate %>
+                    </p>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="table-dark">Time</th>
+                <td>
+                    <p class="text-normal mb-0">
+                        <%= reservationDetails.eventTime %>
+                    </p>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="table-dark">Message</th>
+                <td>
+                    <p class="text-normal mb-0" style="text-align: justify;">
+                        <%= reservationDetails.message %>
+                    </p>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="table-dark">Status</th>
+                <td>
+                    <span class="badge badge-success rounded-pill d-inline">Confirmed</span>
+                    <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
+                    <span class="badge badge-primary rounded-pill d-inline">Onboarding</span>
+                </td>
+            </tr>
+
+            <tr>
+                <th class="table-dark">Action</th>
+                <td>
+                    <button type="button" class="btn btn-success">Update</button>
+                    <button type="button" class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+    <%- include ("../../_partial/_footer.ejs") %>

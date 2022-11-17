@@ -183,4 +183,10 @@ router.post("/makeReservation", function (req, res) {
 
 });
 
+router.get("/eventsList/:reservationId", function(req, res){
+    Reservation.findById(req.params.reservationId).exec(function(err, reservationDetails){
+        res.render("admin/pages/reservationDetail", {reservationDetails: reservationDetails});
+    });
+});
+
 module.exports = router;
