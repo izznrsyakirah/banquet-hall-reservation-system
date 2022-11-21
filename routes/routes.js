@@ -119,7 +119,7 @@ router.post("/addContact", function (req, res) {
 });
 
 /******************************************************* Contact Form Response Update **************************************************/
-router.post("/updateContactList", async function (req, res) {
+router.post("/updateContactList", ensureAuthenticated, async function (req, res) {
 
     const contact = await Contact.findById(req.body.contactId);
 
@@ -137,7 +137,7 @@ router.post("/updateContactList", async function (req, res) {
 });
 
 /******************************************************** Add Hall Form Submission **************************************************/
-router.post("/manageHall", function (req, res) {
+router.post("/manageHall", ensureAuthenticated, function (req, res) {
 
     var newHall = new Hall({
         name: req.body.hallName,
@@ -173,6 +173,7 @@ router.post("/makeReservation", function (req, res) {
         hallType: req.body.hallType,
         eventDate: req.body.eventDate,
         eventTime: req.body.eventTime,
+        status: req.body.eventStatus,
         message: req.body.optionalMessage,
     })
 
@@ -183,10 +184,42 @@ router.post("/makeReservation", function (req, res) {
 
 });
 
-router.get("/eventsList/:reservationId", function(req, res){
-    Reservation.findById(req.params.reservationId).exec(function(err, reservationDetails){
-        res.render("admin/pages/reservationDetail", {reservationDetails: reservationDetails});
+/******************************************************** View Reservation Details **************************************************/
+router.get("/eventsList/:reservationId", ensureAuthenticated, function (req, res) {
+    Reservation.findById(req.params.reservationId).exec(function (err, reservationDetails) {
+        res.render("admin/pages/reservationDetail", { reservationDetails: reservationDetails });
     });
+});
+
+/******************************************************** Edit Reservation Details **************************************************/
+router.get("/eventsList/edit/:reservationId", ensureAuthenticated, function (req, res) {
+    Reservation.findById(req.params.reservationId).exec(function (err, reservationDetails) {
+        res.render("admin/pages/editReservationDetail", { reservationDetails: reservationDetails });
+    });
+});
+
+router.post("/eventsList/edit/:reservationId/update", ensureAuthenticated, async function (req, res) {
+    const reservation = await Reservation.findById(req.body.reservationId);
+
+    reservation.firstname = req.body.personFirstName;
+    reservation.lastname = req.body.personLastName;
+    reservation.nic = req.body.personNic;
+    reservation.contact = req.body.personContact;
+    reservation.email = req.body.personEmail;
+    reservation.address = req.body.personAddress;
+    reservation.eventDate = req.body.eventDate;
+    reservation.eventTime = req.body.eventTime;
+    reservation.message = req.body.optionalMessage;
+    reservation.eventStatus = req.body.eventStatus;
+
+    try {
+        let saveReservation = await reservation.save();
+        //console.log("savereservation", saveReservation);
+        res.redirect("/eventsList/" + req.body.reservationId);
+    } catch (err) {
+        //console.log("Error occured");
+        res.status(500).send(err);
+    }
 });
 
 module.exports = router;

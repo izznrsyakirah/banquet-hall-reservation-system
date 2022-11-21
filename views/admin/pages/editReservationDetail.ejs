@@ -1,0 +1,145 @@
+<%- include ("../../_partial/_header.ejs") %>
+
+    <div style="padding-left: 15%;">
+        <h1>Edit Reservation: <%= reservationDetails._id %>
+        </h1>
+        <table class="table table-striped table-hover" style="background-color: white;">
+
+            <!--<tr>
+                <th class="table-dark" style="width: 20%;">Reservation ID</th>
+                <td>
+                    <p class="fw-bold mb-1">
+                        
+                    </p>
+                </td>
+            </tr>-->
+            <form action="/eventsList/edit/<%= reservationDetails._id %>/update" method="post">
+                <!-- Name input -->
+                <tr>
+                    <th class="table-dark" style="width: 20%;">Name</th>
+                    <td>
+                        <div style="display: flex;">
+                            <div>
+                                <p class="text-normal mb-0">
+                                    <%= reservationDetails.title %>.
+                                </p>
+                            </div>
+                            <div>
+                                <input type="text" id="fName" class="form-control"
+                                    value="<%= reservationDetails.firstname %>"
+                                    style="border: 1px solid rgb(183, 183, 183);" name="personFirstName" width="50%"
+                                    required />
+                            </div>
+                            <div>
+                                <input type="text" id="lName" class="form-control"
+                                    value="<%= reservationDetails.lastname %>"
+                                    style="border: 1px solid rgb(183, 183, 183);" name="personLastName" required />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- NIC -->
+                <tr>
+                    <th class="table-dark">NIC</th>
+                    <td>
+                        <input type="text" id="nic" class="form-control" value="<%= reservationDetails.nic %>"
+                            style="border: 1px solid rgb(183, 183, 183);" name="personNic" required />
+                    </td>
+                </tr>
+
+                <!-- Contact Number -->
+                <tr>
+                    <th class="table-dark">Contact</th>
+                    <td>
+                        <input type="text" id="contactNumber" class="form-control"
+                            value="<%= reservationDetails.contact %>" style="border: 1px solid rgb(183, 183, 183);"
+                            name="personContact" required />
+                    </td>
+                </tr>
+
+                <!-- Email input -->
+                <tr>
+                    <th class="table-dark">Email</th>
+                    <td>
+                        <input type="email" id="emailUser" class="form-control" value="<%= reservationDetails.email %>"
+                            style="border: 1px solid rgb(183, 183, 183);" name="personEmail" required />
+                    </td>
+                </tr>
+
+                <!-- Address -->
+                <tr>
+                    <th class="table-dark">Address</th>
+                    <td>
+                        <input type="text" id="address" class="form-control" value="<%= reservationDetails.address %>"
+                            style="border: 1px solid rgb(183, 183, 183);" name="personAddress" required />
+                    </td>
+                </tr>
+
+                <!-- Hall Type -->
+                <tr>
+                    <th class="table-dark">Hall</th>
+                    <td>
+                        <p class="text-normal mb-0">
+                            <%= reservationDetails.hallType %>
+                        </p>
+                    </td>
+                </tr>
+
+                <!-- Date -->
+                <tr>
+                    <th class="table-dark">Date</th>
+                    <td>
+                        <input type="date" name="eventDate" id="eventDate" class="form-control"
+                            value="<%= reservationDetails.eventDate %>" style="border: 1px solid rgb(183, 183, 183);"
+                            min="" required />
+                    </td>
+                </tr>
+
+                <!-- Time -->
+                <tr>
+                    <th class="table-dark">Time</th>
+                    <td>
+                        <input type="time" name="eventTime" id="eventTime" class="form-control"
+                            value="<%= reservationDetails.eventTime %>" style="border: 1px solid rgb(183, 183, 183);"
+                            required />
+                    </td>
+                </tr>
+
+                <!-- Message input -->
+                <tr>
+                    <th class="table-dark">Message</th>
+                    <td>
+                        <textarea class="form-control" id="message" rows="4" name="optionalMessage"
+                            style="border: 1px solid rgb(183, 183, 183);"><%= reservationDetails.message %></textarea>
+                    </td>
+                </tr>
+
+                <!-- Status -->
+                <tr>
+                    <th class="table-dark">Status</th>
+                    <td>
+                        <% if (reservationDetails.status=='Awaiting' ) { %>
+                            <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
+                            <% } else if (reservationDetails.status=='Onboarding' ) { %>
+                                <span class="badge badge-primary rounded-pill d-inline">Onboarding</span>
+                                <% } else if (reservationDetails.status=='Confirmed' ) { %>
+                                    <span class="badge badge-success rounded-pill d-inline">Confirmed</span>
+                                    <% } %>
+                    </td>
+                </tr>
+
+                <input type="hidden" name="reservationId" id="reservationId" value="<%= reservationDetails._id %>" />
+
+                <tr>
+                    <th class="table-dark">Action</th>
+                    <td>
+                        <button type="submit" class="btn btn-success">Update</button>
+                        <a href="/eventsList/<%= reservationDetails._id %>" class="btn btn-danger">Cancel</a>
+                    </td>
+                </tr>
+            </form>
+        </table>
+    </div>
+
+    <%- include ("../../_partial/_footer.ejs") %>

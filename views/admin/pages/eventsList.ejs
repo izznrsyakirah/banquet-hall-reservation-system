@@ -52,9 +52,13 @@
                                 </p>
                             </td>
                             <td>
-                                <span class="badge badge-success rounded-pill d-inline">Confirmed</span>
-                                <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
-                                <span class="badge badge-primary rounded-pill d-inline">Onboarding</span>
+                                <% if (reservation.status == 'Awaiting') { %>
+                                    <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
+                                <% } else if (reservation.status == 'Onboarding') { %>
+                                    <span class="badge badge-primary rounded-pill d-inline">Onboarding</span>
+                                <% } else if (reservation.status == 'Confirmed') { %>
+                                    <span class="badge badge-success rounded-pill d-inline">Confirmed</span>
+                                <% } %>
                             </td>
                             <td>
                                 <a href="eventsList/<%= reservation._id %>" target="_blank"><i class="fas fa-external-link-alt"></i></a>

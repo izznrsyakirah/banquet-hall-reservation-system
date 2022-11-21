@@ -11,6 +11,7 @@ var reservationSchema = mongoose.Schema({
     hallType: { type: String, required: true },
     eventDate: { type: String, required: true },
     eventTime: { type: String, required: true },
+    status: { type: String, required: true },
     message: { type: String, required: false },
     submittedAt: { type: Date, default: Date.now }
 });

@@ -97,16 +97,20 @@
             <tr>
                 <th class="table-dark">Status</th>
                 <td>
-                    <span class="badge badge-success rounded-pill d-inline">Confirmed</span>
-                    <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
-                    <span class="badge badge-primary rounded-pill d-inline">Onboarding</span>
+                    <% if (reservationDetails.status=='Awaiting' ) { %>
+                        <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
+                        <% } else if (reservationDetails.status=='Onboarding' ) { %>
+                            <span class="badge badge-primary rounded-pill d-inline">Onboarding</span>
+                            <% } else if (reservationDetails.status=='Confirmed' ) { %>
+                                <span class="badge badge-success rounded-pill d-inline">Confirmed</span>
+                                <% } %>
                 </td>
             </tr>
 
             <tr>
                 <th class="table-dark">Action</th>
                 <td>
-                    <button type="button" class="btn btn-success">Update</button>
+                    <a href="edit/<%= reservationDetails._id %>" class="btn btn-info">Edit</a>
                     <button type="button" class="btn btn-danger">Delete</button>
                 </td>
             </tr>
