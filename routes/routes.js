@@ -98,7 +98,13 @@ router.get("/eventsList", ensureAuthenticated, function (req, res) {
 });
 
 router.get("/calendar", ensureAuthenticated, function (req, res) {
-    res.render("admin/pages/calendar");
+
+    Reservation.find({}, { hallType: 1, eventDate: 1, eventTime: 1 }).exec(function (err, events) {
+        if (err) { console.log(err); }
+
+        res.render("admin/pages/calendar", { events: events });
+    });
+
 });
 
 /*********************************************************** Contact Form Submission **************************************************/

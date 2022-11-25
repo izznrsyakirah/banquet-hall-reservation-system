@@ -57,7 +57,30 @@
             </div>
         </div>
 
+        <script>
+            let eventArray = []
+        </script>
+
+        <% events.forEach(function(event) { %>
+
+            <script>
+
+                eventId = '<%= event._id %>'
+                eventhallType = '<%= event.hallType %>'
+                eventDate = '<%= event.eventDate %>'
+                eventTime = '<%= event.eventTime %>'
+
+                eventString = { title: eventId + '\n' + eventhallType, start: eventDate + 'T' + eventTime }
+                //console.log(eventString)
+
+                eventArray.push(eventString)
+                //console.log(eventArray)
+            </script>
+
+        <% }) %>
+
     </div>
+
 
     <script>
         $(document).ready(function () {
@@ -82,11 +105,12 @@
                 navLinks: true, // can click day/week names to navigate views
                 editable: true,
                 eventLimit: true, // allow "more" link when too many events
-                
-                events: [
+
+                events: eventArray
+                /*events: [
                     {
                         title: 'All Day Event\n123456',
-                        start: '2022-11-01T20:00',
+                        start: '2022-11-01T20:00'
                     },
                     {
                         title: 'Long Event\nsh5WSD654f8E',
@@ -139,6 +163,7 @@
                         start: '2022-12-28'
                     }
                 ]
+            */
             });
 
         });
@@ -146,4 +171,4 @@
 
     </div>
 
-<%- include ("../../_partial/_footer.ejs") %>
+    <%- include ("../../_partial/_footer.ejs") %>
