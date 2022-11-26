@@ -103,7 +103,7 @@
                                                     <tr>
                                                         <th scope="row">Seating Plan: </th>
                                                         <td>
-                                                            <%= hall.seatingPlan %>
+                                                            <%= hall.seatingPlan %> Style
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -159,7 +159,7 @@
 
                         </div>
 
-                        <% } else { %>
+                    <% } else { %>
 
                             <br><br>
 
@@ -233,7 +233,7 @@
                                                         <tr>
                                                             <th scope="row">Seating Plan: </th>
                                                             <td>
-                                                                <%= hall.seatingPlan %>
+                                                                <%= hall.seatingPlan %> Style
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -289,9 +289,9 @@
 
                             </div>
 
-                        <% } %>
+                    <% } %>
 
-                    <% }) %>
+                <% }) %>
 
             </div>
 
@@ -347,7 +347,6 @@
                 <!-- Halls Form -->
                 <div style="width: 50%;">
 
-                    
 
                     <form action="/manageHall" method="POST">
 
@@ -373,12 +372,12 @@
                                             <select id="seatingPlan" class="form-control" name="seatingPlan"
                                                 style="border: 1px solid rgb(183, 183, 183);" required>
                                                 <option value="0">-- Select Style --</option>
-                                                <option value="1">Theatre Style</option>
-                                                <option value="2">Conference Style</option>
-                                                <option value="3">U-Shape Style</option>
-                                                <option value="4">Wedding Style</option>
-                                                <option value="5">Group Style</option>
-                                                <option value="6">Outdoor Style</option>
+                                                <option value="Theatre">Theatre Style</option>
+                                                <option value="Conference">Conference Style</option>
+                                                <option value="U-Shape">U-Shape Style</option>
+                                                <option value="Wedding">Wedding Style</option>
+                                                <option value="Group">Group Style</option>
+                                                <option value="Outdoor">Outdoor Style</option>
                                             </select>
                                         </div>
                                     </td>

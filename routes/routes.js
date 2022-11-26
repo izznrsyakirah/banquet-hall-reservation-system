@@ -90,7 +90,10 @@ router.get("/addHalls", ensureAuthenticated, function (req, res) {
 });
 
 router.get("/eventsList", ensureAuthenticated, function (req, res) {
-    Reservation.find().exec(function (err, reservations) {
+
+    var sortBy = { eventDate: 1 }; //{ name: 1 } ascending, { name: -1 } descending
+
+    Reservation.find().sort(sortBy).exec(function (err, reservations) {
         if (err) { console.log(err); }
 
         res.render("admin/pages/eventsList", { reservations: reservations });
@@ -195,6 +198,27 @@ router.get("/eventsList/:reservationId", ensureAuthenticated, function (req, res
     Reservation.findById(req.params.reservationId).exec(function (err, reservationDetails) {
         res.render("admin/pages/reservationDetail", { reservationDetails: reservationDetails });
     });
+});
+
+/******************************************************** Sort Reservation List **************************************************/
+router.get("/eventsList/sort/:sortItem", ensureAuthenticated, function (req, res) {
+
+    var sortItem = req.params.sortItem
+
+    if (sortItem == 'eventDateAsc') {
+        var sortBy = { eventDate: 1 }; //{ name: 1 } ascending, { name: -1 } descending
+    } else if (sortItem == 'eventDateDesc') {
+        var sortBy = { eventDate: -1 };
+    } else if (sortItem == 'submittedDateAsc') {
+        var sortBy = { submittedAt: 1 };
+    } else if (sortItem == 'submittedDateDesc') {
+        var sortBy = { submittedAt: -1 };
+    }
+
+    Reservation.find().sort(sortBy).exec(function (err, reservations) {
+        res.render("admin/pages/eventsList", { reservations: reservations });
+    });
+
 });
 
 /******************************************************** Edit Reservation Details **************************************************/
