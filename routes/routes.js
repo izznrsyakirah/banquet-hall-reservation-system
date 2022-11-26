@@ -221,6 +221,28 @@ router.get("/eventsList/sort/:sortItem", ensureAuthenticated, function (req, res
 
 });
 
+/******************************************************** Sort Contact List **************************************************/
+router.get("/contactList/sort/:item", ensureAuthenticated, function (req, res) {
+
+    var item = req.params.item
+
+    if (item == 'submittedDateAsc') {
+        var sortBy = { submittedAt: 1 };
+    } else if (item == 'submittedDateDesc') {
+        var sortBy = { submittedAt: -1 };
+    } else if (item == 'responded') {
+        var filter = { "status": "Responded" }
+    } else if (item == 'awaiting') {
+        var filter = { "status": "Awaiting" }
+    }
+
+    Contact.find(filter).sort(sortBy).exec(function (err, contacts) {
+        if (err) { console.log(err); }
+
+        res.render("admin/pages/contactList", { contacts: contacts });
+    });
+});
+
 /******************************************************** Edit Reservation Details **************************************************/
 router.get("/eventsList/edit/:reservationId", ensureAuthenticated, function (req, res) {
     Reservation.findById(req.params.reservationId).exec(function (err, reservationDetails) {

@@ -4,6 +4,24 @@
     <!--<div style="padding: 5% 5% 5% 20%;">-->
         <!--<h3 class="display-6">Contact History</h3>-->
 
+        <!-- Sort By -->
+        <div class="btn-group shadow-0" style="border-radius: 50px; padding: 1%;">
+            <button type="button" class="btn btn-light dropdown-toggle" data-mdb-toggle="dropdown" style="border-radius: 50px;"
+                aria-expanded="false">
+                Sort By
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/contactList">All</a></li>
+                <li><a class="dropdown-item" href="/contactList/sort/responded">Responded</a></li>
+                <li><a class="dropdown-item" href="/contactList/sort/awaiting">Awaiting</a></li>
+                <li>
+                    <hr class="dropdown-divider" />
+                </li>
+                <li><a class="dropdown-item" href="/contactList/sort/submittedDateAsc"><i class="fas fa-arrow-down"></i> Submitted Date</a></li> <!--Asc-Arrow Down-->
+                <li><a class="dropdown-item" href="/contactList/sort/submittedDateDesc"><i class="fas fa-arrow-up"></i> Submitted Date</a></li> <!--Desc-Arrow Up-->
+            </ul>
+        </div>
+
         <table class="table table-striped table-hover" style="background-color: rgb(233, 233, 233);">
             <thead class="table-dark">
                 <tr>
