@@ -62,12 +62,14 @@ router.get("/logout", function (req, res) {
     });
 });
 
+/* ******************************************************** Admin Login ******************************************************/
 router.post("/login", passport.authenticate("login", {
     successRedirect: "/contactList",
     failureRedirect: "/login",
     failureFlash: true
 }));
 
+/* ******************************************************** View Contact List ******************************************************/
 router.get("/contactList", ensureAuthenticated, function (req, res) {
 
     var sortBy = { submittedAt: -1 }; //{ name: 1 } ascending, { name: -1 } descending
@@ -79,6 +81,7 @@ router.get("/contactList", ensureAuthenticated, function (req, res) {
     });
 });
 
+/* ******************************************************** Admin View / Add Halls  ******************************************************/
 router.get("/addHalls", ensureAuthenticated, function (req, res) {
 
     Hall.find().exec(function (err, halls) {
@@ -89,6 +92,7 @@ router.get("/addHalls", ensureAuthenticated, function (req, res) {
 
 });
 
+/* ******************************************************** View Events List ******************************************************/
 router.get("/eventsList", ensureAuthenticated, function (req, res) {
 
     var sortBy = { eventDate: 1 }; //{ name: 1 } ascending, { name: -1 } descending
@@ -100,6 +104,7 @@ router.get("/eventsList", ensureAuthenticated, function (req, res) {
     });
 });
 
+/* ******************************************************** View Events in Calendar ******************************************************/
 router.get("/calendar", ensureAuthenticated, function (req, res) {
 
     Reservation.find({}, { hallType: 1, eventDate: 1, eventTime: 1 }).exec(function (err, events) {
@@ -110,7 +115,7 @@ router.get("/calendar", ensureAuthenticated, function (req, res) {
 
 });
 
-/*********************************************************** Contact Form Submission **************************************************/
+/*********************************************************** User Contact Form Submission **************************************************/
 router.post("/addContact", function (req, res) {
 
     var newContact = new Contact({
@@ -213,9 +218,15 @@ router.get("/eventsList/sort/:sortItem", ensureAuthenticated, function (req, res
         var sortBy = { submittedAt: 1 };
     } else if (sortItem == 'submittedDateDesc') {
         var sortBy = { submittedAt: -1 };
+    } else if (sortItem == 'confirmed') {
+        var filter = { "status": "Confirmed" }
+    } else if (sortItem == 'onboarding') {
+        var filter = { "status": "Onboarding" }
+    } else if (sortItem == 'awaiting') {
+        var filter = { "status": "Awaiting" }
     }
 
-    Reservation.find().sort(sortBy).exec(function (err, reservations) {
+    Reservation.find(filter).sort(sortBy).exec(function (err, reservations) {
         res.render("admin/pages/eventsList", { reservations: reservations });
     });
 
@@ -243,13 +254,14 @@ router.get("/contactList/sort/:item", ensureAuthenticated, function (req, res) {
     });
 });
 
-/******************************************************** Edit Reservation Details **************************************************/
+/******************************************************** Edit Reservation Details Page **************************************************/
 router.get("/eventsList/edit/:reservationId", ensureAuthenticated, function (req, res) {
     Reservation.findById(req.params.reservationId).exec(function (err, reservationDetails) {
         res.render("admin/pages/editReservationDetail", { reservationDetails: reservationDetails });
     });
 });
 
+/* ******************************************************** Update Reservation Details ******************************************************/
 router.post("/eventsList/edit/:reservationId/update", ensureAuthenticated, async function (req, res) {
     const reservation = await Reservation.findById(req.body.reservationId);
 
@@ -273,5 +285,17 @@ router.post("/eventsList/edit/:reservationId/update", ensureAuthenticated, async
         res.status(500).send(err);
     }
 });
+
+/*router.get("/eventsList/delete/:reservationId", ensureAuthenticated, async function (req, res) {
+    const reservation = await Reservation.findById(req.body.reservationId);
+
+    var deleteQry = { _id: reservation };
+    Reservation.deleteOne(deleteQry, function (err, obj) {
+        if (err) throw err;
+        console.log("1 document deleted");
+        res.redirect("/eventsList");
+    });
+
+});*/
 
 module.exports = router;
