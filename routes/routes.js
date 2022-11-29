@@ -257,7 +257,12 @@ router.get("/contactList/sort/:item", ensureAuthenticated, function (req, res) {
 /******************************************************** Edit Reservation Details Page **************************************************/
 router.get("/eventsList/edit/:reservationId", ensureAuthenticated, function (req, res) {
     Reservation.findById(req.params.reservationId).exec(function (err, reservationDetails) {
-        res.render("admin/pages/editReservationDetail", { reservationDetails: reservationDetails });
+        Hall.find().exec(function (err, halls) {
+            if (err) { console.log(err); }
+    
+            res.render("admin/pages/editReservationDetail", { reservationDetails: reservationDetails, halls:halls });
+        });
+        
     });
 });
 
@@ -270,11 +275,12 @@ router.post("/eventsList/edit/:reservationId/update", ensureAuthenticated, async
     reservation.nic = req.body.personNic;
     reservation.contact = req.body.personContact;
     reservation.email = req.body.personEmail;
+    reservation.hallType = req.body.hallType;
     reservation.address = req.body.personAddress;
     reservation.eventDate = req.body.eventDate;
     reservation.eventTime = req.body.eventTime;
     reservation.message = req.body.optionalMessage;
-    reservation.eventStatus = req.body.eventStatus;
+    reservation.status = req.body.reservationStatus;
 
     try {
         let saveReservation = await reservation.save();

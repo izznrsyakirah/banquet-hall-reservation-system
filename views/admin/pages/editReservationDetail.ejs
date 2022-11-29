@@ -80,9 +80,22 @@
                 <tr>
                     <th class="table-dark">Hall</th>
                     <td>
-                        <p class="text-normal mb-0">
-                            <%= reservationDetails.hallType %>
-                        </p>
+                        <div class="form-outline mb-4">
+
+                            <select name="hallType" id="hallType" class="form-control"
+                                style="border: 1px solid rgb(183, 183, 183);" required>
+
+                                <% halls.forEach(function(hall,index) { %>
+                                    <% if(hall.name == reservationDetails.hallType) { %>
+                                        <option value="<%= hall.name %>" selected><%= hall.name %></option>
+                                    <% } else { %>
+                                        <option value="<%= hall.name %>"><%= hall.name %></option>
+                                    <% } %>
+                                <% }) %>
+
+                            </select>
+
+                        </div>
                     </td>
                 </tr>
 
@@ -120,17 +133,71 @@
                     <th class="table-dark">Status</th>
                     <td>
                         <% if (reservationDetails.status=='Awaiting' ) { %>
-                            <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
-                            <% } else if (reservationDetails.status=='Onboarding' ) { %>
-                                <span class="badge badge-primary rounded-pill d-inline">Onboarding</span>
-                                <% } else if (reservationDetails.status=='Confirmed' ) { %>
-                                    <span class="badge badge-success rounded-pill d-inline">Confirmed</span>
-                                    <% } %>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="reservationStatus" id="reservationStatus"
+                                    value="Awaiting" checked/>
+                                <label class="form-check-label" for="inlineRadio1">Awaiting</label>
+                            </div>
+    
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="reservationStatus" id="reservationStatus"
+                                    value="Onboarding" />
+                                <label class="form-check-label" for="inlineRadio2">Onboarding</label>
+                            </div>
+    
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="reservationStatus" id="reservationStatus"
+                                    value="Confirmed" />
+                                <label class="form-check-label" for="inlineRadio3">Confirmed</label>
+                            </div>
+
+                        <% } else if (reservationDetails.status=='Onboarding' ) { %>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="reservationStatus" id="reservationStatus"
+                                    value="Awaiting" />
+                                <label class="form-check-label" for="inlineRadio1">Awaiting</label>
+                            </div>
+    
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="reservationStatus" id="reservationStatus"
+                                    value="Onboarding" checked/>
+                                <label class="form-check-label" for="inlineRadio2">Onboarding</label>
+                            </div>
+    
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="reservationStatus" id="reservationStatus"
+                                    value="Confirmed" />
+                                <label class="form-check-label" for="inlineRadio3">Confirmed</label>
+                            </div>
+
+                        <% } else if (reservationDetails.status=='Confirmed' ) { %>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="reservationStatus" id="reservationStatus"
+                                    value="Awaiting" />
+                                <label class="form-check-label" for="inlineRadio1">Awaiting</label>
+                            </div>
+    
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="reservationStatus" id="reservationStatus"
+                                    value="Onboarding" />
+                                <label class="form-check-label" for="inlineRadio2">Onboarding</label>
+                            </div>
+    
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="reservationStatus" id="reservationStatus"
+                                    value="Confirmed" checked/>
+                                <label class="form-check-label" for="inlineRadio3">Confirmed</label>
+                            </div>
+                        <% } %>
+                        
+                        
+
                     </td>
                 </tr>
 
                 <input type="hidden" name="reservationId" id="reservationId" value="<%= reservationDetails._id %>" />
 
+                <!-- Action -->
                 <tr>
                     <th class="table-dark">Action</th>
                     <td>
