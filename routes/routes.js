@@ -259,16 +259,16 @@ router.get("/eventsList/edit/:reservationId", ensureAuthenticated, function (req
     Reservation.findById(req.params.reservationId).exec(function (err, reservationDetails) {
         Hall.find().exec(function (err, halls) {
             if (err) { console.log(err); }
-    
-            res.render("admin/pages/editReservationDetail", { reservationDetails: reservationDetails, halls:halls });
+
+            res.render("admin/pages/editReservationDetail", { reservationDetails: reservationDetails, halls: halls });
         });
-        
+
     });
 });
 
 /* ******************************************************** Update Reservation Details ******************************************************/
 router.post("/eventsList/edit/:reservationId/update", ensureAuthenticated, async function (req, res) {
-    const reservation = await Reservation.findById(req.body.reservationId);
+    const reservation = await Reservation.findById(req.params.reservationId);
 
     reservation.firstname = req.body.personFirstName;
     reservation.lastname = req.body.personLastName;
@@ -303,5 +303,38 @@ router.post("/eventsList/edit/:reservationId/update", ensureAuthenticated, async
     });
 
 });*/
+
+/* ******************************************************** Edit Hall Details ******************************************************/
+router.get("/addHalls/edit/:hallId", ensureAuthenticated, async function (req, res) {
+    Hall.findById(req.params.hallId).exec(function (err, hallDetails) {
+        res.render("admin/pages/editHallDetails", { hallDetails: hallDetails });
+    });
+});
+
+
+/* ******************************************************** Update Hall Details ******************************************************/
+router.post("/addHalls/edit/:hallId/update", ensureAuthenticated, async function (req, res) {
+    const hall = await Hall.findById(req.params.hallId);
+
+    hall.name = req.body.hallName;
+    hall.seatingPlan = req.body.seatingPlan;
+    hall.hallType = req.body.hallType;
+    hall.capacity = req.body.hallCapacity;
+    hall.lightingSystem = req.body.lightingSystem;
+    hall.soundSystem = req.body.soundingSystem;
+    hall.buffet = req.body.buffet;
+    hall.priceFrom = req.body.priceFrom;
+    hall.priceTo = req.body.priceTo;
+    hall.description = req.body.hallDescription;
+
+    try {
+        let saveHall = await hall.save();
+        //console.log("savereservation", saveReservation);
+        res.redirect("/addHalls");
+    } catch (err) {
+        //console.log("Error occured");
+        res.status(500).send(err);
+    }
+});
 
 module.exports = router;

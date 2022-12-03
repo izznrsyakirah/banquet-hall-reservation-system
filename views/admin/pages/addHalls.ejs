@@ -52,6 +52,8 @@
                                         <i class="fas fa-angle-double-right"></i>
                                     </button>
 
+                                    <a href="/addHalls/edit/<%= hall._id %>" class="btn btn-info">Edit</a>
+
                                 </div>
 
                                 <div style="width: 50%; border-radius: 0px 10px 10px 0px; " class="bg-image hover-zoom">
@@ -185,6 +187,8 @@
                                             Read More
                                             <i class="fas fa-angle-double-right"></i>
                                         </button>
+
+                                        <a href="/addHalls/edit/<%= hall._id %>"" class="btn btn-info">Edit</a>
 
                                     </div>
 
@@ -326,10 +330,9 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-link btn-sm btn-rounded" id="update-button"
-                                            value="<%= hall._id %>" onclick="change()">
-                                            Update
-                                        </button>
+                                        <a href="" class="btn btn-link btn-sm btn-rounded" id="update-button"
+                                            onclick="change()" value="<%= hall._id %>">Update</a>
+
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-link btn-sm btn-rounded" id="delete-button"
@@ -534,8 +537,9 @@
                                 <!-- Submit Button -->
                                 <tr>
                                     <td colspan="2">
-                                        <button type="submit" class="btn btn-primary btn-block mb-4" id="form-submit-button"
-                                            style="background-color: #303454;" value="add hall">Add Hall</button>
+                                        <button type="submit" class="btn btn-primary btn-block mb-4"
+                                            id="form-submit-button" style="background-color: #303454;"
+                                            value="add hall">Add Hall</button>
                                     </td>
                                 </tr>
 
@@ -572,7 +576,7 @@
             updateButton.innerHTML = 'Update Hall';
         }
 
-        
+
     </script>
 
-<%- include ("../../_partial/_footer.ejs") %>
+    <%- include ("../../_partial/_footer.ejs") %>
