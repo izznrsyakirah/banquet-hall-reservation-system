@@ -11,7 +11,8 @@ var hallSchema = mongoose.Schema({
     priceFrom: { type: Number, required: true },
     priceTo: { type: Number, required: true },
     submittedAt: { type: Date, default: Date.now },
-    description: { type: String, required: true }
+    description: { type: String, required: true },
+    image: { type: String, required: false, unique: false }
 });
 
 var Hall = mongoose.model("Hall", hallSchema);

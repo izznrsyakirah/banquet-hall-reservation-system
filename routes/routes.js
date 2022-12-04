@@ -7,6 +7,25 @@ var Contact = require("../models/contact");
 var Hall = require("../models/halls");
 var Reservation = require("../models/reservation");
 
+
+
+var multer = require("multer");
+var crypto = require("crypto");
+var path = require("path");
+
+var storage = multer.diskStorage({
+    destination: './uploads/images/',
+    filename: function (req, file, cb) {
+        crypto.pseudoRandomBytes(16, function (err, raw) {
+            cb(null, raw.toString('hex') + Date.now() + path.extname(file.originalname));
+        });
+    }
+});
+
+var upload = multer({ storage: storage });
+
+
+
 var ensureAuthenticated = require("../auth/auth").ensureAuthenticated;
 
 var router = express.Router();
@@ -313,7 +332,7 @@ router.get("/addHalls/edit/:hallId", ensureAuthenticated, async function (req, r
 
 
 /* ******************************************************** Update Hall Details ******************************************************/
-router.post("/addHalls/edit/:hallId/update", ensureAuthenticated, async function (req, res) {
+router.post("/addHalls/edit/:hallId/update", upload.single('hallImages'), async function (req, res) {
     const hall = await Hall.findById(req.params.hallId);
 
     hall.name = req.body.hallName;
@@ -326,10 +345,11 @@ router.post("/addHalls/edit/:hallId/update", ensureAuthenticated, async function
     hall.priceFrom = req.body.priceFrom;
     hall.priceTo = req.body.priceTo;
     hall.description = req.body.hallDescription;
+    hall.image = req.file.path;
 
     try {
         let saveHall = await hall.save();
-        //console.log("savereservation", saveReservation);
+        //console.log("saveHall", saveHall);
         res.redirect("/addHalls");
     } catch (err) {
         //console.log("Error occured");
