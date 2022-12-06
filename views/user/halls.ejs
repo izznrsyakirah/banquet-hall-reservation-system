@@ -27,8 +27,8 @@
                         </div>
 
                         <div style="width: 50%; border-radius: 0px 10px 10px 0px; " class="bg-image hover-zoom">
-                            <img src="https://images.unsplash.com/photo-1524824267900-2fa9cbf7a506?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                                alt="hall one" width="100%" height="auto">
+                            <img src="<%= '/' + hall.image %>"
+                                alt="hall one" width="100%" height="420px">
                         </div>
 
                     </div>
@@ -76,7 +76,8 @@
                                             </tr>
                                             <tr>
                                                 <th scope="row">Available Dates: </th>
-                                                <td>xx.xx.xxxx</td>
+                                                <td><a href="/halls/available/<%= hall._id %>" target="_blank"><i
+                                                    class="fas fa-external-link-alt"></i></a></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -121,8 +122,8 @@
                     <div style="display: flex;">
 
                         <div style="width: 50%; border-radius: 10px 0px 0px 10px;" class="bg-image hover-zoom">
-                            <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1198&q=80"
-                                alt="hall two" width="100%" height="auto">
+                            <img src="<%= '/' + hall.image %>"
+                                alt="hall two" width="100%" height="420px">
                         </div>
 
                         <div style="width: 50%; padding: 5%;">
@@ -184,7 +185,8 @@
                                             </tr>
                                             <tr>
                                                 <th scope="row">Available Dates: </th>
-                                                <td>xx.xx.xxxx</td>
+                                                <td><a href="/halls/available/<%= hall._id %>" target="_blank"><i
+                                                    class="fas fa-external-link-alt"></i></a></td>
                                             </tr>
                                         </tbody>
                                     </table>

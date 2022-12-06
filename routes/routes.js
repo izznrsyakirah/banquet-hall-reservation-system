@@ -357,4 +357,17 @@ router.post("/addHalls/edit/:hallId/update", upload.single('hallImages'), async 
     }
 });
 
+
+/* ******************************************************** Hall Available Dates ******************************************************/
+router.get("/halls/available/:hallId", async function (req, res) {
+    const hall = await Hall.findById(req.params.hallId);
+
+    Hall.find({ "_id": hall }).exec(function (err, hallName) {
+        Reservation.find().exec(function (err, eventDetails) {
+            res.render("user/userCalendar", { eventDetails: eventDetails, hallName: hallName });
+        });
+    });
+
+});
+
 module.exports = router;
