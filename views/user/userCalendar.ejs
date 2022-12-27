@@ -63,7 +63,7 @@
 
             <% eventDetails.forEach(function(event) { %>
 
-                <% if(hall.name == event.hallType) { %>
+                <% if(hall.name == event.hallType && event.status == 'Confirmed') { %>
 
                     <script>
 

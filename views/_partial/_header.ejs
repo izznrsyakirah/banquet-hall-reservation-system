@@ -19,59 +19,12 @@
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-
-    <style>
-        /* Color of the links BEFORE scroll */
-        .navbar-scroll .nav-link,
-        .navbar-scroll .navbar-toggler-icon {
-            color: #fff;
-        }
-
-        /* Color of the links AFTER scroll */
-        .navbar-scrolled .nav-link,
-        .navbar-scrolled .navbar-toggler-icon {
-            color: #4f4f4f;
-        }
-
-        /* Color of the navbar AFTER scroll */
-        .navbar-scrolled {
-            background-color: #fff;
-        }
-
-        /* An optional height of the navbar AFTER scroll */
-        .navbar.navbar-scroll.navbar-scrolled {
-            padding-top: 5px;
-            padding-bottom: 5px;
-        }
-
-        /*****************************************************/
-
-        .content {
-            padding: 0 18px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.2s ease-out;
-            background-color: #f1f1f1;
-        }
-
-        .admin-nav-div{
-            height:100%; 
-            width: 230px; 
-            background-color: #2a3353; 
-            z-index: 999; 
-            position: fixed;
-        }
-
-        #admin-nav{
-            color: white;
-            padding: 7%;
-        }
-
-    </style>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/styles.css" />
 
 </head>
 
-<body style="background-color: rgb(216, 216, 216);">
+<body>
     <header>
 
         <% if(currentUser==null ) { %>
