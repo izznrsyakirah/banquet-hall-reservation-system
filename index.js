@@ -12,6 +12,11 @@ var routes = require("./routes/routes");
 var setUpPassport = require("./setuppassport");
 
 var app = express();
+
+/*********************************************************************************** */
+
+/*********************************************************************************** */
+
 mongoose.connect(params.DATABASECONNECTION, {});
 setUpPassport();
 

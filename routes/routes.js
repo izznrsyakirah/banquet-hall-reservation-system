@@ -24,8 +24,6 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage });
 
-
-
 var ensureAuthenticated = require("../auth/auth").ensureAuthenticated;
 
 var router = express.Router();
