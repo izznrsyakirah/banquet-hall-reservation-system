@@ -1,6 +1,28 @@
 <%- include ("../../_partial/_header.ejs") %>
 
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+
+        function socketMessage(){
+            $(function () {
+                
+                let socket = io("http://localhost:5000");
+
+                socket.on("confirm connection", function (msg) {
+                    console.log(msg);
+                });
+
+                socket.emit("onDatabaseChange", "Database has been updated");
+            
+            });
+        }
+        
+    </script>
+
     <div style="padding-left: 15%;">
+        
         <h1 style="padding-left: 1%;">Edit Reservation: <%= reservationDetails._id %>
         </h1>
         <table class="table table-striped table-hover" style="background-color: white;">
@@ -201,7 +223,7 @@
                 <tr>
                     <th class="table-dark">Action</th>
                     <td>
-                        <button type="submit" class="btn btn-success">Update</button>
+                        <button type="submit" class="btn btn-success" onclick="socketMessage()">Update</button>
                         <a href="/eventsList/<%= reservationDetails._id %>" class="btn btn-danger">Cancel</a>
                     </td>
                 </tr>

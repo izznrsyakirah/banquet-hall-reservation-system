@@ -14,6 +14,25 @@ var setUpPassport = require("./setuppassport");
 var app = express();
 
 /*********************************************************************************** */
+let http = require("http");
+let socketIo = require("socket.io");
+
+let server = http.createServer(app);
+let io = socketIo(server);
+
+io.on("connection", function (socket) {
+
+    socket.broadcast.emit("confirm connection", "Connected...");
+
+    socket.on("onDatabaseChange", function (msg) {
+        var delayInMilliseconds = 2000; //2 second
+
+        setTimeout(function() {
+            socket.broadcast.emit("refreshPage", "Refreshing Page");
+        }, delayInMilliseconds);
+        
+    });
+});
 
 /*********************************************************************************** */
 
@@ -40,6 +59,6 @@ app.use(flash());
 
 app.use(routes);
 
-app.listen(app.get("port"), () => {
+server.listen(app.get("port"), () => {
     console.log("Now listening on port " + app.get("port"));
 });
