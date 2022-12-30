@@ -27,10 +27,10 @@ io.on("connection", function (socket) {
     socket.on("onDatabaseChange", function (msg) {
         var delayInMilliseconds = 2000; //2 second
 
-        setTimeout(function() {
+        setTimeout(function () {
             socket.broadcast.emit("refreshPage", "Refreshing Page");
         }, delayInMilliseconds);
-        
+
     });
 });
 

@@ -7,8 +7,6 @@ var Contact = require("../models/contact");
 var Hall = require("../models/halls");
 var Reservation = require("../models/reservation");
 
-
-
 var multer = require("multer");
 var crypto = require("crypto");
 var path = require("path");
@@ -45,7 +43,8 @@ router.get("/about", function (req, res) {
 })
 
 router.get("/contact", function (req, res) {
-    res.render("user/contact");
+    //res.render("user/contact");
+    res.render('user/contact', { message:req.flash('success')});
 })
 
 router.get("/halls", function (req, res) {
@@ -143,11 +142,19 @@ router.post("/addContact", function (req, res) {
     });
 
     newContact.save(function (err, post) {
-        if (err) { console.log(err); }
-        res.redirect("/contact");
+        if (err) { 
+            console.log(err); 
+        } else { 
+            req.flash('success', 'Form Submission Successful');
+            //res.render('contact', {title:'Node.js MySQL CRUD Application',action:'list',sampledata:data,message:req.flash('success')});
+            res.redirect("/contact"); 
+        }
+
     });
 
 });
+
+
 
 /******************************************************* Contact Form Response Update **************************************************/
 router.post("/updateContactList", ensureAuthenticated, async function (req, res) {
