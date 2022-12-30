@@ -1,6 +1,16 @@
 <%- include ("../_partial/_header.ejs") %>
 
-    <div style="padding: 7% 10%;">
+    <div class="container" style="padding-top: 10%;">
+        <% if(message.length > 0) { %>
+            <div style="background-color: #d6f0e0; color: #3a793e; padding: 1%; border-radius: 8px;">
+                <% reservations.forEach(function(reservation) { %>
+                    <%= message %> <span style="color: #0d6832; font-weight: bold;">Reference ID: <%= reservation._id %></span>
+                <% }) %>
+            </div>
+        <% } %>
+    </div>
+
+    <div style="padding: 0% 10% 7% 10%;">
 
         <div style="width: 100%;">
             <h3 class="display-4">Tell us what you want...</h3><br>

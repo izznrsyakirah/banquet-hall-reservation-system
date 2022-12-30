@@ -44,7 +44,13 @@ router.get("/about", function (req, res) {
 
 router.get("/contact", function (req, res) {
     //res.render("user/contact");
-    res.render('user/contact', { message:req.flash('success')});
+    //res.render('user/contact', { message: req.flash('success') });
+
+    Contact.find().limit(1).sort({ submittedAt: -1 }).exec(function (err, contacts) {
+        if (err) { console.log(err); }
+
+        res.render("user/contact", { contacts: contacts, message: req.flash('success') });
+    });
 })
 
 router.get("/halls", function (req, res) {
@@ -62,7 +68,11 @@ router.get("/reservation", function (req, res) {
     Hall.find().exec(function (err, halls) {
         if (err) { console.log(err); }
 
-        res.render("user/reservation", { halls: halls });
+        Reservation.find().limit(1).sort({ submittedAt: -1 }).exec(function (err, reservations) {
+            if (err) { console.log(err); }
+
+            res.render("user/reservation", { halls: halls, reservations: reservations, message: req.flash('success') });
+        });
     });
 })
 
@@ -142,18 +152,14 @@ router.post("/addContact", function (req, res) {
     });
 
     newContact.save(function (err, post) {
-        if (err) { 
-            console.log(err); 
-        } else { 
-            req.flash('success', 'Form Submission Successful');
-            //res.render('contact', {title:'Node.js MySQL CRUD Application',action:'list',sampledata:data,message:req.flash('success')});
-            res.redirect("/contact"); 
+        if (err) {
+            console.log(err);
+        } else {
+            req.flash('success', 'Form submission successful. One of our team Members will get in touch with you Shortly.');
+            res.redirect("/contact");
         }
-
     });
-
 });
-
 
 
 /******************************************************* Contact Form Response Update **************************************************/
@@ -216,10 +222,13 @@ router.post("/makeReservation", function (req, res) {
     })
 
     newReservation.save(function (err, post) {
-        if (err) { console.log(err); }
-        res.redirect("/reservation");
+        if (err) {
+            console.log(err);
+        } else {
+            req.flash('success', 'Reservation has been made successfully. One of our team Members will get in touch with you.');
+            res.redirect("/reservation");
+        }
     });
-
 });
 
 /******************************************************** View Reservation Details **************************************************/
@@ -335,7 +344,6 @@ router.get("/addHalls/edit/:hallId", ensureAuthenticated, async function (req, r
     });
 });
 
-
 /* ******************************************************** Update Hall Details ******************************************************/
 router.post("/addHalls/edit/:hallId/update", upload.single('hallImages'), async function (req, res) {
     const hall = await Hall.findById(req.params.hallId);
@@ -361,7 +369,6 @@ router.post("/addHalls/edit/:hallId/update", upload.single('hallImages'), async 
         res.status(500).send(err);
     }
 });
-
 
 /* ******************************************************** Hall Available Dates ******************************************************/
 router.get("/halls/available/:hallId", async function (req, res) {
