@@ -74,9 +74,13 @@ router.get("/reservation", function (req, res) {
             res.render("user/reservation", { halls: halls, reservations: reservations, message: req.flash('success') });
         });
     });
-})
+});
 
 router.get("/login", function (req, res) {
+    res.render("user/userLogin");
+})
+
+router.get("/admin", function (req, res) {
     res.render("admin/login");
 });
 

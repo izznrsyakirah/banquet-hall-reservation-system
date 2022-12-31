@@ -1,4 +1,4 @@
-body{
+body {
     background-color: rgb(216, 216, 216);
 }
 
@@ -35,16 +35,60 @@ body{
     background-color: #f1f1f1;
 }
 
-.admin-nav-div{
-    height:100%; 
-    width: 230px; 
-    background-color: #2a3353; 
-    z-index: 999; 
+.admin-nav-div {
+    height: 100%;
+    width: 230px;
+    background-color: #2a3353;
+    z-index: 999;
     position: fixed;
 }
 
-#admin-nav{
+#admin-nav {
     color: white;
     padding: 7%;
 }
+
+.divider:after,
+.divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+}
+
+/*************************************************************************************************************************/
+/***********************************************Password Validation*******************************************************/
+
+#message p, #repeatMessage p {
+    padding-left: 25px;
+    font-size: 13px;
+    margin: 0;
+    display: inline;
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+    color: green;
+}
+
+.valid:before {
+    position: relative;
+    left: -15px;
+    content: "✔";
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+.invalid {
+    color: red;
+}
+
+.invalid:before {
+    position: relative;
+    left: -15px;
+    content: "✖";
+}
+
+/*************************************************************************************************************************/
+/*************************************************************************************************************************/
+
 

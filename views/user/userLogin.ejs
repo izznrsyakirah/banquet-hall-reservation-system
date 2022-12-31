@@ -1,0 +1,165 @@
+<%- include ("../_partial/_header.ejs") %>
+
+    <div style="padding: 5%;">
+
+        <section class="vh-100">
+            <div class="container py-5 h-100">
+                <div class="row d-flex align-items-center justify-content-center h-100">
+                    <div class="col-md-8 col-lg-7 col-xl-6">
+
+                        <!-- Pills navs -->
+                        <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#pills-login"
+                                    role="tab" aria-controls="pills-login" aria-selected="true">Login</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="#pills-register"
+                                    role="tab" aria-controls="pills-register" aria-selected="false">Register</a>
+                            </li>
+                        </ul>
+                        <!-- Pills navs -->
+
+                        <!-- Pills content -->
+                        <div class="tab-content">
+
+                            <!-- Login -->
+                            <div class="tab-pane fade show active" id="pills-login" role="tabpanel"
+                                aria-labelledby="tab-login">
+                                <form>
+
+                                    <!-- Email input -->
+                                    <div class="form-outline mb-4">
+                                        <input type="email" id="loginName" class="form-control"
+                                            style="border: 1px solid rgb(183, 183, 183);" required/>
+                                        <label class="form-label" for="loginName">Email</label>
+                                    </div>
+
+                                    <!-- Password input -->
+                                    <div class="form-outline mb-4">
+                                        <input type="password" id="loginPassword" class="form-control"
+                                            style="border: 1px solid rgb(183, 183, 183);" required/>
+                                        <label class="form-label" for="loginPassword">Password</label>
+                                    </div>
+
+                                    <!-- Submit button -->
+                                    <button type="submit" class="btn btn-primary btn-block mb-4"
+                                        style="background-color: #2a3353;">Sign in</button>
+
+                                </form>
+                            </div>
+
+                            <!-- Sign Up -->
+                            <div class="tab-pane fade" id="pills-register" role="tabpanel"
+                                aria-labelledby="tab-register">
+                                <form>
+
+                                    <!-- Name input -->
+                                    <div class="d-flex align-items-start mb-3">
+                                        <div class="col">
+                                            <div class="form-outline mb-4">
+                                                <input type="text" id="registerfName" class="form-control"
+                                                    style="border: 1px solid rgb(183, 183, 183);" required />
+                                                <label class="form-label" for="registerfName">First Name</label>
+                                            </div>
+                                        </div>
+                                        <div style="width: 2%;"></div>
+                                        <div class="col">
+                                            <div class="form-outline mb-4">
+                                                <input type="text" id="registerlName" class="form-control"
+                                                    style="border: 1px solid rgb(183, 183, 183);" required />
+                                                <label class="form-label" for="registerlName">Last Name</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Email input -->
+                                    <div class="form-outline mb-4">
+                                        <input type="email" id="registerEmail" class="form-control"
+                                            style="border: 1px solid rgb(183, 183, 183);" required />
+                                        <label class="form-label" for="registerEmail">Email</label>
+                                    </div>
+
+                                    <!-- Phone Number input -->
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="registerContact" class="form-control"
+                                            style="border: 1px solid rgb(183, 183, 183);" required />
+                                        <label class="form-label" for="registerContact">Contact Number</label>
+                                    </div>
+
+                                    <!-- NIC input -->
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="registerNic" class="form-control"
+                                            style="border: 1px solid rgb(183, 183, 183);" required />
+                                        <label class="form-label" for="registerNic">NIC</label>
+                                    </div>
+
+                                    <!-- Address input -->
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="registerAddress" class="form-control"
+                                            style="border: 1px solid rgb(183, 183, 183);" required />
+                                        <label class="form-label" for="registerAddress">Address</label>
+                                    </div>
+
+                                    <!-- Password input -->
+                                    <div class="form-outline mb-4">
+                                        <input type="password" id="registerPassword" class="form-control"
+                                            style="border: 1px solid rgb(183, 183, 183);"
+                                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
+                                        <label class="form-label" for="registerPassword">Password</label>
+                                    </div>
+
+                                    <div id="message">
+                                        <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                                        <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                                        <p id="number" class="invalid">A <b>number</b></p>
+                                        <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                                    </div>
+                                    <br>
+
+                                    <!-- Repeat Password input -->
+                                    <div class="form-outline mb-4">
+                                        <input type="password" id="registerRepeatPassword" class="form-control"
+                                            style="border: 1px solid rgb(183, 183, 183);" required />
+                                        <label class="form-label" for="registerRepeatPassword">Repeat password</label>
+                                    </div>
+
+                                    <div id="repeatMessage">
+                                        <p id="repeatPasswordMessage" class="invalid"><b>Password match</b></p>
+                                    </div>
+                                    <br>
+
+                                    <!-- Checkbox -->
+                                    <div class="form-check d-flex justify-content-center mb-4">
+                                        <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck"
+                                            checked aria-describedby="registerCheckHelpText"
+                                            style="background: #2a3353;" />
+                                        <label class="form-check-label" for="registerCheck">
+                                            I have read and agree to the terms
+                                        </label>
+                                    </div>
+
+                                    <!-- Submit button -->
+                                    <button type="submit" class="btn btn-primary btn-block mb-3" id="signUpButton"
+                                        style="background-color: #2a3353;" disabled>Sign in</button>
+                                </form>
+
+                            </div>
+
+                        </div>
+                        <!-- Pills content -->
+
+                    </div>
+                    <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                        <img src="/images/login-image.png" class="img-fluid" alt="Blue orchid pot image">
+                        <!-- https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="/userPassword.js"></script>
+
+    <%- include ("../_partial/_footer.ejs") %>
