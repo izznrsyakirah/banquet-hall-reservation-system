@@ -2,7 +2,7 @@ var express = require("express");
 var passport = require("passport");
 var flash = require("connect-flash");
 
-var Admin = require("../models/admin");
+var User = require("../models/user");
 var Contact = require("../models/contact");
 var Hall = require("../models/halls");
 var Reservation = require("../models/reservation");
@@ -23,6 +23,7 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 
 var ensureAuthenticated = require("../auth/auth").ensureAuthenticated;
+var ensureAuthenticatedAdmin = require("../auth/authAdmin").ensureAuthenticated;
 
 var router = express.Router();
 
@@ -78,74 +79,48 @@ router.get("/reservation", function (req, res) {
 
 router.get("/login", function (req, res) {
     res.render("user/userLogin");
-})
-
-router.get("/admin", function (req, res) {
-    res.render("admin/login");
 });
 
-/************************************************************** Admin Routes ******************************************************/
-router.get("/logout", function (req, res) {
-    req.logout(function (err) {
-        if (err) { return next(err); }
-        res.redirect("/");
-    });
-});
-
-/* ******************************************************** Admin Login ******************************************************/
-router.post("/login", passport.authenticate("login", {
-    successRedirect: "/contactList",
+/* User Login & Sign Up */
+router.post("/login", passport.authenticate("user", {
+    successRedirect: "/",
     failureRedirect: "/login",
     failureFlash: true
 }));
 
-/* ******************************************************** View Contact List ******************************************************/
-router.get("/contactList", ensureAuthenticated, function (req, res) {
+router.post("/signup", function (req, res, next) {
+    var firstname = req.body.fname;
+    var lastname = req.body.lname;
+    var nic = req.body.nic;
+    var address = req.body.address;
+    var contact = req.body.phone;
+    var email = req.body.email;
+    var password = req.body.password;
 
-    var sortBy = { submittedAt: -1 }; //{ name: 1 } ascending, { name: -1 } descending
-
-    Contact.find().sort(sortBy).exec(function (err, contacts) {
-        if (err) { console.log(err); }
-
-        res.render("admin/pages/contactList", { contacts: contacts });
+    User.findOne({ email: email }, function (err, user) {
+        if (err) { return next(err); }
+        if (user) {
+            req.flash("error", "There's already an account with this email");
+            return res.redirect("/login");
+        }
+        var newUser = new User({
+            firstname: firstname,
+            lastname: lastname,
+            nic: nic,
+            address: address,
+            contact: contact,
+            email: email,
+            password: password
+        });
+        newUser.save(next);
     });
-});
+}, passport.authenticate("user", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureFlash: true
+}));
 
-/* ******************************************************** Admin View / Add Halls  ******************************************************/
-router.get("/addHalls", ensureAuthenticated, function (req, res) {
-
-    Hall.find().exec(function (err, halls) {
-        if (err) { console.log(err); }
-
-        res.render("admin/pages/addHalls", { halls: halls });
-    });
-
-});
-
-/* ******************************************************** View Events List ******************************************************/
-router.get("/eventsList", ensureAuthenticated, function (req, res) {
-
-    var sortBy = { eventDate: 1 }; //{ name: 1 } ascending, { name: -1 } descending
-
-    Reservation.find().sort(sortBy).exec(function (err, reservations) {
-        if (err) { console.log(err); }
-
-        res.render("admin/pages/eventsList", { reservations: reservations });
-    });
-});
-
-/* ******************************************************** View Events in Calendar ******************************************************/
-router.get("/calendar", ensureAuthenticated, function (req, res) {
-
-    Reservation.find({}, { hallType: 1, eventDate: 1, eventTime: 1 }).exec(function (err, events) {
-        if (err) { console.log(err); }
-
-        res.render("admin/pages/calendar", { events: events });
-    });
-
-});
-
-/*********************************************************** User Contact Form Submission **************************************************/
+/* User Contact Form Submission */
 router.post("/addContact", function (req, res) {
 
     var newContact = new Contact({
@@ -165,49 +140,7 @@ router.post("/addContact", function (req, res) {
     });
 });
 
-
-/******************************************************* Contact Form Response Update **************************************************/
-router.post("/updateContactList", ensureAuthenticated, async function (req, res) {
-
-    const contact = await Contact.findById(req.body.contactId);
-
-    contact.status = req.body.contactStatus;
-
-    try {
-        let updateContact = await contact.save();
-        //console.log("updatecontact", updateContact);
-        res.redirect("/contactList");
-    } catch (err) {
-        console.log("error occured");
-        res.status(500).send(err);
-    }
-
-});
-
-/******************************************************** Add Hall Form Submission **************************************************/
-router.post("/manageHall", ensureAuthenticated, function (req, res) {
-
-    var newHall = new Hall({
-        name: req.body.hallName,
-        seatingPlan: req.body.seatingPlan,
-        hallType: req.body.hallType,
-        capacity: req.body.hallCapacity,
-        lightingSystem: req.body.lightingSystem,
-        soundSystem: req.body.soundingSystem,
-        buffet: req.body.buffet,
-        priceFrom: req.body.priceFrom,
-        priceTo: req.body.priceTo,
-        description: req.body.hallDescription
-    })
-
-    newHall.save(function (err, post) {
-        if (err) { console.log(err); }
-        res.redirect("/addHalls");
-    });
-
-});
-
-/******************************************************** Reservation Form Submission **************************************************/
+/* Reservation Form Submission */
 router.post("/makeReservation", function (req, res) {
 
     var newReservation = new Reservation({
@@ -235,15 +168,125 @@ router.post("/makeReservation", function (req, res) {
     });
 });
 
-/******************************************************** View Reservation Details **************************************************/
-router.get("/eventsList/:reservationId", ensureAuthenticated, function (req, res) {
+router.get("/account", ensureAuthenticated, function (req, res) {
+    res.render("user/account/myaccount");
+});
+
+/************************************************************** Admin Routes ******************************************************/
+router.get("/admin", function (req, res) {
+    res.render("admin/login");
+});
+
+router.get("/logout", function (req, res) {
+    req.logout(function (err) {
+        if (err) { return next(err); }
+        res.redirect("/");
+    });
+});
+
+/* Admin Login */
+router.post("/admin", passport.authenticate("admin", {
+    successRedirect: "/contactList",
+    failureRedirect: "/admin",
+    failureFlash: true
+}));
+
+/* View Contact List */
+router.get("/contactList", ensureAuthenticatedAdmin, function (req, res) {
+
+    var sortBy = { submittedAt: -1 }; //{ name: 1 } ascending, { name: -1 } descending
+
+    Contact.find().sort(sortBy).exec(function (err, contacts) {
+        if (err) { console.log(err); }
+
+        res.render("admin/pages/contactList", { contacts: contacts });
+    });
+});
+
+/* Admin View Halls  */
+router.get("/addHalls", ensureAuthenticatedAdmin, function (req, res) {
+
+    Hall.find().exec(function (err, halls) {
+        if (err) { console.log(err); }
+
+        res.render("admin/pages/addHalls", { halls: halls });
+    });
+
+});
+
+/* View Events List */
+router.get("/eventsList", ensureAuthenticatedAdmin, function (req, res) {
+
+    var sortBy = { eventDate: 1 }; //{ name: 1 } ascending, { name: -1 } descending
+
+    Reservation.find().sort(sortBy).exec(function (err, reservations) {
+        if (err) { console.log(err); }
+
+        res.render("admin/pages/eventsList", { reservations: reservations });
+    });
+});
+
+/*  View Events in Calendar */
+router.get("/calendar", ensureAuthenticatedAdmin, function (req, res) {
+
+    Reservation.find({}, { hallType: 1, eventDate: 1, eventTime: 1 }).exec(function (err, events) {
+        if (err) { console.log(err); }
+
+        res.render("admin/pages/calendar", { events: events });
+    });
+
+});
+
+/* Contact Form Response Update */
+router.post("/updateContactList", ensureAuthenticatedAdmin, async function (req, res) {
+
+    const contact = await Contact.findById(req.body.contactId);
+
+    contact.status = req.body.contactStatus;
+
+    try {
+        let updateContact = await contact.save();
+        //console.log("updatecontact", updateContact);
+        res.redirect("/contactList");
+    } catch (err) {
+        console.log("error occured");
+        res.status(500).send(err);
+    }
+
+});
+
+/* Add Hall Form Submission */
+router.post("/manageHall", ensureAuthenticatedAdmin, function (req, res) {
+
+    var newHall = new Hall({
+        name: req.body.hallName,
+        seatingPlan: req.body.seatingPlan,
+        hallType: req.body.hallType,
+        capacity: req.body.hallCapacity,
+        lightingSystem: req.body.lightingSystem,
+        soundSystem: req.body.soundingSystem,
+        buffet: req.body.buffet,
+        priceFrom: req.body.priceFrom,
+        priceTo: req.body.priceTo,
+        description: req.body.hallDescription
+    })
+
+    newHall.save(function (err, post) {
+        if (err) { console.log(err); }
+        res.redirect("/addHalls");
+    });
+
+});
+
+/* View Reservation Details */
+router.get("/eventsList/:reservationId", ensureAuthenticatedAdmin, function (req, res) {
     Reservation.findById(req.params.reservationId).exec(function (err, reservationDetails) {
         res.render("admin/pages/reservationDetail", { reservationDetails: reservationDetails });
     });
 });
 
-/******************************************************** Sort Reservation List **************************************************/
-router.get("/eventsList/sort/:sortItem", ensureAuthenticated, function (req, res) {
+/* Sort Reservation List */
+router.get("/eventsList/sort/:sortItem", ensureAuthenticatedAdmin, function (req, res) {
 
     var sortItem = req.params.sortItem
 
@@ -269,8 +312,8 @@ router.get("/eventsList/sort/:sortItem", ensureAuthenticated, function (req, res
 
 });
 
-/******************************************************** Sort Contact List **************************************************/
-router.get("/contactList/sort/:item", ensureAuthenticated, function (req, res) {
+/* Sort Contact List */
+router.get("/contactList/sort/:item", ensureAuthenticatedAdmin, function (req, res) {
 
     var item = req.params.item
 
@@ -291,8 +334,8 @@ router.get("/contactList/sort/:item", ensureAuthenticated, function (req, res) {
     });
 });
 
-/******************************************************** Edit Reservation Details Page **************************************************/
-router.get("/eventsList/edit/:reservationId", ensureAuthenticated, function (req, res) {
+/* Edit Reservation Details Page */
+router.get("/eventsList/edit/:reservationId", ensureAuthenticatedAdmin, function (req, res) {
     Reservation.findById(req.params.reservationId).exec(function (err, reservationDetails) {
         Hall.find().exec(function (err, halls) {
             if (err) { console.log(err); }
@@ -303,8 +346,8 @@ router.get("/eventsList/edit/:reservationId", ensureAuthenticated, function (req
     });
 });
 
-/* ******************************************************** Update Reservation Details ******************************************************/
-router.post("/eventsList/edit/:reservationId/update", ensureAuthenticated, async function (req, res) {
+/* Update Reservation Details */
+router.post("/eventsList/edit/:reservationId/update", ensureAuthenticatedAdmin, async function (req, res) {
     const reservation = await Reservation.findById(req.params.reservationId);
 
     reservation.firstname = req.body.personFirstName;
@@ -341,14 +384,14 @@ router.post("/eventsList/edit/:reservationId/update", ensureAuthenticated, async
 
 });*/
 
-/* ******************************************************** Edit Hall Details ******************************************************/
-router.get("/addHalls/edit/:hallId", ensureAuthenticated, async function (req, res) {
+/* Edit Hall Details */
+router.get("/addHalls/edit/:hallId", ensureAuthenticatedAdmin, async function (req, res) {
     Hall.findById(req.params.hallId).exec(function (err, hallDetails) {
         res.render("admin/pages/editHallDetails", { hallDetails: hallDetails });
     });
 });
 
-/* ******************************************************** Update Hall Details ******************************************************/
+/* Update Hall Details */
 router.post("/addHalls/edit/:hallId/update", upload.single('hallImages'), async function (req, res) {
     const hall = await Hall.findById(req.params.hallId);
 
@@ -374,7 +417,7 @@ router.post("/addHalls/edit/:hallId/update", upload.single('hallImages'), async 
     }
 });
 
-/* ******************************************************** Hall Available Dates ******************************************************/
+/* Hall Available Dates */
 router.get("/halls/available/:hallId", async function (req, res) {
     const hall = await Hall.findById(req.params.hallId);
 

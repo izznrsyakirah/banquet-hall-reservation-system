@@ -10,7 +10,27 @@ var userSchema = mongoose.Schema({
     address: { type: String, required: true },
     contact: { type: Number, required: true },
     email: { type: String, required: true, unique: true },
-    password: { type: String, required: false }
+    password: { type: String, required: false },
+    createdAt: { type: Date, default: Date.now }
+});
+
+userSchema.pre("save", function (done) {
+    var user = this;
+
+    if (!user.isModified("password")) {
+        return done();
+    }
+
+    bcrypt.genSalt(SALT_FACTOR, function (err, salt) {
+        if (err) { return done(err); }
+        bcrypt.hash(user.password, salt, function (err, hashedPassword) {
+            if (err) { return done(err); }
+
+            user.password = hashedPassword;
+
+            done();
+        });
+    });
 });
 
 userSchema.methods.checkPassword = function (guess, done) {

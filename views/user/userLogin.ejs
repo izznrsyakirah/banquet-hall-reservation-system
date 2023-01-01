@@ -26,18 +26,18 @@
                             <!-- Login -->
                             <div class="tab-pane fade show active" id="pills-login" role="tabpanel"
                                 aria-labelledby="tab-login">
-                                <form>
+                                <form method="POST" action="/login">
 
                                     <!-- Email input -->
                                     <div class="form-outline mb-4">
-                                        <input type="email" id="loginName" class="form-control"
+                                        <input type="email" id="loginName" class="form-control" name="email"
                                             style="border: 1px solid rgb(183, 183, 183);" required/>
                                         <label class="form-label" for="loginName">Email</label>
                                     </div>
 
                                     <!-- Password input -->
                                     <div class="form-outline mb-4">
-                                        <input type="password" id="loginPassword" class="form-control"
+                                        <input type="password" id="loginPassword" class="form-control" name="password"
                                             style="border: 1px solid rgb(183, 183, 183);" required/>
                                         <label class="form-label" for="loginPassword">Password</label>
                                     </div>
@@ -52,13 +52,13 @@
                             <!-- Sign Up -->
                             <div class="tab-pane fade" id="pills-register" role="tabpanel"
                                 aria-labelledby="tab-register">
-                                <form>
+                                <form method="POST" action="/signup">
 
                                     <!-- Name input -->
                                     <div class="d-flex align-items-start mb-3">
                                         <div class="col">
                                             <div class="form-outline mb-4">
-                                                <input type="text" id="registerfName" class="form-control"
+                                                <input type="text" id="registerfName" class="form-control" name="fname"
                                                     style="border: 1px solid rgb(183, 183, 183);" required />
                                                 <label class="form-label" for="registerfName">First Name</label>
                                             </div>
@@ -66,7 +66,7 @@
                                         <div style="width: 2%;"></div>
                                         <div class="col">
                                             <div class="form-outline mb-4">
-                                                <input type="text" id="registerlName" class="form-control"
+                                                <input type="text" id="registerlName" class="form-control" name="lname"
                                                     style="border: 1px solid rgb(183, 183, 183);" required />
                                                 <label class="form-label" for="registerlName">Last Name</label>
                                             </div>
@@ -75,35 +75,35 @@
 
                                     <!-- Email input -->
                                     <div class="form-outline mb-4">
-                                        <input type="email" id="registerEmail" class="form-control"
+                                        <input type="email" id="registerEmail" class="form-control" name="email"
                                             style="border: 1px solid rgb(183, 183, 183);" required />
                                         <label class="form-label" for="registerEmail">Email</label>
                                     </div>
 
                                     <!-- Phone Number input -->
                                     <div class="form-outline mb-4">
-                                        <input type="text" id="registerContact" class="form-control"
+                                        <input type="text" id="registerContact" class="form-control" name="phone"
                                             style="border: 1px solid rgb(183, 183, 183);" required />
                                         <label class="form-label" for="registerContact">Contact Number</label>
                                     </div>
 
                                     <!-- NIC input -->
                                     <div class="form-outline mb-4">
-                                        <input type="text" id="registerNic" class="form-control"
+                                        <input type="text" id="registerNic" class="form-control" name="nic"
                                             style="border: 1px solid rgb(183, 183, 183);" required />
                                         <label class="form-label" for="registerNic">NIC</label>
                                     </div>
 
                                     <!-- Address input -->
                                     <div class="form-outline mb-4">
-                                        <input type="text" id="registerAddress" class="form-control"
+                                        <input type="text" id="registerAddress" class="form-control" name="address"
                                             style="border: 1px solid rgb(183, 183, 183);" required />
                                         <label class="form-label" for="registerAddress">Address</label>
                                     </div>
 
                                     <!-- Password input -->
                                     <div class="form-outline mb-4">
-                                        <input type="password" id="registerPassword" class="form-control"
+                                        <input type="password" id="registerPassword" class="form-control" name="password"
                                             style="border: 1px solid rgb(183, 183, 183);"
                                             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
                                         <label class="form-label" for="registerPassword">Password</label>
