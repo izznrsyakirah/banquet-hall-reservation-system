@@ -1,0 +1,128 @@
+<%- include ("../../_partial/_header.ejs") %>
+
+    <div style="padding: 5%;">
+
+        <section style="background-color: #eee;">
+            <div class="container py-5">
+
+
+                <form action="/updateaccount" method="post">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="card mb-4">
+                                <div class="card-body text-center">
+                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                                        alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                                    <h5 class="my-3">
+                                        <%= currentUser.firstname %>
+                                            <%= currentUser.lastname %>
+                                    </h5>
+                                    <div class="d-flex justify-content-center mb-2">
+                                        <button type="submit" class="btn btn-primary"
+                                            style="background-color: #2a3353; border-color: #2a3353;">Update</button>
+                                        <a href="/account" class="btn btn-outline-primary ms-1"
+                                            style="color: #2a3353; border-color: #2a3353;">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-8">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Full Name</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div style="display: flex;">
+                                                <div>
+                                                    <div class="form-outline mb-1">
+                                                        <input type="text" id="fName" class="form-control"
+                                                            value="<%= currentUser.firstname %>"
+                                                            style="border: 1px solid rgb(183, 183, 183); width: 280px;"
+                                                            name="personFirstName" placeholder="First Name" required />
+                                                    </div>
+                                                </div>
+
+                                                <div style="padding-left: 7%;">
+                                                    <div class="form-outline mb-1">
+                                                        <input type="text" id="lName" class="form-control"
+                                                            value="<%= currentUser.lastname %>"
+                                                            style="border: 1px solid rgb(183, 183, 183); width: 280px;"
+                                                            name="personLastName" placeholder="Last Name" required />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Email</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="form-outline mb-1">
+                                                <input type="email" id="emailUser" class="form-control"
+                                                    value="<%= currentUser.email %>"
+                                                    style="border: 1px solid rgb(183, 183, 183);" name="personEmail"
+                                                    required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Phone</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="form-outline mb-1">
+                                                <input type="text" id="contactNumber" class="form-control"
+                                                    value="<%= currentUser.contact %>"
+                                                    style="border: 1px solid rgb(183, 183, 183);" name="personContact"
+                                                    required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">NIC</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="form-outline mb-1">
+                                                <input type="text" id="nic" class="form-control"
+                                                    value="<%= currentUser.nic %>"
+                                                    style="border: 1px solid rgb(183, 183, 183);" name="personNic"
+                                                    required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Address</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="form-outline mb-1">
+                                                <input type="text" id="address" class="form-control"
+                                                    value="<%= currentUser.address %>"
+                                                    style="border: 1px solid rgb(183, 183, 183);" name="personAddress"
+                                                    required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+
+            </div>
+        </section>
+
+    </div>
+
+    <%- include ("../../_partial/_footer.ejs") %>

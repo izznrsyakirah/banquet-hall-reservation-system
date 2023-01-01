@@ -181,6 +181,30 @@ router.get("/account", ensureAuthenticated, function (req, res) {
     
 });
 
+router.get("/editaccount", ensureAuthenticated, function (req, res) {
+    res.render("user/account/editmyaccount");
+});
+
+/* Update Reservation Details */
+router.post("/updateaccount", ensureAuthenticated, async function (req, res) {
+    const userInfo = await User.findById(req.user._id);
+
+    userInfo.firstname = req.body.personFirstName;
+    userInfo.lastname = req.body.personLastName;
+    userInfo.nic = req.body.personNic;
+    userInfo.contact = req.body.personContact;
+    userInfo.email = req.body.personEmail;
+    userInfo.address = req.body.personAddress;
+
+    try {
+        let saveuserInfo = await userInfo.save();
+        res.redirect("/account");
+    } catch (err) {
+        //console.log("Error occured");
+        res.status(500).send(err);
+    }
+});
+
 /************************************************************** Admin Routes ******************************************************/
 router.get("/admin", function (req, res) {
     res.render("admin/login");
