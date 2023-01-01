@@ -1,5 +1,6 @@
 var express = require("express");
 var passport = require("passport");
+var passportAdmin = require("passport");
 var flash = require("connect-flash");
 
 var User = require("../models/user");
@@ -156,6 +157,7 @@ router.post("/makeReservation", function (req, res) {
         eventTime: req.body.eventTime,
         status: req.body.eventStatus,
         message: req.body.optionalMessage,
+        userID: req.user._id
     })
 
     newReservation.save(function (err, post) {
@@ -169,7 +171,14 @@ router.post("/makeReservation", function (req, res) {
 });
 
 router.get("/account", ensureAuthenticated, function (req, res) {
-    res.render("user/account/myaccount");
+    var userId = req.user._id;
+
+    Reservation.find({ "userID": userId }).sort({ eventDate: -1 }).exec(function (err, reservations) {
+        if (err) { console.log(err); }
+
+        res.render("user/account/myaccount", { reservations: reservations });
+    });
+    
 });
 
 /************************************************************** Admin Routes ******************************************************/
@@ -185,7 +194,7 @@ router.get("/logout", function (req, res) {
 });
 
 /* Admin Login */
-router.post("/admin", passport.authenticate("admin", {
+router.post("/admin", passportAdmin.authenticate("admin", {
     successRedirect: "/contactList",
     failureRedirect: "/admin",
     failureFlash: true

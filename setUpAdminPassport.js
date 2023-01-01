@@ -1,20 +1,21 @@
-var passportAdmin = require("passport");
+var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 
 var Admin = require("./models/admin");
+var User = require("./models/user");
 
 module.exports = function () {
-    passportAdmin.serializeUser(function (admin, done) {
+    passport.serializeUser(function (admin, done) {
         done(null, admin._id);
     });
 
-    passportAdmin.deserializeUser(function (id, done) {
+    passport.deserializeUser(function (id, done) {
         Admin.findById(id, function (err, admin) {
             done(err, admin);
         });
     });
 
-    passportAdmin.use("admin", new LocalStrategy({
+    passport.use("admin", new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password'
     }, function (email, password, done) {

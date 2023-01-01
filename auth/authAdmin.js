@@ -3,7 +3,7 @@ var ensureAuthAdmin = function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         next();
     } else {
-        req.flash("info", "You must be logged in to view this page");
+        req.flash("info", "Admin - You must be logged in to view this page");
         res.redirect("/admin");
     }
 }

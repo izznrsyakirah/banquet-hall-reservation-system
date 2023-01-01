@@ -13,7 +13,8 @@ var reservationSchema = mongoose.Schema({
     eventTime: { type: String, required: true },
     status: { type: String, required: true },
     message: { type: String, required: false },
-    submittedAt: { type: Date, default: Date.now }
+    submittedAt: { type: Date, default: Date.now },
+    userID: {type:mongoose.Schema.Types.ObjectId, required: false, unique: false }
 });
 
 var Reservation = mongoose.model("Reservation", reservationSchema);
