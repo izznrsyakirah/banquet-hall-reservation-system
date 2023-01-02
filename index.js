@@ -3,7 +3,6 @@ var path = require("path");
 var mongoose = require("mongoose");
 var cookieParser = require("cookie-parser");
 var passport = require("passport");
-var passportAdmin = require("passport");
 var session = require("express-session");
 var flash = require("connect-flash");
 const bodyParser = require('body-parser');
@@ -11,7 +10,6 @@ const bodyParser = require('body-parser');
 var params = require("./params/params");
 var routes = require("./routes/routes");
 var setUpPassport = require("./setuppassport");
-var setUpPassportAdmin = require("./setUpAdminPassport");
 
 var app = express();
 
@@ -40,7 +38,6 @@ io.on("connection", function (socket) {
 
 mongoose.connect(params.DATABASECONNECTION, {});
 setUpPassport();
-setUpPassportAdmin();
 
 app.set("port", process.env.PORT || 5000);
 app.set("views", path.join(__dirname, "views"));
@@ -58,8 +55,6 @@ app.use(express.static(path.join(__dirname, 'statics')));
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(passportAdmin.initialize());
-app.use(passportAdmin.session());
 app.use(flash());
 
 app.use(routes);

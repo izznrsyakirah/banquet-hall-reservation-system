@@ -1,6 +1,5 @@
 var express = require("express");
 var passport = require("passport");
-var passportAdmin = require("passport");
 var flash = require("connect-flash");
 
 var User = require("../models/user");
@@ -12,6 +11,7 @@ var multer = require("multer");
 var crypto = require("crypto");
 var path = require("path");
 
+/* Storing Image */
 var storage = multer.diskStorage({
     destination: './uploads/images/',
     filename: function (req, file, cb) {
@@ -36,14 +36,17 @@ router.use(function (req, res, next) {
 });
 
 /* ********************************************************Customer Routes ******************************************************/
+/* Home */
 router.get("/", function (req, res) {
     res.render("user/index");
 });
 
+/* About */
 router.get("/about", function (req, res) {
     res.render("user/about");
 })
 
+/* Contact */
 router.get("/contact", function (req, res) {
     //res.render("user/contact");
     //res.render('user/contact', { message: req.flash('success') });
@@ -53,8 +56,9 @@ router.get("/contact", function (req, res) {
 
         res.render("user/contact", { contacts: contacts, message: req.flash('success') });
     });
-})
+});
 
+/* Halls */
 router.get("/halls", function (req, res) {
 
     Hall.find().exec(function (err, halls) {
@@ -63,8 +67,9 @@ router.get("/halls", function (req, res) {
         res.render("user/halls", { halls: halls });
     });
 
-})
+});
 
+/* Reservation */
 router.get("/reservation", ensureAuthenticated, function (req, res) {
 
     Hall.find().exec(function (err, halls) {
@@ -78,40 +83,36 @@ router.get("/reservation", ensureAuthenticated, function (req, res) {
     });
 });
 
+/* Login, SignUp Page */
 router.get("/login", function (req, res) {
     res.render("user/userLogin");
 });
 
-/* User Login & Sign Up */
+/* User Login */
 router.post("/login", passport.authenticate("user", {
     successRedirect: "/",
     failureRedirect: "/login",
     failureFlash: true
 }));
 
+/* User SignUp */
 router.post("/signup", function (req, res, next) {
-    var firstname = req.body.fname;
-    var lastname = req.body.lname;
-    var nic = req.body.nic;
-    var address = req.body.address;
-    var contact = req.body.phone;
-    var email = req.body.email;
-    var password = req.body.password;
 
-    User.findOne({ email: email }, function (err, user) {
+    User.findOne({ email: req.body.email }, function (err, user) {
         if (err) { return next(err); }
         if (user) {
             req.flash("error", "There's already an account with this email");
             return res.redirect("/login");
         }
         var newUser = new User({
-            firstname: firstname,
-            lastname: lastname,
-            nic: nic,
-            address: address,
-            contact: contact,
-            email: email,
-            password: password
+            title: req.body.personTitle,
+            firstname: req.body.fname,
+            lastname: req.body.lname,
+            nic: req.body.nic,
+            address: req.body.address,
+            contact: req.body.phone,
+            email: req.body.email,
+            password: req.body.password
         });
         newUser.save(next);
     });
@@ -170,6 +171,7 @@ router.post("/makeReservation", ensureAuthenticated, function (req, res) {
     });
 });
 
+/* Account */
 router.get("/account", ensureAuthenticated, function (req, res) {
     var userId = req.user._id;
 
@@ -178,9 +180,10 @@ router.get("/account", ensureAuthenticated, function (req, res) {
 
         res.render("user/account/myaccount", { reservations: reservations });
     });
-    
+
 });
 
+/* Edit Account Page */
 router.get("/editaccount", ensureAuthenticated, function (req, res) {
     res.render("user/account/editmyaccount");
 });
@@ -206,10 +209,12 @@ router.post("/updateaccount", ensureAuthenticated, async function (req, res) {
 });
 
 /************************************************************** Admin Routes ******************************************************/
+/* Admin Login Page */
 router.get("/admin", function (req, res) {
     res.render("admin/login");
 });
 
+/* User, Admin Logout */
 router.get("/logout", function (req, res) {
     req.logout(function (err) {
         if (err) { return next(err); }
@@ -218,7 +223,7 @@ router.get("/logout", function (req, res) {
 });
 
 /* Admin Login */
-router.post("/admin", passportAdmin.authenticate("admin", {
+router.post("/admin", passport.authenticate("admin", {
     successRedirect: "/contactList",
     failureRedirect: "/admin",
     failureFlash: true
@@ -311,7 +316,7 @@ router.post("/manageHall", ensureAuthenticatedAdmin, function (req, res) {
 
 });
 
-/* View Reservation Details */
+/* View Reservation Details on seperate page */
 router.get("/eventsList/:reservationId", ensureAuthenticatedAdmin, function (req, res) {
     Reservation.findById(req.params.reservationId).exec(function (err, reservationDetails) {
         res.render("admin/pages/reservationDetail", { reservationDetails: reservationDetails });

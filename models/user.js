@@ -4,6 +4,7 @@ var mongoose = require("mongoose");
 const SALT_FACTOR = 12;
 
 var userSchema = mongoose.Schema({
+    title: { type: String, required: true },
     firstname: { type: String, required: true },
     lastname: { type: String, required: true },
     nic: { type: String, required: true },
