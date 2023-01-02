@@ -1,21 +1,22 @@
-var passport = require("passport");
+var passportAdmin = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 
 var Admin = require("./models/admin");
 var User = require("./models/user");
 
 module.exports = function () {
-    passport.serializeUser(function (admin, done) {
+    /**************************************************************************************************** */
+    passportAdmin.serializeUser(function (admin, done) {
         done(null, admin._id);
     });
 
-    passport.deserializeUser(function (id, done) {
+    passportAdmin.deserializeUser(function (id, done) {
         Admin.findById(id, function (err, admin) {
             done(err, admin);
         });
     });
 
-    passport.use("admin", new LocalStrategy({
+    passportAdmin.use("admin", new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password'
     }, function (email, password, done) {
@@ -35,4 +36,5 @@ module.exports = function () {
         });
     }));
 }
+
 

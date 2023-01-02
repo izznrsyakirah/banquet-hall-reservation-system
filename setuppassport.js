@@ -6,6 +6,7 @@ var Admin = require("./models/admin");
 var User = require("./models/user");
 
 module.exports = function () {
+    
     passport.serializeUser(function (user, done) {
         done(null, user._id);
     });
@@ -29,38 +30,6 @@ module.exports = function () {
                 if (err) { return done(err); }
                 if (isMatch) {
                     return done(null, user);
-                } else {
-                    return done(null, false, { message: "Invalid password" });
-                }
-            })
-        });
-    }));
-
-
-    /**************************************************************************************************** */
-    passportAdmin.serializeUser(function (admin, done) {
-        done(null, admin._id);
-    });
-
-    passportAdmin.deserializeUser(function (id, done) {
-        Admin.findById(id, function (err, admin) {
-            done(err, admin);
-        });
-    });
-
-    passportAdmin.use("admin", new LocalStrategy({
-        usernameField: 'email',
-        passwordField: 'password'
-    }, function (email, password, done) {
-        Admin.findOne({ email: email }, function (err, admin) {
-            if (err) { return done(err); }
-            if (!admin) {
-                return done(null, false, { message: "No user has that email!" });
-            }
-            admin.checkPassword(password, function (err, isMatch) {
-                if (err) { return done(err); }
-                if (isMatch) {
-                    return done(null, admin);
                 } else {
                     return done(null, false, { message: "Invalid password" });
                 }

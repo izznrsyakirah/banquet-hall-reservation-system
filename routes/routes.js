@@ -65,7 +65,7 @@ router.get("/halls", function (req, res) {
 
 })
 
-router.get("/reservation", function (req, res) {
+router.get("/reservation", ensureAuthenticated, function (req, res) {
 
     Hall.find().exec(function (err, halls) {
         if (err) { console.log(err); }
@@ -142,7 +142,7 @@ router.post("/addContact", function (req, res) {
 });
 
 /* Reservation Form Submission */
-router.post("/makeReservation", function (req, res) {
+router.post("/makeReservation", ensureAuthenticated, function (req, res) {
 
     var newReservation = new Reservation({
         title: req.body.personTitle,
@@ -185,7 +185,7 @@ router.get("/editaccount", ensureAuthenticated, function (req, res) {
     res.render("user/account/editmyaccount");
 });
 
-/* Update Reservation Details */
+/* Update Account Details */
 router.post("/updateaccount", ensureAuthenticated, async function (req, res) {
     const userInfo = await User.findById(req.user._id);
 
