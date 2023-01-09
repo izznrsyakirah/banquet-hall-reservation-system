@@ -5,6 +5,10 @@ let server = require("../index");
 chai.use(chaiHttp);
 let should = chai.should();
 
+let mongoose = require("mongoose");
+let Contact = require('../models/contact');
+
+
 /*
 suite("Test sayHello server", function () {
 
@@ -29,30 +33,6 @@ suite("Test sayHello server", function () {
 });
 */
 
-/*describe('User', function () {
-    it("Test contact form submission",
-        async () => {
-            const response = await chai.request(server.app)
-                .post('/addContact')
-                .send({
-                    name: 'franklin Isaiah',
-                    email: 'franklin@user.com',
-                    message: 'This is a test contact form message submission.',
-                    status: 'Awaiting'
-                });
-            expect(response.body).to.be.an('object');
-            expect(response.body.status).to.equal(201);
-            expect(response.body.data).to.have.property('id');
-            expect(response.body.data).to.have.property('name');
-            expect(response.body.data).to.have.property('email');
-            expect(response.body.data).to.have.property('message');
-            expect(response.body.data).to.have.property('status');
-        },
-    );
-});*/
-
-//Hello from routes.js
-
 describe('Halls', () => {
     describe('/GET halls', () => {
 
@@ -65,7 +45,7 @@ describe('Halls', () => {
                     //res.body.length.should.be.eql(0);
 
                     done();
-                });
+                }).timeout(10000);;
         });
 
         it('it should GET all the halls for Admin', (done) => {
@@ -100,28 +80,30 @@ describe('Contacts', () => {
 
     });
 
-    /*describe('/POST contacts', () => {
+    describe('/POST contacts', () => {
 
-        it('it should POST a contact form by User',
-            async () => {
-                const response = await chai.request(server.app)
-                    .post('/addContact')
-                    .send({
-                        name: 'Test User',
-                        email: 'test@user.com',
-                        message: 'This is a test contact form message submission.',
-                        status: 'Awaiting',
-                    });
-                expect(response.body).to.be.an('object');
-                expect(response.body.status).to.equal(201);
-                expect(response.body.data).to.have.property('id');
-                expect(response.body.data).to.have.property('name');
-                expect(response.body.data).to.have.property('email');
-                expect(response.body.data).to.have.property('message');
-                expect(response.body.data).to.have.property('status');
-            });
+        it('it should POST a contact form by User', (done) => {
+            let contact = {
+                name: 'Test User',
+                email: 'test@user.com',
+                message: 'This is a test contact form message submission.',
+                status: 'Awaiting'
+            }
+            chai.request(server.app)
+                .post('/addContact')
+                .send(contact)
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    res.body.contact.should.have.property('name');
+                    res.body.contact.should.have.property('email');
+                    res.body.contact.should.have.property('message');
+                    res.body.contact.should.have.property('status');
+                    done();
+                });
+        });
+    });
 
-    });*/
 });
 
 describe('Reservations', () => {
@@ -141,4 +123,3 @@ describe('Reservations', () => {
 
     });
 });
-

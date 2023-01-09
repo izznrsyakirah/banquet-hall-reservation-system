@@ -125,11 +125,16 @@ router.post("/signup", function (req, res, next) {
 /* User Contact Form Submission */
 router.post("/addContact", function (req, res) {
 
+    var name = req.body.contactName;
+    var email = req.body.contactEmail;
+    var message = req.body.contactMessage;
+    var status = req.body.contactStatus;
+    
     var newContact = new Contact({
-        name: req.body.contactName,
-        email: req.body.contactEmail,
-        message: req.body.contactMessage,
-        status: req.body.contactStatus
+        name: name,
+        email: email,
+        message: message,
+        status: status
     });
 
     newContact.save(function (err, post) {
@@ -456,7 +461,7 @@ router.post("/addHalls/edit/:hallId/update", upload.single('hallImages'), async 
 });
 
 /* Hall Available Dates */
-router.get("/halls/available/:hallId", async function (req, res) {
+router.get("/halls/available/:hallId", ensureAuthenticated, async function (req, res) {
     const hall = await Hall.findById(req.params.hallId);
 
     Hall.find({ "_id": hall }).exec(function (err, hallName) {
