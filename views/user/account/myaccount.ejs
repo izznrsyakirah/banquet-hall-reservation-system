@@ -1,5 +1,26 @@
 <%- include ("../../_partial/_header.ejs") %>
 
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+
+        $(function () {
+            let socket = io("http://localhost:5000");
+
+            socket.on("confirm connection", function (msg) {
+                console.log(msg);
+
+            });
+
+            socket.on("refreshPage", function (msg) {
+                console.log(msg);
+                location.reload();
+            });
+
+        });
+    </script>
+
     <div style="padding: 5%;">
 
         <section style="background-color: #eee;">
@@ -9,23 +30,23 @@
                     <div class="col-lg-4">
                         <div class="card mb-4">
                             <div class="card-body text-center">
-                                <% if(currentUser.title == 'Mr') { %>
-                                    <img src="/images/icon-male.jpg"
-                                        alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                                <% } else if(currentUser.title == 'Ms' || currentUser.title == 'Mrs') { %>
-                                    <img src="/images/icon-female.jpg"
-                                        alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                                <% } %>
+                                <% if(currentUser.title=='Mr' ) { %>
+                                    <img src="/images/icon-male.jpg" alt="avatar" class="rounded-circle img-fluid"
+                                        style="width: 150px;">
+                                    <% } else if(currentUser.title=='Ms' || currentUser.title=='Mrs' ) { %>
+                                        <img src="/images/icon-female.jpg" alt="avatar" class="rounded-circle img-fluid"
+                                            style="width: 150px;">
+                                        <% } %>
 
-                                <h5 class="my-3">
-                                    <%= currentUser.title %>.
-                                    <%= currentUser.firstname %>
-                                        <%= currentUser.lastname %>
-                                </h5>
-                                <div class="d-flex justify-content-center mb-2">
-                                    <a href="/editaccount" class="btn btn-primary"
-                                        style="background-color: #2a3353; border-color: #2a3353;">Edit</a>
-                                </div>
+                                            <h5 class="my-3">
+                                                <%= currentUser.title %>.
+                                                    <%= currentUser.firstname %>
+                                                        <%= currentUser.lastname %>
+                                            </h5>
+                                            <div class="d-flex justify-content-center mb-2">
+                                                <a href="/editaccount" class="btn btn-primary"
+                                                    style="background-color: #2a3353; border-color: #2a3353;">Edit</a>
+                                            </div>
                             </div>
                         </div>
                     </div>
@@ -140,9 +161,19 @@
                                             </p>
                                         </div>
                                         <div class="col-sm-2">
-                                            <p class="text-muted mb-0">
-                                                <%= reservation.status %>
-                                            </p>
+
+                                            <% if (reservation.status=='Awaiting' ) { %>
+                                                <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
+                                                <% } else if (reservation.status=='Onboarding' ) { %>
+                                                    <span
+                                                        class="badge badge-primary rounded-pill d-inline">Onboarding</span>
+                                                    <% } else if (reservation.status=='Confirmed' ) { %>
+                                                        <span
+                                                            class="badge badge-success rounded-pill d-inline">Confirmed</span>
+                                                        <% } else if (reservation.status=='Cancelled' ) { %>
+                                                            <span
+                                                                class="badge badge-danger rounded-pill d-inline">Cancelled</span>
+                                                            <% } %>
                                         </div>
                                     </div>
                                     <hr>

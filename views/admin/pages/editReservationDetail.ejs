@@ -173,6 +173,12 @@
                                 <label class="form-check-label" for="inlineRadio3">Confirmed</label>
                             </div>
 
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="reservationStatus" id="reservationStatus"
+                                    value="Cancelled"/>
+                                <label class="form-check-label" for="inlineRadio3">Cancelled</label>
+                            </div>
+
                         <% } else if (reservationDetails.status=='Onboarding' ) { %>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="reservationStatus" id="reservationStatus"
@@ -190,6 +196,12 @@
                                 <input class="form-check-input" type="radio" name="reservationStatus" id="reservationStatus"
                                     value="Confirmed" />
                                 <label class="form-check-label" for="inlineRadio3">Confirmed</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="reservationStatus" id="reservationStatus"
+                                    value="Cancelled"/>
+                                <label class="form-check-label" for="inlineRadio3">Cancelled</label>
                             </div>
 
                         <% } else if (reservationDetails.status=='Confirmed' ) { %>
@@ -210,7 +222,38 @@
                                     value="Confirmed" checked/>
                                 <label class="form-check-label" for="inlineRadio3">Confirmed</label>
                             </div>
-                        <% } %>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="reservationStatus" id="reservationStatus"
+                                    value="Cancelled"/>
+                                <label class="form-check-label" for="inlineRadio3">Cancelled</label>
+                            </div>
+
+                            <% } else if (reservationDetails.status=='Cancelled' ) { %>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="reservationStatus" id="reservationStatus"
+                                        value="Awaiting" />
+                                    <label class="form-check-label" for="inlineRadio1">Awaiting</label>
+                                </div>
+        
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="reservationStatus" id="reservationStatus"
+                                        value="Onboarding" />
+                                    <label class="form-check-label" for="inlineRadio2">Onboarding</label>
+                                </div>
+        
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="reservationStatus" id="reservationStatus"
+                                        value="Confirmed" />
+                                    <label class="form-check-label" for="inlineRadio3">Confirmed</label>
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="reservationStatus" id="reservationStatus"
+                                        value="Cancelled" checked/>
+                                    <label class="form-check-label" for="inlineRadio3">Cancelled</label>
+                                </div>
+                            <% } %>
                         
                         
 

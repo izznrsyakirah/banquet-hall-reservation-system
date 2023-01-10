@@ -103,7 +103,9 @@
                             <span class="badge badge-primary rounded-pill d-inline">Onboarding</span>
                             <% } else if (reservationDetails.status=='Confirmed' ) { %>
                                 <span class="badge badge-success rounded-pill d-inline">Confirmed</span>
-                                <% } %>
+                                <% } else if (reservationDetails.status=='Cancelled' ) { %>
+                                    <span class="badge badge-danger rounded-pill d-inline">Cancelled</span>
+                                    <% } %>
                 </td>
             </tr>
 

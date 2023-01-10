@@ -101,7 +101,9 @@
                                         <span class="badge badge-primary rounded-pill d-inline">Onboarding</span>
                                         <% } else if (reservation.status=='Confirmed' ) { %>
                                             <span class="badge badge-success rounded-pill d-inline">Confirmed</span>
-                                            <% } %>
+                                            <% } else if (reservation.status=='Cancelled' ) { %>
+                                                <span class="badge badge-danger rounded-pill d-inline">Cancelled</span>
+                                                <% } %>
                             </td>
                             <td>
                                 <a href="/eventsList/<%= reservation._id %>" target="_blank"><i

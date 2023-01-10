@@ -32,6 +32,16 @@ io.on("connection", function (socket) {
         }, delayInMilliseconds);
 
     });
+
+    socket.on("onHallChange", function (msg) {
+        var delayInMilliseconds = 2000; //2 second
+
+        setTimeout(function () {
+            socket.broadcast.emit("refreshHallPage", "Refreshing Hall Page");
+        }, delayInMilliseconds);
+
+    });
+
 });
 
 /*********************************************************************************** */
