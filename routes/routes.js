@@ -125,16 +125,16 @@ router.post("/signup", function (req, res, next) {
 /* User Contact Form Submission */
 router.post("/addContact", function (req, res) {
 
-    var name = req.body.contactName;
+    /*var name = req.body.contactName;
     var email = req.body.contactEmail;
     var message = req.body.contactMessage;
-    var status = req.body.contactStatus;
+    var status = req.body.contactStatus;*/
     
     var newContact = new Contact({
-        name: name,
-        email: email,
-        message: message,
-        status: status
+        name: req.body.contactName,
+        email: req.body.contactEmail,
+        message: req.body.contactMessage,
+        status: req.body.contactStatus
     });
 
     newContact.save(function (err, post) {
@@ -347,6 +347,8 @@ router.get("/eventsList/sort/:sortItem", ensureAuthenticatedAdmin, function (req
         var filter = { "status": "Onboarding" }
     } else if (sortItem == 'awaiting') {
         var filter = { "status": "Awaiting" }
+    } else if (sortItem == 'cancelled') {
+        var filter = { "status": "Cancelled" }
     }
 
     Reservation.find(filter).sort(sortBy).exec(function (err, reservations) {
