@@ -13,3 +13,6 @@ suite("Test square function", function () {
         chai.assert.equal(result, 25, "5x5 should equal 25");
     });
 });*/
+
+
+        
