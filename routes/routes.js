@@ -123,7 +123,7 @@ router.post("/signup", function (req, res, next) {
 }));
 
 /* User Contact Form Submission */
-router.post("/addContact", function (req, res) {
+router.post("/addContact", async function (req, res) {
 
     /*var name = req.body.contactName;
     var email = req.body.contactEmail;
@@ -136,6 +136,8 @@ router.post("/addContact", function (req, res) {
         message: req.body.contactMessage,
         status: req.body.contactStatus
     });
+
+    //console.log(newContact)
 
     newContact.save(function (err, post) {
         if (err) {
