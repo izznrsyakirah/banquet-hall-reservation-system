@@ -4,17 +4,20 @@
 
         <section class="vh-100">
             <div class="container py-5 h-100">
+
+                <h1 class="display-4"><span>Join</span> <span>us.</span> <span>.</span> <span>.</span></h1>
+
                 <div class="row d-flex align-items-center justify-content-center h-100">
                     <div class="col-md-8 col-lg-7 col-xl-6">
 
                         <!-- Pills navs -->
                         <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#pills-login"
+                                <a class="nav-link" id="tab-login" data-mdb-toggle="pill" href="#pills-login"
                                     role="tab" aria-controls="pills-login" aria-selected="true">Login</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="#pills-register"
+                                <a class="nav-link active" id="tab-register" data-mdb-toggle="pill" href="#pills-register"
                                     role="tab" aria-controls="pills-register" aria-selected="false">Register</a>
                             </li>
                         </ul>
@@ -24,7 +27,7 @@
                         <div class="tab-content">
 
                             <!-- Login -->
-                            <div class="tab-pane fade show active" id="pills-login" role="tabpanel"
+                            <div class="tab-pane fade " id="pills-login" role="tabpanel"
                                 aria-labelledby="tab-login">
                                 <form method="POST" action="/login">
 
@@ -50,7 +53,7 @@
                             </div>
 
                             <!-- Sign Up -->
-                            <div class="tab-pane fade" id="pills-register" role="tabpanel"
+                            <div class="tab-pane fade show active" id="pills-register" role="tabpanel"
                                 aria-labelledby="tab-register">
                                 <form method="POST" action="/signup">
 
@@ -153,14 +156,14 @@
                                     <br>
 
                                     <!-- Checkbox -->
-                                    <div class="form-check d-flex justify-content-center mb-4">
+                                    <!--<div class="form-check d-flex justify-content-center mb-4">
                                         <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck"
                                             checked aria-describedby="registerCheckHelpText"
                                             style="background: #2a3353;" />
                                         <label class="form-check-label" for="registerCheck">
                                             I have read and agree to the terms
                                         </label>
-                                    </div>
+                                    </div>-->
 
                                     <!-- Submit button -->
                                     <button type="submit" class="btn btn-primary btn-block mb-3" id="signUpButton"
@@ -183,7 +186,7 @@
 
     </div>
 
-    <script src="/userPassword.js"></script>
+    <script src="/js/userPassword.js"></script>
 
     <br>
 

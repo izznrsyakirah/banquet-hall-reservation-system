@@ -1,38 +1,64 @@
 <%- include ("../_partial/_header.ejs") %>
 
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+
+        $(function () {
+            let socket = io("http://localhost:5000");
+
+            socket.on("confirm connection", function (msg) {
+                console.log(msg);
+
+            });
+
+            socket.on("refreshPage", function (msg) {
+                console.log(msg);
+                location.reload();
+            });
+
+        });
+    </script>
+
     <div style="display: flex;">
-    
-        <% if(currentUser == null ) { %>
+
+        <% if(currentUser==null ) { %>
             <div style="margin-left: 13%;"></div>
-        <% } %>
-
-        <% if(currentUser != null ) { %>
-            <% if(currentUser.email == 'blueorchid241@gmail.com' ) { %>
-                <div style="margin-left: 20%;"></div>
-            <% } else { %>
-                <div style="margin-left: 13%;"></div>
             <% } %>
-        <% } %>
-        
-        <div style="padding-top: 6%; padding-bottom: 3%;">
 
-            <head>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js"></script>
+                <% if(currentUser !=null ) { %>
+                    <% if(currentUser.email=='blueorchid241@gmail.com' ) { %>
+                        <div style="margin-left: 20%;"></div>
+                    <% } else { %>
+                        <div style="margin-left: 13%;"></div>
+                    <% } %>
+                <% } %>
 
-                <link rel="stylesheet"
-                    href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css">
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css">
+                                    <div style="padding-top: 6%; padding-bottom: 3%;">
 
-                <!-- CSS -->
-                <link rel="stylesheet" href="/styles.css" />
+                                        <head>
+                                            <script
+                                                src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.js"></script>
+                                            <script
+                                                src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+                                            <script
+                                                src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+                                            <script
+                                                src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js"></script>
 
-            </head>
-            <!--<h3 class="display-6">Calendar</h3>-->
+                                            <link rel="stylesheet"
+                                                href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css">
+                                            <link rel="stylesheet"
+                                                href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css">
 
-            <!--<div class="ui container">
+                                            <!-- CSS -->
+                                            <link rel="stylesheet" href="/styles.css" />
+
+                                        </head>
+                                        <!--<h3 class="display-6">Calendar</h3>-->
+
+                                        <!--<div class="ui container">
                 <div class="ui menu">
                     <div class="header item">Brand</div>
                         <a class="active item">Link</a>
@@ -63,45 +89,45 @@
                 </div>
             </div>-->
 
-            <br />
-            <div class="ui container" style="background-color: white;">
-                <div class="ui grid">
-                    <div class="ui sixteen column">
-                        <div id="calendar"></div>
-                    </div>
-                </div>
-            </div>
+                                        <br />
+                                        <div class="ui container" style="background-color: white;">
+                                            <div class="ui grid">
+                                                <div class="ui sixteen column">
+                                                    <div id="calendar"></div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-            <script>
-                let eventArray = []
-            </script>
+                                        <script>
+                                            let eventArray = []
+                                        </script>
 
-            <% hallName.forEach(function(hall) { %>
+                                        <% hallName.forEach(function(hall) { %>
 
-                <% eventDetails.forEach(function(event) { %>
+                                            <% eventDetails.forEach(function(event) { %>
 
-                    <% if(hall.name == event.hallType && event.status == 'Confirmed') { %>
+                                                <% if(hall.name==event.hallType && event.status=='Confirmed' ) { %>
 
-                        <script>
+                                                    <script>
 
-                            eventId = '<%= event._id %>'
-                            eventhallType = '<%= event.hallType %>'
-                            eventStatus = '<%= event.status %>'
-                            eventDate = '<%= event.eventDate %>'
-                            eventTime = '<%= event.eventTime %>'
+                                                        eventId = '<%= event._id %>'
+                                                        eventhallType = '<%= event.hallType %>'
+                                                        eventStatus = '<%= event.status %>'
+                                                        eventDate = '<%= event.eventDate %>'
+                                                        eventTime = '<%= event.eventTime %>'
 
-                            eventString = { title: eventStatus + '\n' + eventhallType , start: eventDate + 'T' + eventTime }
-                            //console.log(eventString)
+                                                        eventString = { title: eventStatus + '\n' + eventhallType, start: eventDate + 'T' + eventTime }
+                                                        //console.log(eventString)
 
-                            eventArray.push(eventString)
+                                                        eventArray.push(eventString)
                             //console.log(eventArray)
-                        </script>
-                        
-                    <% } %>
-                <% }) %>
-            <% }) %>
+                                                    </script>
 
-        </div>
+                                                <% } %>
+                                            <% }) %>
+                                        <% }) %>
+
+                                    </div>
     </div>
 
     <script>
@@ -134,6 +160,6 @@
         });
     </script>
 
-    
+
 
     <%- include ("../_partial/_footer.ejs") %>
