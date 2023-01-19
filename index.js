@@ -42,11 +42,30 @@ io.on("connection", function (socket) {
 
     });
 
+    socket.on("onContactSubmission", function (msg) {
+        var delayInMilliseconds = 2000; //2 second
+
+        setTimeout(function () {
+            socket.broadcast.emit("refreshContactListPage", "Refreshing Contact List Page");
+        }, delayInMilliseconds);
+
+    });
+
+    socket.on("onReservationSubmission", function (msg) {
+        var delayInMilliseconds = 2000; //2 second
+
+        setTimeout(function () {
+            socket.broadcast.emit("refreshReservationListPage", "Refreshing Contact List Page");
+        }, delayInMilliseconds);
+
+    });
+
 });
 
 /*********************************************************************************** */
 
 mongoose.connect(params.DATABASECONNECTION, {});
+
 setUpPassport();
 
 app.set("port", process.env.PORT || 5000);

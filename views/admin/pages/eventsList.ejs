@@ -10,13 +10,18 @@
 
             socket.on("confirm connection", function (msg) {
                 console.log(msg);
-                
+
             });
 
             socket.on("refreshPage", function (msg) {
-                    console.log(msg);
-                    location.reload();
-                });
+                console.log(msg);
+                location.reload();
+            });
+
+            socket.on("refreshReservationListPage", function (msg) {
+                console.log(msg);
+                location.reload();
+            });
 
         });
     </script>
@@ -26,8 +31,8 @@
 
         <!-- Sort By -->
         <div class="btn-group shadow-0" style="border-radius: 50px; padding: 1%;">
-            <button type="button" class="btn btn-light dropdown-toggle" data-mdb-toggle="dropdown" style="border-radius: 50px;"
-                aria-expanded="false">
+            <button type="button" class="btn btn-light dropdown-toggle" data-mdb-toggle="dropdown"
+                style="border-radius: 50px;" aria-expanded="false">
                 Sort By
             </button>
             <ul class="dropdown-menu">
@@ -39,10 +44,14 @@
                 <li>
                     <hr class="dropdown-divider" />
                 </li>
-                <li><a class="dropdown-item" href="/eventsList/sort/eventDateAsc"><i class="fas fa-arrow-down"></i> Event Date</a></li><!--Asc-->
-                <li><a class="dropdown-item" href="/eventsList/sort/eventDateDesc"><i class="fas fa-arrow-up"></i> Event Date</a></li><!--Desc-->
-                <li><a class="dropdown-item" href="/eventsList/sort/submittedDateAsc"><i class="fas fa-arrow-down"></i> Submitted Date</a></li>
-                <li><a class="dropdown-item" href="/eventsList/sort/submittedDateDesc"><i class="fas fa-arrow-up"></i> Submitted Date</a></li>
+                <li><a class="dropdown-item" href="/eventsList/sort/eventDateAsc"><i class="fas fa-arrow-down"></i>
+                        Event Date</a></li><!--Asc-->
+                <li><a class="dropdown-item" href="/eventsList/sort/eventDateDesc"><i class="fas fa-arrow-up"></i> Event
+                        Date</a></li><!--Desc-->
+                <li><a class="dropdown-item" href="/eventsList/sort/submittedDateAsc"><i class="fas fa-arrow-down"></i>
+                        Submitted Date</a></li>
+                <li><a class="dropdown-item" href="/eventsList/sort/submittedDateDesc"><i class="fas fa-arrow-up"></i>
+                        Submitted Date</a></li>
                 <!--<li><a class="dropdown-item" href="#">Separated link</a></li>-->
             </ul>
         </div>

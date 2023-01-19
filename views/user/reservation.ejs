@@ -1,11 +1,32 @@
 <%- include ("../_partial/_header.ejs") %>
 
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+
+        function reservationSubmission() {
+            $(function () {
+
+                let socket = io("http://localhost:5000");
+
+                socket.on("confirm connection", function (msg) {
+                    console.log(msg);
+                });
+
+                socket.emit("onReservationSubmission", "Contact form has been submitted");
+
+            });
+        }
+
+    </script>
+
     <div class="container" style="padding-top: 10%;">
         <% if(message.length> 0) { %>
             <div style="background-color: #d6f0e0; color: #3a793e; padding: 1%; border-radius: 8px;">
                 <% reservations.forEach(function(reservation) { %>
                     <%= message %> <span style="color: #0d6832; font-weight: bold;">Reference ID: <%= reservation._id %>
-                                </span>
+                        </span>
                         <% }) %>
             </div>
             <% } %>
@@ -14,7 +35,8 @@
     <div style="padding: 0% 10% 7% 10%;">
 
         <div style="width: 100%;">
-            <h3 class="display-4"><span>Tell</span> <span>us</span> <span>what</span> <span>you</span> <span>want.</span> <span>.</span> <span>.</span></h3><br>
+            <h3 class="display-4"><span>Tell</span> <span>us</span> <span>what</span> <span>you</span>
+                <span>want.</span> <span>.</span> <span>.</span></h3><br>
         </div>
 
         <div class="card-body px-lg-5 pt-0"
@@ -23,138 +45,7 @@
             <br>
             <h3 class="display-6">Make a Reservation</h3><br>
 
-            <% if(currentUser != null ) { %>
-            <div style="width: 100%;  display: flex; ">
-
-                <div style="width: 50%; padding: 0% 5% 0% 5%;">
-                    <form action="/makeReservation" method="POST">
-                        <!-- Title -->
-                        <div class="form-outline mb-4">
-                            <label class="form-label" for="personTitle">Title</label>
-
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="personTitle" id="personTitle"
-                                    value="Mr" />
-                                <label class="form-check-label" for="inlineRadio1">Mr.</label>
-                            </div>
-
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="personTitle" id="personTitle"
-                                    value="Mrs" />
-                                <label class="form-check-label" for="inlineRadio2">Mrs.</label>
-                            </div>
-
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="personTitle" id="personTitle"
-                                    value="Ms" />
-                                <label class="form-check-label" for="inlineRadio3">Ms.</label>
-                            </div>
-                        </div>
-
-                        <!-- Name input -->
-                        <div style="display: flex;">
-                            <div>
-                                <div class="form-outline mb-4">
-                                    <input type="text" id="fName" class="form-control"
-                                        value="<%= currentUser.firstname %>"
-                                        style="border: 1px solid rgb(183, 183, 183);" name="personFirstName" required />
-                                    <label class="form-label" for="personFirstName">First Name</label>
-                                </div>
-                            </div>
-
-                            <div style="padding-left: 7%;">
-                                <div class="form-outline mb-4">
-                                    <input type="text" id="lName" class="form-control"
-                                        value="<%= currentUser.lastname %>"
-                                        style="border: 1px solid rgb(183, 183, 183);" name="personLastName" required />
-                                    <label class="form-label" for="personLastName">Last Name</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- NIC -->
-                        <div class="form-outline mb-4">
-                            <input type="text" id="nic" class="form-control" value="<%= currentUser.nic %>"
-                                style="border: 1px solid rgb(183, 183, 183);" name="personNic" required />
-                            <label class="form-label" for="personNic">NIC</label>
-                        </div>
-
-                        <!-- Address -->
-                        <div class="form-outline mb-4">
-                            <input type="text" id="address" class="form-control" value="<%= currentUser.address %>"
-                                style="border: 1px solid rgb(183, 183, 183);" name="personAddress" required />
-                            <label class="form-label" for="personAddress">Address</label>
-                        </div>
-
-                        <!-- Contact Number -->
-                        <div class="form-outline mb-4">
-                            <input type="text" id="contactNumber" class="form-control" value="<%= currentUser.contact %>"
-                                style="border: 1px solid rgb(183, 183, 183);" name="personContact" required />
-                            <label class="form-label" for="personContact">Contact Number</label>
-                        </div>
-
-                        <!-- Email input -->
-                        <div class="form-outline mb-4">
-                            <input type="email" id="emailUser" class="form-control" value="<%= currentUser.email %>"
-                                style="border: 1px solid rgb(183, 183, 183);" name="personEmail" required />
-                            <label class="form-label" for="personEmail">Email address</label>
-                        </div>
-
-                </div>
-
-                <div style="width: 50%; padding: 0% 5% 0% 5%;">
-
-                    <!-- Hall Type -->
-                    <div class="form-outline mb-4">
-                        <select name="hallType" id="hallType" class="form-control"
-                            style="border: 1px solid rgb(183, 183, 183);" required>
-                            <option value="0"></option>
-                            <% halls.forEach(function(hall,index) { %>
-                                <option value="<%= hall.name %>">
-                                    <%= hall.name %>
-                                </option>
-                                <% }) %>
-                        </select>
-                        <label class="form-label" for="hallType">Hall Type</label>
-                    </div>
-
-                    <!-- Date -->
-                    <div class="form-outline mb-4">
-                        <input type="date" name="eventDate" id="eventDate" class="form-control"
-                            style="border: 1px solid rgb(183, 183, 183);" min="" required />
-                        <label class="form-label" for="eventDate">Date</label>
-                    </div>
-
-                    <!-- Time -->
-                    <div class="form-outline mb-4">
-                        <input type="time" name="eventTime" id="eventTime" class="form-control"
-                            style="border: 1px solid rgb(183, 183, 183);" required />
-                        <label class="form-label" for="eventTime">Time</label>
-                    </div>
-
-                    <!-- Status -->
-                    <input type="hidden" name="eventStatus" id="eventStatus" class="form-control" value="Awaiting" />
-
-                    <!-- Message input -->
-                    <div class="form-outline mb-4">
-                        <textarea class="form-control" id="message" rows="4" name="optionalMessage"
-                            style="border: 1px solid rgb(183, 183, 183);"></textarea>
-                        <label class="form-label" for="optionalMessage">Message (Optional)</label>
-                    </div>
-
-                    <!-- Submit button -->
-                    <div class="form-outline mb-4">
-                        <button type="submit" class="btn btn-primary btn-rounded"
-                            style="color: white; background-color: #2a3353; border-color: #2a3353; width: 100%;">Make
-                            Reservation</button>
-                    </div>
-                    </form>
-                </div>
-
-            </div>
-            <% } %>
-
-            <% if(currentUser == null ) { %>
+            <% if(currentUser !=null ) { %>
                 <div style="width: 100%;  display: flex; ">
 
                     <div style="width: 50%; padding: 0% 5% 0% 5%;">
@@ -162,77 +53,82 @@
                             <!-- Title -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="personTitle">Title</label>
-    
+
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="personTitle" id="personTitle"
                                         value="Mr" />
                                     <label class="form-check-label" for="inlineRadio1">Mr.</label>
                                 </div>
-    
+
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="personTitle" id="personTitle"
                                         value="Mrs" />
                                     <label class="form-check-label" for="inlineRadio2">Mrs.</label>
                                 </div>
-    
+
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="personTitle" id="personTitle"
                                         value="Ms" />
                                     <label class="form-check-label" for="inlineRadio3">Ms.</label>
                                 </div>
                             </div>
-    
+
                             <!-- Name input -->
                             <div style="display: flex;">
                                 <div>
                                     <div class="form-outline mb-4">
                                         <input type="text" id="fName" class="form-control"
-                                            style="border: 1px solid rgb(183, 183, 183);" name="personFirstName" required />
+                                            value="<%= currentUser.firstname %>"
+                                            style="border: 1px solid rgb(183, 183, 183);" name="personFirstName"
+                                            required />
                                         <label class="form-label" for="personFirstName">First Name</label>
                                     </div>
                                 </div>
-    
+
                                 <div style="padding-left: 7%;">
                                     <div class="form-outline mb-4">
                                         <input type="text" id="lName" class="form-control"
-                                            style="border: 1px solid rgb(183, 183, 183);" name="personLastName" required />
+                                            value="<%= currentUser.lastname %>"
+                                            style="border: 1px solid rgb(183, 183, 183);" name="personLastName"
+                                            required />
                                         <label class="form-label" for="personLastName">Last Name</label>
                                     </div>
                                 </div>
                             </div>
-    
+
                             <!-- NIC -->
                             <div class="form-outline mb-4">
-                                <input type="text" id="nic" class="form-control"
+                                <input type="text" id="nic" class="form-control" value="<%= currentUser.nic %>"
                                     style="border: 1px solid rgb(183, 183, 183);" name="personNic" required />
                                 <label class="form-label" for="personNic">NIC</label>
                             </div>
-    
+
                             <!-- Address -->
                             <div class="form-outline mb-4">
-                                <input type="text" id="address" class="form-control"
+                                <input type="text" id="address" class="form-control" value="<%= currentUser.address %>"
                                     style="border: 1px solid rgb(183, 183, 183);" name="personAddress" required />
                                 <label class="form-label" for="personAddress">Address</label>
                             </div>
-    
+
                             <!-- Contact Number -->
                             <div class="form-outline mb-4">
                                 <input type="text" id="contactNumber" class="form-control"
-                                    style="border: 1px solid rgb(183, 183, 183);" name="personContact" required />
+                                    value="<%= currentUser.contact %>" style="border: 1px solid rgb(183, 183, 183);"
+                                    name="personContact" required />
                                 <label class="form-label" for="personContact">Contact Number</label>
                             </div>
-    
+
                             <!-- Email input -->
                             <div class="form-outline mb-4">
-                                <input type="email" id="emailUser" class="form-control"
+                                <input type="email" id="emailUser" class="form-control" value="<%= currentUser.email %>"
                                     style="border: 1px solid rgb(183, 183, 183);" name="personEmail" required />
                                 <label class="form-label" for="personEmail">Email address</label>
                             </div>
-    
+
                     </div>
-    
+
                     <div style="width: 50%; padding: 0% 5% 0% 5%;">
-    
+
                         <!-- Hall Type -->
                         <div class="form-outline mb-4">
                             <select name="hallType" id="hallType" class="form-control"
@@ -246,42 +142,177 @@
                             </select>
                             <label class="form-label" for="hallType">Hall Type</label>
                         </div>
-    
+
                         <!-- Date -->
                         <div class="form-outline mb-4">
                             <input type="date" name="eventDate" id="eventDate" class="form-control"
                                 style="border: 1px solid rgb(183, 183, 183);" min="" required />
                             <label class="form-label" for="eventDate">Date</label>
                         </div>
-    
+
                         <!-- Time -->
                         <div class="form-outline mb-4">
                             <input type="time" name="eventTime" id="eventTime" class="form-control"
                                 style="border: 1px solid rgb(183, 183, 183);" required />
                             <label class="form-label" for="eventTime">Time</label>
                         </div>
-    
+
                         <!-- Status -->
-                        <input type="hidden" name="eventStatus" id="eventStatus" class="form-control" value="Awaiting" />
-    
+                        <input type="hidden" name="eventStatus" id="eventStatus" class="form-control"
+                            value="Awaiting" />
+
                         <!-- Message input -->
                         <div class="form-outline mb-4">
                             <textarea class="form-control" id="message" rows="4" name="optionalMessage"
                                 style="border: 1px solid rgb(183, 183, 183);"></textarea>
                             <label class="form-label" for="optionalMessage">Message (Optional)</label>
                         </div>
-    
+
                         <!-- Submit button -->
                         <div class="form-outline mb-4">
-                            <button type="submit" class="btn btn-primary btn-rounded"
+                            <button type="submit" class="btn btn-primary btn-rounded" onclick="reservationSubmission()"
                                 style="color: white; background-color: #2a3353; border-color: #2a3353; width: 100%;">Make
                                 Reservation</button>
                         </div>
                         </form>
                     </div>
-    
+
                 </div>
-            <% } %>
+                <% } %>
+
+                    <% if(currentUser==null ) { %>
+                        <div style="width: 100%;  display: flex; ">
+
+                            <div style="width: 50%; padding: 0% 5% 0% 5%;">
+                                <form action="/makeReservation" method="POST">
+                                    <!-- Title -->
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="personTitle">Title</label>
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="personTitle"
+                                                id="personTitle" value="Mr" />
+                                            <label class="form-check-label" for="inlineRadio1">Mr.</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="personTitle"
+                                                id="personTitle" value="Mrs" />
+                                            <label class="form-check-label" for="inlineRadio2">Mrs.</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="personTitle"
+                                                id="personTitle" value="Ms" />
+                                            <label class="form-check-label" for="inlineRadio3">Ms.</label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Name input -->
+                                    <div style="display: flex;">
+                                        <div>
+                                            <div class="form-outline mb-4">
+                                                <input type="text" id="fName" class="form-control"
+                                                    style="border: 1px solid rgb(183, 183, 183);" name="personFirstName"
+                                                    required />
+                                                <label class="form-label" for="personFirstName">First Name</label>
+                                            </div>
+                                        </div>
+
+                                        <div style="padding-left: 7%;">
+                                            <div class="form-outline mb-4">
+                                                <input type="text" id="lName" class="form-control"
+                                                    style="border: 1px solid rgb(183, 183, 183);" name="personLastName"
+                                                    required />
+                                                <label class="form-label" for="personLastName">Last Name</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- NIC -->
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="nic" class="form-control"
+                                            style="border: 1px solid rgb(183, 183, 183);" name="personNic" required />
+                                        <label class="form-label" for="personNic">NIC</label>
+                                    </div>
+
+                                    <!-- Address -->
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="address" class="form-control"
+                                            style="border: 1px solid rgb(183, 183, 183);" name="personAddress"
+                                            required />
+                                        <label class="form-label" for="personAddress">Address</label>
+                                    </div>
+
+                                    <!-- Contact Number -->
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="contactNumber" class="form-control"
+                                            style="border: 1px solid rgb(183, 183, 183);" name="personContact"
+                                            required />
+                                        <label class="form-label" for="personContact">Contact Number</label>
+                                    </div>
+
+                                    <!-- Email input -->
+                                    <div class="form-outline mb-4">
+                                        <input type="email" id="emailUser" class="form-control"
+                                            style="border: 1px solid rgb(183, 183, 183);" name="personEmail" required />
+                                        <label class="form-label" for="personEmail">Email address</label>
+                                    </div>
+
+                            </div>
+
+                            <div style="width: 50%; padding: 0% 5% 0% 5%;">
+
+                                <!-- Hall Type -->
+                                <div class="form-outline mb-4">
+                                    <select name="hallType" id="hallType" class="form-control"
+                                        style="border: 1px solid rgb(183, 183, 183);" required>
+                                        <option value="0"></option>
+                                        <% halls.forEach(function(hall,index) { %>
+                                            <option value="<%= hall.name %>">
+                                                <%= hall.name %>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                    <label class="form-label" for="hallType">Hall Type</label>
+                                </div>
+
+                                <!-- Date -->
+                                <div class="form-outline mb-4">
+                                    <input type="date" name="eventDate" id="eventDate" class="form-control"
+                                        style="border: 1px solid rgb(183, 183, 183);" min="" required />
+                                    <label class="form-label" for="eventDate">Date</label>
+                                </div>
+
+                                <!-- Time -->
+                                <div class="form-outline mb-4">
+                                    <input type="time" name="eventTime" id="eventTime" class="form-control"
+                                        style="border: 1px solid rgb(183, 183, 183);" required />
+                                    <label class="form-label" for="eventTime">Time</label>
+                                </div>
+
+                                <!-- Status -->
+                                <input type="hidden" name="eventStatus" id="eventStatus" class="form-control"
+                                    value="Awaiting" />
+
+                                <!-- Message input -->
+                                <div class="form-outline mb-4">
+                                    <textarea class="form-control" id="message" rows="4" name="optionalMessage"
+                                        style="border: 1px solid rgb(183, 183, 183);"></textarea>
+                                    <label class="form-label" for="optionalMessage">Message (Optional)</label>
+                                </div>
+
+                                <!-- Submit button -->
+                                <div class="form-outline mb-4">
+                                    <button type="submit" class="btn btn-primary btn-rounded"
+                                        style="color: white; background-color: #2a3353; border-color: #2a3353; width: 100%;">Make
+                                        Reservation</button>
+                                </div>
+                                </form>
+                            </div>
+
+                        </div>
+                        <% } %>
 
         </div>
 
