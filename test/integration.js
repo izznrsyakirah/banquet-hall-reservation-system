@@ -18,7 +18,7 @@ describe('Halls', () => {
                     //res.body.length.should.be.eql(0);
 
                     done();
-                }).timeout(10000);;
+                }).timeout(10000);
         });
 
         it('/halls/available/:hallId - GET specific hall for User', (done) => {
@@ -341,17 +341,17 @@ describe('Reservations', () => {
 
         let testReservationData = {
             personTitle: 'Mrs',
-            personFirstName:'Lona',
-            personLastName:'Scoot',
-            personNic:'200548953682',
-            personAddress:'1234 NW Bobcat Lane, St. Robert, MO 65584-5678',
-            personContact:'0758968572',
-            personEmail:'lona@gmail.com',
-            hallType:'Outdoor Wedding Stage',
-            eventDate:'2023-12-08',
-            eventTime:'20:00',
-            eventStatus:'Awaiting',
-            optionalMessage:''
+            personFirstName: 'Lona',
+            personLastName: 'Scoot',
+            personNic: '200548953682',
+            personAddress: '1234 NW Bobcat Lane, St. Robert, MO 65584-5678',
+            personContact: '0758968572',
+            personEmail: 'lona@gmail.com',
+            hallType: 'Outdoor Wedding Stage',
+            eventDate: '2023-12-08',
+            eventTime: '20:00',
+            eventStatus: 'Awaiting',
+            optionalMessage: ''
         }
 
         it('it should POST a Reservation form by User', (done) => {
@@ -371,17 +371,17 @@ describe('Reservations', () => {
 
         let testUpdateReservationData = {
             personTitle: 'Mr',
-            personFirstName:'Farmaan',
-            personLastName:'Mohamed',
-            personNic:'200102233595',
-            personAddress:'129/6 High Level Road, Kirulapone, Colombo 6',
-            personContact:'758982572',
-            personEmail:'farmaanM@gmail.com',
-            hallType:'Outdoor Wedding Stage',
-            eventDate:'2023-12-08',
-            eventTime:'20:00',
-            eventStatus:'Awaiting',
-            optionalMessage:''
+            personFirstName: 'Farmaan',
+            personLastName: 'Mohamed',
+            personNic: '200102233595',
+            personAddress: '129/6 High Level Road, Kirulapone, Colombo 6',
+            personContact: '758982572',
+            personEmail: 'farmaanM@gmail.com',
+            hallType: 'Outdoor Wedding Stage',
+            eventDate: '2023-12-08',
+            eventTime: '20:00',
+            eventStatus: 'Awaiting',
+            optionalMessage: ''
         }
 
         let testUpdateReservationDataID = '6371e3b7d5169169f63f7c1a';
@@ -442,7 +442,10 @@ describe('Calendar', () => {
 });
 
 describe('User', () => {
-
+    after(() => {
+        process.exit();
+    });
+    
     describe('/POST User', () => {
 
         let testLoginData = {
@@ -537,6 +540,8 @@ describe('User', () => {
     });
 
 });
+
+
 
 
 
