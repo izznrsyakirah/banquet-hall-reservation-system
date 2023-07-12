@@ -1,4 +1,4 @@
-const DATABASECONNECTION = "mongodb+srv://farmaanm:farmaan123@cluster0.vusixhb.mongodb.net/?retryWrites=true&w=majority"
+const DATABASECONNECTION = "mongodb://0.0.0.0:27017/hall"
 
 module.exports = {
     DATABASECONNECTION
