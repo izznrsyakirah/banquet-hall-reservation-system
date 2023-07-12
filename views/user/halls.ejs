@@ -4,16 +4,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script>
-
-        $(function () {
+        $(function() {
             let socket = io("http://localhost:5000");
 
-            socket.on("confirm connection", function (msg) {
+            socket.on("confirm connection", function(msg) {
                 console.log(msg);
 
             });
 
-            socket.on("refreshHallPage", function (msg) {
+            socket.on("refreshHallPage", function(msg) {
                 console.log(msg);
                 location.reload();
             });
@@ -42,8 +41,7 @@
                                     <%= hall.description %>
                                 </p>
 
-                                <button type="button" class="btn btn-primary hall-01" style="background-color: #2a3353;"
-                                    id=<%=hall._id %>>
+                                <button type="button" class="btn btn-primary hall-01" style="background-color: #181818;" id=<%=hall._id %>>
                                     Read More
                                     <i class="fas fa-angle-double-right"></i>
                                 </button>
@@ -139,7 +137,8 @@
                                                 <tr>
                                                     <th scope="row">Price Range: </th>
                                                     <td>
-                                                        <%= hall.priceFrom %> to <%= hall.priceTo %> LKR
+                                                        <%= hall.priceFrom %> to
+                                                            <%= hall.priceTo %> LKR
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -176,8 +175,7 @@
                                         <%= hall.description %>
                                     </p>
 
-                                    <button type="button" class="btn btn-primary hall-02"
-                                        style="background-color: #2a3353;" id=<%=hall._id %>>
+                                    <button type="button" class="btn btn-primary hall-02" style="background-color: #2a3353;" id=<%=hall._id %>>
                                         Read More
                                         <i class="fas fa-angle-double-right"></i>
                                     </button>
@@ -186,8 +184,7 @@
 
                             </div>
 
-                            <div class="content" class="content" style="width: 100%; position: relative;"
-                                id="display-<%= hall._id %>">
+                            <div class="content" class="content" style="width: 100%; position: relative;" id="display-<%= hall._id %>">
 
                                 <div style="padding: 5%;">
 
@@ -239,8 +236,7 @@
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">Available Dates: </th>
-                                                        <td><a href="/halls/available/<%= hall._id %>"
-                                                                target="_blank"><i
+                                                        <td><a href="/halls/available/<%= hall._id %>" target="_blank"><i
                                                                     class="fas fa-external-link-alt"></i></a></td>
                                                     </tr>
                                                 </tbody>
@@ -271,7 +267,8 @@
                                                     <tr>
                                                         <th scope="row">Price Range: </th>
                                                         <td>
-                                                            <%= hall.priceFrom %> to <%= hall.priceTo %> LKR
+                                                            <%= hall.priceFrom %> to
+                                                                <%= hall.priceTo %> LKR
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -294,7 +291,6 @@
 
 
     <script>
-
         /* Read More Button Toggle view */
         /*var coll = document.getElementsByClassName("hall-01");
         console.log(coll)
@@ -312,7 +308,7 @@
             });
         }*/
 
-        $("button").click(function () {
+        $("button").click(function() {
             var buttonId = this.id;
             this.classList.toggle("active");
             var content = document.getElementById("display-" + buttonId);
@@ -325,7 +321,7 @@
 
         /* Animation */
         /*Interactivity to determine when an animated element in in view. In view elements trigger our animation*/
-        $(document).ready(function () {
+        $(document).ready(function() {
 
             //window and animation items
             var animation_elements = $.find('.animation-element');
@@ -339,7 +335,7 @@
                 var window_bottom_position = (window_top_position + window_height);
 
                 //iterate through elements to see if its in view
-                $.each(animation_elements, function () {
+                $.each(animation_elements, function() {
 
                     //get the element sinformation
                     var element = $(this);
@@ -358,15 +354,13 @@
             }
 
             //on or scroll, detect elements in view
-            $(window).on('scroll resize', function () {
-                check_if_in_view()
-            })
-            //trigger our scroll event on initial load
+            $(window).on('scroll resize', function() {
+                    check_if_in_view()
+                })
+                //trigger our scroll event on initial load
             $(window).trigger('scroll');
 
         });
-
     </script>
 
     <%- include ("../_partial/_footer.ejs") %>
-

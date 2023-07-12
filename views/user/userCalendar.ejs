@@ -4,16 +4,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script>
-
-        $(function () {
+        $(function() {
             let socket = io("http://localhost:5000");
 
-            socket.on("confirm connection", function (msg) {
+            socket.on("confirm connection", function(msg) {
                 console.log(msg);
 
             });
 
-            socket.on("refreshPage", function (msg) {
+            socket.on("refreshPage", function(msg) {
                 console.log(msg);
                 location.reload();
             });
@@ -28,29 +27,23 @@
             <% } %>
 
                 <% if(currentUser !=null ) { %>
-                    <% if(currentUser.email=='blueorchid241@gmail.com' ) { %>
+                    <% if(currentUser.email=='admin@gmail.com' ) { %>
                         <div style="margin-left: 20%;"></div>
-                    <% } else { %>
-                        <div style="margin-left: 13%;"></div>
-                    <% } %>
-                <% } %>
+                        <% } else { %>
+                            <div style="margin-left: 13%;"></div>
+                            <% } %>
+                                <% } %>
 
                                     <div style="padding-top: 6%; padding-bottom: 3%;">
 
                                         <head>
-                                            <script
-                                                src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.js"></script>
-                                            <script
-                                                src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-                                            <script
-                                                src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
-                                            <script
-                                                src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js"></script>
+                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.js"></script>
+                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js"></script>
 
-                                            <link rel="stylesheet"
-                                                href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css">
-                                            <link rel="stylesheet"
-                                                href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css">
+                                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css">
+                                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css">
 
                                             <!-- CSS -->
                                             <link rel="stylesheet" href="/styles.css" />
@@ -109,29 +102,31 @@
                                                 <% if(hall.name==event.hallType && event.status=='Confirmed' ) { %>
 
                                                     <script>
-
                                                         eventId = '<%= event._id %>'
                                                         eventhallType = '<%= event.hallType %>'
                                                         eventStatus = '<%= event.status %>'
                                                         eventDate = '<%= event.eventDate %>'
                                                         eventTime = '<%= event.eventTime %>'
 
-                                                        eventString = { title: eventStatus + '\n' + eventhallType, start: eventDate + 'T' + eventTime }
-                                                        //console.log(eventString)
+                                                        eventString = {
+                                                                title: eventStatus + '\n' + eventhallType,
+                                                                start: eventDate + 'T' + eventTime
+                                                            }
+                                                            //console.log(eventString)
 
                                                         eventArray.push(eventString)
-                            //console.log(eventArray)
+                                                            //console.log(eventArray)
                                                     </script>
 
-                                                <% } %>
-                                            <% }) %>
-                                        <% }) %>
+                                                    <% } %>
+                                                        <% }) %>
+                                                            <% }) %>
 
                                     </div>
     </div>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
 
             var d = new Date();
             var month = d.getMonth() + 1;

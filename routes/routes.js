@@ -14,8 +14,8 @@ var path = require("path");
 /* Storing Image */
 var storage = multer.diskStorage({
     destination: './uploads/images/',
-    filename: function (req, file, cb) {
-        crypto.pseudoRandomBytes(16, function (err, raw) {
+    filename: function(req, file, cb) {
+        crypto.pseudoRandomBytes(16, function(err, raw) {
             cb(null, raw.toString('hex') + Date.now() + path.extname(file.originalname));
         });
     }
@@ -28,7 +28,7 @@ var ensureAuthenticatedAdmin = require("../auth/authAdmin").ensureAuthenticated;
 
 var router = express.Router();
 
-router.use(function (req, res, next) {
+router.use(function(req, res, next) {
     res.locals.currentUser = req.user;
     res.locals.error = req.flash("error");
     res.locals.info = req.flash("info");
@@ -37,21 +37,21 @@ router.use(function (req, res, next) {
 
 /* ********************************************************Customer Routes ******************************************************/
 /* Home */
-router.get("/", function (req, res) {
+router.get("/", function(req, res) {
     res.render("user/index");
 });
 
 /* About */
-router.get("/about", function (req, res) {
+router.get("/about", function(req, res) {
     res.render("user/about");
 })
 
 /* Contact */
-router.get("/contact", function (req, res) {
+router.get("/contact", function(req, res) {
     //res.render("user/contact");
     //res.render('user/contact', { message: req.flash('success') });
 
-    Contact.find().limit(1).sort({ submittedAt: -1 }).exec(function (err, contacts) {
+    Contact.find().limit(1).sort({ submittedAt: -1 }).exec(function(err, contacts) {
         if (err) { console.log(err); }
 
         res.render("user/contact", { contacts: contacts, message: req.flash('success') });
@@ -59,9 +59,9 @@ router.get("/contact", function (req, res) {
 });
 
 /* Halls */
-router.get("/halls", function (req, res) {
+router.get("/halls", function(req, res) {
 
-    Hall.find().exec(function (err, halls) {
+    Hall.find().exec(function(err, halls) {
         if (err) { console.log(err); }
 
         res.render("user/halls", { halls: halls });
@@ -70,12 +70,12 @@ router.get("/halls", function (req, res) {
 });
 
 /* Reservation */
-router.get("/reservation", ensureAuthenticated, function (req, res) {
+router.get("/reservation", ensureAuthenticated, function(req, res) {
 
-    Hall.find().exec(function (err, halls) {
+    Hall.find().exec(function(err, halls) {
         if (err) { console.log(err); }
 
-        Reservation.find().limit(1).sort({ submittedAt: -1 }).exec(function (err, reservations) {
+        Reservation.find().limit(1).sort({ submittedAt: -1 }).exec(function(err, reservations) {
             if (err) { console.log(err); }
 
             res.render("user/reservation", { halls: halls, reservations: reservations, message: req.flash('success') });
@@ -84,7 +84,7 @@ router.get("/reservation", ensureAuthenticated, function (req, res) {
 });
 
 /* Login, SignUp Page */
-router.get("/login", function (req, res) {
+router.get("/login", function(req, res) {
     res.render("user/userLogin");
 });
 
@@ -96,9 +96,9 @@ router.post("/login", passport.authenticate("user", {
 }));
 
 /* User SignUp */
-router.post("/signup", function (req, res, next) {
+router.post("/signup", function(req, res, next) {
 
-    User.findOne({ email: req.body.email }, function (err, user) {
+    User.findOne({ email: req.body.email }, function(err, user) {
         if (err) { return next(err); }
         if (user) {
             req.flash("error", "There's already an account with this email");
@@ -123,13 +123,13 @@ router.post("/signup", function (req, res, next) {
 }));
 
 /* User Contact Form Submission */
-router.post("/addContact", async function (req, res) {
+router.post("/addContact", async function(req, res) {
 
     /*var name = req.body.contactName;
     var email = req.body.contactEmail;
     var message = req.body.contactMessage;
     var status = req.body.contactStatus;*/
-    
+
     var newContact = new Contact({
         name: req.body.contactName,
         email: req.body.contactEmail,
@@ -139,7 +139,7 @@ router.post("/addContact", async function (req, res) {
 
     //console.log(newContact)
 
-    newContact.save(function (err, post) {
+    newContact.save(function(err, post) {
         if (err) {
             console.log(err);
         } else {
@@ -150,7 +150,7 @@ router.post("/addContact", async function (req, res) {
 });
 
 /* Reservation Form Submission */
-router.post("/makeReservation", ensureAuthenticated, function (req, res) {
+router.post("/makeReservation", ensureAuthenticated, function(req, res) {
 
     var newReservation = new Reservation({
         title: req.body.personTitle,
@@ -168,7 +168,7 @@ router.post("/makeReservation", ensureAuthenticated, function (req, res) {
         userID: req.user._id
     })
 
-    newReservation.save(function (err, post) {
+    newReservation.save(function(err, post) {
         if (err) {
             console.log(err);
         } else {
@@ -179,10 +179,10 @@ router.post("/makeReservation", ensureAuthenticated, function (req, res) {
 });
 
 /* Account */
-router.get("/account", ensureAuthenticated, function (req, res) {
+router.get("/account", ensureAuthenticated, function(req, res) {
     var userId = req.user._id;
 
-    Reservation.find({ "userID": userId }).sort({ eventDate: -1 }).exec(function (err, reservations) {
+    Reservation.find({ "userID": userId }).sort({ eventDate: -1 }).exec(function(err, reservations) {
         if (err) { console.log(err); }
 
         res.render("user/account/myaccount", { reservations: reservations });
@@ -191,12 +191,12 @@ router.get("/account", ensureAuthenticated, function (req, res) {
 });
 
 /* Edit Account Page */
-router.get("/editaccount", ensureAuthenticated, function (req, res) {
+router.get("/editaccount", ensureAuthenticated, function(req, res) {
     res.render("user/account/editmyaccount");
 });
 
 /* Update Account Details */
-router.post("/updateaccount", ensureAuthenticated, async function (req, res) {
+router.post("/updateaccount", ensureAuthenticated, async function(req, res) {
     const userInfo = await User.findById(req.user._id);
 
     userInfo.firstname = req.body.personFirstName;
@@ -217,31 +217,31 @@ router.post("/updateaccount", ensureAuthenticated, async function (req, res) {
 
 /************************************************************** Admin Routes ******************************************************/
 /* Admin Login Page */
-router.get("/admin", function (req, res) {
+router.get("/admin", function(req, res) {
     res.render("admin/login");
 });
 
 /* User, Admin Logout */
-router.get("/logout", function (req, res) {
-    req.logout(function (err) {
+router.get("/logout", function(req, res) {
+    req.logout(function(err) {
         if (err) { return next(err); }
-        res.redirect("/");
+        res.redirect("/admin");
     });
 });
 
 /* Admin Login */
 router.post("/admin", passport.authenticate("admin", {
-    successRedirect: "/contactList",
+    successRedirect: "/eventsList",
     failureRedirect: "/admin",
     failureFlash: true
 }));
 
 /* View Contact List */
-router.get("/contactList", ensureAuthenticatedAdmin, function (req, res) {
+router.get("/contactList", ensureAuthenticatedAdmin, function(req, res) {
 
     var sortBy = { submittedAt: -1 }; //{ name: 1 } ascending, { name: -1 } descending
 
-    Contact.find().sort(sortBy).exec(function (err, contacts) {
+    Contact.find().sort(sortBy).exec(function(err, contacts) {
         if (err) { console.log(err); }
 
         res.render("admin/pages/contactList", { contacts: contacts });
@@ -249,9 +249,9 @@ router.get("/contactList", ensureAuthenticatedAdmin, function (req, res) {
 });
 
 /* Admin View Halls  */
-router.get("/addHalls", ensureAuthenticatedAdmin, function (req, res) {
+router.get("/addHalls", ensureAuthenticatedAdmin, function(req, res) {
 
-    Hall.find().exec(function (err, halls) {
+    Hall.find().exec(function(err, halls) {
         if (err) { console.log(err); }
 
         res.render("admin/pages/addHalls", { halls: halls });
@@ -260,11 +260,11 @@ router.get("/addHalls", ensureAuthenticatedAdmin, function (req, res) {
 });
 
 /* View Events List */
-router.get("/eventsList", ensureAuthenticatedAdmin, function (req, res) {
+router.get("/eventsList", ensureAuthenticatedAdmin, function(req, res) {
 
     var sortBy = { eventDate: 1 }; //{ name: 1 } ascending, { name: -1 } descending
 
-    Reservation.find().sort(sortBy).exec(function (err, reservations) {
+    Reservation.find().sort(sortBy).exec(function(err, reservations) {
         if (err) { console.log(err); }
 
         res.render("admin/pages/eventsList", { reservations: reservations });
@@ -272,9 +272,9 @@ router.get("/eventsList", ensureAuthenticatedAdmin, function (req, res) {
 });
 
 /*  View Events in Calendar */
-router.get("/calendar", ensureAuthenticatedAdmin, function (req, res) {
+router.get("/calendar", ensureAuthenticatedAdmin, function(req, res) {
 
-    Reservation.find({}, { hallType: 1, eventDate: 1, eventTime: 1 }).exec(function (err, events) {
+    Reservation.find({}, { hallType: 1, eventDate: 1, eventTime: 1 }).exec(function(err, events) {
         if (err) { console.log(err); }
 
         res.render("admin/pages/calendar", { events: events });
@@ -283,7 +283,7 @@ router.get("/calendar", ensureAuthenticatedAdmin, function (req, res) {
 });
 
 /* Contact Form Response Update */
-router.post("/updateContactList", ensureAuthenticatedAdmin, async function (req, res) {
+router.post("/updateContactList", ensureAuthenticatedAdmin, async function(req, res) {
 
     const contact = await Contact.findById(req.body.contactId);
 
@@ -301,7 +301,7 @@ router.post("/updateContactList", ensureAuthenticatedAdmin, async function (req,
 });
 
 /* Add Hall Form Submission */
-router.post("/manageHall", ensureAuthenticatedAdmin, function (req, res) {
+router.post("/manageHall", ensureAuthenticatedAdmin, function(req, res) {
 
     var newHall = new Hall({
         name: req.body.hallName,
@@ -316,7 +316,7 @@ router.post("/manageHall", ensureAuthenticatedAdmin, function (req, res) {
         description: req.body.hallDescription
     })
 
-    newHall.save(function (err, post) {
+    newHall.save(function(err, post) {
         if (err) { console.log(err); }
         res.redirect("/addHalls");
     });
@@ -324,14 +324,14 @@ router.post("/manageHall", ensureAuthenticatedAdmin, function (req, res) {
 });
 
 /* View Reservation Details on seperate page */
-router.get("/eventsList/:reservationId", ensureAuthenticatedAdmin, function (req, res) {
-    Reservation.findById(req.params.reservationId).exec(function (err, reservationDetails) {
+router.get("/eventsList/:reservationId", ensureAuthenticatedAdmin, function(req, res) {
+    Reservation.findById(req.params.reservationId).exec(function(err, reservationDetails) {
         res.render("admin/pages/reservationDetail", { reservationDetails: reservationDetails });
     });
 });
 
 /* Sort Reservation List */
-router.get("/eventsList/sort/:sortItem", ensureAuthenticatedAdmin, function (req, res) {
+router.get("/eventsList/sort/:sortItem", ensureAuthenticatedAdmin, function(req, res) {
 
     var sortItem = req.params.sortItem
 
@@ -353,14 +353,14 @@ router.get("/eventsList/sort/:sortItem", ensureAuthenticatedAdmin, function (req
         var filter = { "status": "Cancelled" }
     }
 
-    Reservation.find(filter).sort(sortBy).exec(function (err, reservations) {
+    Reservation.find(filter).sort(sortBy).exec(function(err, reservations) {
         res.render("admin/pages/eventsList", { reservations: reservations });
     });
 
 });
 
 /* Sort Contact List */
-router.get("/contactList/sort/:item", ensureAuthenticatedAdmin, function (req, res) {
+router.get("/contactList/sort/:item", ensureAuthenticatedAdmin, function(req, res) {
 
     var item = req.params.item
 
@@ -374,7 +374,7 @@ router.get("/contactList/sort/:item", ensureAuthenticatedAdmin, function (req, r
         var filter = { "status": "Awaiting" }
     }
 
-    Contact.find(filter).sort(sortBy).exec(function (err, contacts) {
+    Contact.find(filter).sort(sortBy).exec(function(err, contacts) {
         if (err) { console.log(err); }
 
         res.render("admin/pages/contactList", { contacts: contacts });
@@ -382,9 +382,9 @@ router.get("/contactList/sort/:item", ensureAuthenticatedAdmin, function (req, r
 });
 
 /* Edit Reservation Details Page */
-router.get("/eventsList/edit/:reservationId", ensureAuthenticatedAdmin, function (req, res) {
-    Reservation.findById(req.params.reservationId).exec(function (err, reservationDetails) {
-        Hall.find().exec(function (err, halls) {
+router.get("/eventsList/edit/:reservationId", ensureAuthenticatedAdmin, function(req, res) {
+    Reservation.findById(req.params.reservationId).exec(function(err, reservationDetails) {
+        Hall.find().exec(function(err, halls) {
             if (err) { console.log(err); }
 
             res.render("admin/pages/editReservationDetail", { reservationDetails: reservationDetails, halls: halls });
@@ -394,7 +394,7 @@ router.get("/eventsList/edit/:reservationId", ensureAuthenticatedAdmin, function
 });
 
 /* Update Reservation Details */
-router.post("/eventsList/edit/:reservationId/update", ensureAuthenticatedAdmin, async function (req, res) {
+router.post("/eventsList/edit/:reservationId/update", ensureAuthenticatedAdmin, async function(req, res) {
     const reservation = await Reservation.findById(req.params.reservationId);
 
     reservation.firstname = req.body.personFirstName;
@@ -432,14 +432,14 @@ router.post("/eventsList/edit/:reservationId/update", ensureAuthenticatedAdmin, 
 });*/
 
 /* Edit Hall Details */
-router.get("/addHalls/edit/:hallId", ensureAuthenticatedAdmin, async function (req, res) {
-    Hall.findById(req.params.hallId).exec(function (err, hallDetails) {
+router.get("/addHalls/edit/:hallId", ensureAuthenticatedAdmin, async function(req, res) {
+    Hall.findById(req.params.hallId).exec(function(err, hallDetails) {
         res.render("admin/pages/editHallDetails", { hallDetails: hallDetails });
     });
 });
 
 /* Update Hall Details */
-router.post("/addHalls/edit/:hallId/update", upload.single('hallImages'), async function (req, res) {
+router.post("/addHalls/edit/:hallId/update", upload.single('hallImages'), async function(req, res) {
     const hall = await Hall.findById(req.params.hallId);
 
     hall.name = req.body.hallName;
@@ -465,11 +465,11 @@ router.post("/addHalls/edit/:hallId/update", upload.single('hallImages'), async 
 });
 
 /* Hall Available Dates */
-router.get("/halls/available/:hallId", ensureAuthenticated, async function (req, res) {
+router.get("/halls/available/:hallId", ensureAuthenticated, async function(req, res) {
     const hall = await Hall.findById(req.params.hallId);
 
-    Hall.find({ "_id": hall }).exec(function (err, hallName) {
-        Reservation.find().exec(function (err, eventDetails) {
+    Hall.find({ "_id": hall }).exec(function(err, hallName) {
+        Reservation.find().exec(function(err, eventDetails) {
             res.render("user/userCalendar", { eventDetails: eventDetails, hallName: hallName });
         });
     });

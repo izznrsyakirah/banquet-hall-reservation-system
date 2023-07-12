@@ -2,28 +2,37 @@ body {
     background-color: rgb(216, 216, 216);
 }
 
+
 /* Color of the links BEFORE scroll */
+
 .navbar-scroll .nav-link,
 .navbar-scroll .navbar-toggler-icon {
     color: #fff;
 }
 
+
 /* Color of the links AFTER scroll */
+
 .navbar-scrolled .nav-link,
 .navbar-scrolled .navbar-toggler-icon {
     color: #4f4f4f;
 }
 
+
 /* Color of the navbar AFTER scroll */
+
 .navbar-scrolled {
     background-color: #fff;
 }
 
+
 /* An optional height of the navbar AFTER scroll */
+
 .navbar.navbar-scroll.navbar-scrolled {
     padding-top: 5px;
     padding-bottom: 5px;
 }
+
 
 /*****************************************************/
 
@@ -38,7 +47,7 @@ body {
 .admin-nav-div {
     height: 100%;
     width: 230px;
-    background-color: #2a3353;
+    background-color: #000000;
     z-index: 999;
     position: fixed;
 }
@@ -56,17 +65,23 @@ body {
     background: #eee;
 }
 
+
 /*************************************************************************************************************************/
+
+
 /***********************************************Password Validation*******************************************************/
 
-#message p, #repeatMessage p {
+#message p,
+#repeatMessage p {
     padding-left: 25px;
     font-size: 13px;
     margin: 0;
     display: inline;
 }
 
+
 /* Add a green text color and a checkmark when the requirements are right */
+
 .valid {
     color: green;
 }
@@ -77,7 +92,9 @@ body {
     content: "✔";
 }
 
+
 /* Add a red text color and an "x" when the requirements are wrong */
+
 .invalid {
     color: red;
 }
@@ -88,7 +105,8 @@ body {
     content: "✖";
 }
 
-/*************************************************************************************************************************/
+
 /*************************************************************************************************************************/
 
 
+/*************************************************************************************************************************/

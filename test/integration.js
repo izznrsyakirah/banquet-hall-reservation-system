@@ -445,7 +445,7 @@ describe('User', () => {
     after(() => {
         process.exit();
     });
-    
+
     describe('/POST User', () => {
 
         let testLoginData = {
@@ -495,8 +495,8 @@ describe('User', () => {
         });
 
         let testAdminLoginData = {
-            email: 'blueorchid241@gmail.com',
-            password: 'blueorchid123'
+            email: 'admin@gmail.com',
+            password: 'admin123'
         }
 
         it('/admin - POST a login form by Admin', (done) => {
@@ -540,8 +540,3 @@ describe('User', () => {
     });
 
 });
-
-
-
-
-

@@ -5,20 +5,19 @@
         <section class="vh-100">
             <div class="container py-5 h-100">
 
-                <h1 class="display-4"><span>Join</span> <span>us.</span> <span>.</span> <span>.</span></h1>
+
 
                 <div class="row d-flex align-items-center justify-content-center h-100">
-                    <div class="col-md-8 col-lg-7 col-xl-6">
 
+                    <div class="col-md-8 col-lg-7 col-xl-6">
+                        <h1 class="display-4" style="padding: 5px;"><span>Register with</span> <span>GetHall</span></h1>
                         <!-- Pills navs -->
                         <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#pills-login"
-                                    role="tab" aria-controls="pills-login" aria-selected="true">Login</a>
+                                <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#pills-login" role="tab" aria-controls="pills-login" aria-selected="true">Login</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link " id="tab-register" data-mdb-toggle="pill" href="#pills-register"
-                                    role="tab" aria-controls="pills-register" aria-selected="false">Register</a>
+                                <a class="nav-link " id="tab-register" data-mdb-toggle="pill" href="#pills-register" role="tab" aria-controls="pills-register" aria-selected="false">Register</a>
                             </li>
                         </ul>
                         <!-- Pills navs -->
@@ -27,34 +26,29 @@
                         <div class="tab-content">
 
                             <!-- Login -->
-                            <div class="tab-pane fade show active" id="pills-login" role="tabpanel"
-                                aria-labelledby="tab-login">
+                            <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
                                 <form method="POST" action="/login">
 
                                     <!-- Email input -->
                                     <div class="form-outline mb-4">
-                                        <input type="email" id="loginName" class="form-control" name="email"
-                                            style="border: 1px solid rgb(183, 183, 183);" required />
+                                        <input type="email" id="loginName" class="form-control" name="email" style="border: 1px solid rgb(183, 183, 183);" required />
                                         <label class="form-label" for="loginName">Email</label>
                                     </div>
 
                                     <!-- Password input -->
                                     <div class="form-outline mb-4">
-                                        <input type="password" id="loginPassword" class="form-control" name="password"
-                                            style="border: 1px solid rgb(183, 183, 183);" required />
+                                        <input type="password" id="loginPassword" class="form-control" name="password" style="border: 1px solid rgb(183, 183, 183);" required />
                                         <label class="form-label" for="loginPassword">Password</label>
                                     </div>
 
                                     <!-- Submit button -->
-                                    <button type="submit" class="btn btn-primary btn-block mb-4"
-                                        style="background-color: #2a3353;">Sign in</button>
+                                    <button type="submit" class="btn btn-primary btn-block mb-4" style="background-color: #181818;">Sign in</button>
 
                                 </form>
                             </div>
 
                             <!-- Sign Up -->
-                            <div class="tab-pane fade " id="pills-register" role="tabpanel"
-                                aria-labelledby="tab-register">
+                            <div class="tab-pane fade " id="pills-register" role="tabpanel" aria-labelledby="tab-register">
                                 <form method="POST" action="/signup">
 
                                     <!-- Title -->
@@ -62,20 +56,17 @@
                                         <label class="form-label" for="personTitle">Title:&nbsp;&nbsp;&nbsp;&nbsp;</label>
 
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="personTitle"
-                                                id="personTitle" value="Mr" />
+                                            <input class="form-check-input" type="radio" name="personTitle" id="personTitle" value="Mr" />
                                             <label class="form-check-label" for="inlineRadio1">Mr.</label>
                                         </div>
 
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="personTitle"
-                                                id="personTitle" value="Mrs" />
+                                            <input class="form-check-input" type="radio" name="personTitle" id="personTitle" value="Mrs" />
                                             <label class="form-check-label" for="inlineRadio2">Mrs.</label>
                                         </div>
 
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="personTitle"
-                                                id="personTitle" value="Ms" />
+                                            <input class="form-check-input" type="radio" name="personTitle" id="personTitle" value="Ms" />
                                             <label class="form-check-label" for="inlineRadio3">Ms.</label>
                                         </div>
                                     </div>
@@ -84,16 +75,14 @@
                                     <div class="d-flex align-items-start mb-3">
                                         <div class="col">
                                             <div class="form-outline mb-1">
-                                                <input type="text" id="registerfName" class="form-control" name="fname"
-                                                    style="border: 1px solid rgb(183, 183, 183);" required />
+                                                <input type="text" id="registerfName" class="form-control" name="fname" style="border: 1px solid rgb(183, 183, 183);" required />
                                                 <label class="form-label" for="registerfName">First Name</label>
                                             </div>
                                         </div>
                                         <div style="width: 2%;"></div>
                                         <div class="col">
                                             <div class="form-outline mb-1">
-                                                <input type="text" id="registerlName" class="form-control" name="lname"
-                                                    style="border: 1px solid rgb(183, 183, 183);" required />
+                                                <input type="text" id="registerlName" class="form-control" name="lname" style="border: 1px solid rgb(183, 183, 183);" required />
                                                 <label class="form-label" for="registerlName">Last Name</label>
                                             </div>
                                         </div>
@@ -101,37 +90,31 @@
 
                                     <!-- Email input -->
                                     <div class="form-outline mb-4">
-                                        <input type="email" id="registerEmail" class="form-control" name="email"
-                                            style="border: 1px solid rgb(183, 183, 183);" required />
+                                        <input type="email" id="registerEmail" class="form-control" name="email" style="border: 1px solid rgb(183, 183, 183);" required />
                                         <label class="form-label" for="registerEmail">Email</label>
                                     </div>
 
                                     <!-- Phone Number input -->
                                     <div class="form-outline mb-4">
-                                        <input type="text" id="registerContact" class="form-control" name="phone"
-                                            style="border: 1px solid rgb(183, 183, 183);" required />
+                                        <input type="text" id="registerContact" class="form-control" name="phone" style="border: 1px solid rgb(183, 183, 183);" required />
                                         <label class="form-label" for="registerContact">Contact Number</label>
                                     </div>
 
                                     <!-- NIC input -->
                                     <div class="form-outline mb-4">
-                                        <input type="text" id="registerNic" class="form-control" name="nic"
-                                            style="border: 1px solid rgb(183, 183, 183);" required />
+                                        <input type="text" id="registerNic" class="form-control" name="nic" style="border: 1px solid rgb(183, 183, 183);" required />
                                         <label class="form-label" for="registerNic">NIC</label>
                                     </div>
 
                                     <!-- Address input -->
                                     <div class="form-outline mb-4">
-                                        <input type="text" id="registerAddress" class="form-control" name="address"
-                                            style="border: 1px solid rgb(183, 183, 183);" required />
+                                        <input type="text" id="registerAddress" class="form-control" name="address" style="border: 1px solid rgb(183, 183, 183);" required />
                                         <label class="form-label" for="registerAddress">Address</label>
                                     </div>
 
                                     <!-- Password input -->
                                     <div class="form-outline mb-4">
-                                        <input type="password" id="registerPassword" class="form-control"
-                                            name="password" style="border: 1px solid rgb(183, 183, 183);"
-                                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
+                                        <input type="password" id="registerPassword" class="form-control" name="password" style="border: 1px solid rgb(183, 183, 183);" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
                                         <label class="form-label" for="registerPassword">Password</label>
                                     </div>
 
@@ -145,8 +128,7 @@
 
                                     <!-- Repeat Password input -->
                                     <div class="form-outline mb-4">
-                                        <input type="password" id="registerRepeatPassword" class="form-control"
-                                            style="border: 1px solid rgb(183, 183, 183);" required />
+                                        <input type="password" id="registerRepeatPassword" class="form-control" style="border: 1px solid rgb(183, 183, 183);" required />
                                         <label class="form-label" for="registerRepeatPassword">Repeat password</label>
                                     </div>
 
@@ -166,18 +148,17 @@
                                     </div>-->
 
                                     <!-- Submit button -->
-                                    <button type="submit" class="btn btn-primary btn-block mb-3" id="signUpButton"
-                                        style="background-color: #2a3353;" disabled>Sign in</button>
+                                    <button type="submit" class="btn btn-primary btn-block mb-3" id="signUpButton" style="background-color: #2a3353;" disabled>Sign in</button>
                                 </form>
-                                
+
                             </div>
 
                         </div>
                         <!-- Pills content -->
 
                     </div>
-                    <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                        <img src="/images/login-image.png" class="img-fluid" alt="Blue orchid pot image">
+                    <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1" style="margin-bottom: 110px;">
+                        <img src="https://imgur.com/lIhqPti.png" width="110%;" alt="GetHall" />
                         <!-- https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg -->
                     </div>
                 </div>
