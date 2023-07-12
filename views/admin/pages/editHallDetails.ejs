@@ -4,13 +4,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script>
-
         function socketHall() {
-            $(function () {
+            $(function() {
 
                 let socket = io("http://localhost:5000");
 
-                socket.on("confirm connection", function (msg) {
+                socket.on("confirm connection", function(msg) {
                     console.log(msg);
                 });
 
@@ -18,7 +17,6 @@
 
             });
         }
-
     </script>
 
     <div style="padding-left: 15%;">
@@ -33,9 +31,7 @@
                         <th scope="row" class="table-dark">Hall Name: </th>
                         <td>
                             <div class="form-outline">
-                                <input type="text" id="hallName" class="form-control" name="hallName"
-                                    value="<%= hallDetails.name %>" style="border: 1px solid rgb(183, 183, 183);"
-                                    required />
+                                <input type="text" id="hallName" class="form-control" name="hallName" value="<%= hallDetails.name %>" style="border: 1px solid rgb(183, 183, 183);" required />
                             </div>
                         </td>
                     </tr>
@@ -45,51 +41,20 @@
                         <th scope="row" class="table-dark">Seating Plan: </th>
                         <td>
                             <div class="form-outline">
-                                <select id="seatingPlan" class="form-control" name="seatingPlan"
-                                    style="border: 1px solid rgb(183, 183, 183);" required>
-                                    <% if(hallDetails.seatingPlan=='Theatre' ) { %>
-                                        <option value="Theatre" selected>Theatre Style</option>
-                                        <option value="Conference">Conference Style</option>
-                                        <option value="U-Shape">U-Shape Style</option>
+                                <select id="seatingPlan" class="form-control" name="seatingPlan" style="border: 1px solid rgb(183, 183, 183);" required>
+                                    <% if(hallDetails.seatingPlan=='Conference' ) { %>  
+                                        <option value="Conference" selected>Conference Style</option> 
                                         <option value="Wedding">Wedding Style</option>
-                                        <option value="Group">Group Style</option>
-                                        <option value="Outdoor">Outdoor Style</option>
-                                        <% } else if(hallDetails.seatingPlan=='Conference' ) { %>
-                                            <option value="Theatre">Theatre Style</option>
-                                            <option value="Conference" selected>Conference Style</option>
-                                            <option value="U-Shape">U-Shape Style</option>
-                                            <option value="Wedding">Wedding Style</option>
-                                            <option value="Group">Group Style</option>
-                                            <option value="Outdoor">Outdoor Style</option>
-                                            <% } else if(hallDetails.seatingPlan=='U-Shape' ) { %>
-                                                <option value="Theatre">Theatre Style</option>
+                                        <option value="Group">Group Style</option>    
+                                        <% } else if(hallDetails.seatingPlan=='Wedding' ) { %>
+                                            <option value="Conference">Conference Style</option>
+                                            <option value="Wedding" selected>Wedding Style</option>
+                                            <option value="Group">Group Style</option>  
+                                            <% } else if(hallDetails.seatingPlan=='Group' ) { %>
                                                 <option value="Conference">Conference Style</option>
-                                                <option value="U-Shape" selected>U-Shape Style</option>
                                                 <option value="Wedding">Wedding Style</option>
-                                                <option value="Group">Group Style</option>
-                                                <option value="Outdoor">Outdoor Style</option>
-                                                <% } else if(hallDetails.seatingPlan=='Wedding' ) { %>
-                                                    <option value="Theatre">Theatre Style</option>
-                                                    <option value="Conference">Conference Style</option>
-                                                    <option value="U-Shape">U-Shape Style</option>
-                                                    <option value="Wedding" selected>Wedding Style</option>
-                                                    <option value="Group">Group Style</option>
-                                                    <option value="Outdoor">Outdoor Style</option>
-                                                    <% } else if(hallDetails.seatingPlan=='Group' ) { %>
-                                                        <option value="Theatre">Theatre Style</option>
-                                                        <option value="Conference">Conference Style</option>
-                                                        <option value="U-Shape">U-Shape Style</option>
-                                                        <option value="Wedding">Wedding Style</option>
-                                                        <option value="Group" selected>Group Style</option>
-                                                        <option value="Outdoor">Outdoor Style</option>
-                                                        <% } else if(hallDetails.seatingPlan=='Outdoor' ) { %>
-                                                            <option value="Theatre">Theatre Style</option>
-                                                            <option value="Conference">Conference Style</option>
-                                                            <option value="U-Shape">U-Shape Style</option>
-                                                            <option value="Wedding">Wedding Style</option>
-                                                            <option value="Group">Group Style</option>
-                                                            <option value="Outdoor" selected>Outdoor Style</option>
-                                                            <% } %>
+                                                <option value="Group" selected>Group Style</option>
+                                                <% } %>
                                 </select>
                             </div>
                         </td>
@@ -102,67 +67,54 @@
                             <div class="form-outline" style="display: flex;">
                                 <div style="padding-right: 2%;">
                                     <% if(hallDetails.hallType=='Wedding' ) { %>
-                                        <input class="form-check-input me-2" type="checkbox" value="Wedding"
-                                            name="hallType" id="typeWedding" checked />
+                                        <input class="form-check-input me-2" type="checkbox" value="Wedding" name="hallType" id="typeWedding" checked />
                                         <% } else { %>
-                                            <input class="form-check-input me-2" type="checkbox" value="Wedding"
-                                                name="hallType" id="typeWedding" />
+                                            <input class="form-check-input me-2" type="checkbox" value="Wedding" name="hallType" id="typeWedding" />
                                             <% } %>
                                                 <label class="form-check-label" for="typeWedding">Wedding</label>
                                 </div>
 
                                 <div style="padding-right: 2%;">
                                     <% if(hallDetails.hallType=='Annivessary' ) { %>
-                                        <input class="form-check-input me-2" type="checkbox" value="Annivessary"
-                                            name="hallType" id="typeAnnivessary" checked />
+                                        <input class="form-check-input me-2" type="checkbox" value="Annivessary" name="hallType" id="typeAnnivessary" checked />
                                         <% } else { %>
-                                            <input class="form-check-input me-2" type="checkbox" value="Annivessary"
-                                                name="hallType" id="typeAnnivessary" />
+                                            <input class="form-check-input me-2" type="checkbox" value="Annivessary" name="hallType" id="typeAnnivessary" />
                                             <% } %>
-                                                <label class="form-check-label"
-                                                    for="typeAnnivessary">Annivessary</label>
+                                                <label class="form-check-label" for="typeAnnivessary">Annivessary</label>
                                 </div>
 
                                 <div style="padding-right: 2%;">
                                     <% if(hallDetails.hallType=='Birthday' ) { %>
-                                        <input class="form-check-input me-2" type="checkbox" value="Birthday"
-                                            name="hallType" id="typeBirthday" checked />
+                                        <input class="form-check-input me-2" type="checkbox" value="Birthday" name="hallType" id="typeBirthday" checked />
                                         <% } else { %>
-                                            <input class="form-check-input me-2" type="checkbox" value="Birthday"
-                                                name="hallType" id="typeBirthday" />
+                                            <input class="form-check-input me-2" type="checkbox" value="Birthday" name="hallType" id="typeBirthday" />
                                             <% } %>
                                                 <label class="form-check-label" for="typeBirthday">Birthday</label>
                                 </div>
 
                                 <div style="padding-right: 2%;">
                                     <% if(hallDetails.hallType=='Conference' ) { %>
-                                        <input class="form-check-input me-2" type="checkbox" value="Conference"
-                                            name="hallType" id="typeConference" checked />
+                                        <input class="form-check-input me-2" type="checkbox" value="Conference" name="hallType" id="typeConference" checked />
                                         <% } else { %>
-                                            <input class="form-check-input me-2" type="checkbox" value="Conference"
-                                                name="hallType" id="typeConference" />
+                                            <input class="form-check-input me-2" type="checkbox" value="Conference" name="hallType" id="typeConference" />
                                             <% } %>
                                                 <label class="form-check-label" for="typeConference">Conference</label>
                                 </div>
 
                                 <div style="padding-right: 2%;">
                                     <% if(hallDetails.hallType=='Meeting' ) { %>
-                                        <input class="form-check-input me-2" type="checkbox" value="Meeting"
-                                            name="hallType" id="typeMeeting" />
+                                        <input class="form-check-input me-2" type="checkbox" value="Meeting" name="hallType" id="typeMeeting" />
                                         <% } else { %>
-                                            <input class="form-check-input me-2" type="checkbox" value="Meeting"
-                                                name="hallType" id="typeMeeting" />
+                                            <input class="form-check-input me-2" type="checkbox" value="Meeting" name="hallType" id="typeMeeting" />
                                             <% } %>
                                                 <label class="form-check-label" for="typeMeeting">Meeting</label>
                                 </div>
 
                                 <div style="padding-right: 2%;">
                                     <% if(hallDetails.hallType=='Lecture' ) { %>
-                                        <input class="form-check-input me-2" type="checkbox" value="Lecture"
-                                            name="hallType" id="typeLecture" />
+                                        <input class="form-check-input me-2" type="checkbox" value="Lecture" name="hallType" id="typeLecture" />
                                         <% } else { %>
-                                            <input class="form-check-input me-2" type="checkbox" value="Lecture"
-                                                name="hallType" id="typeLecture" />
+                                            <input class="form-check-input me-2" type="checkbox" value="Lecture" name="hallType" id="typeLecture" />
                                             <% } %>
                                                 <label class="form-check-label" for="typeLecture">Lecture</label>
                                 </div>
@@ -176,9 +128,7 @@
                         <th scope="row" class="table-dark">Capacity: </th>
                         <td>
                             <div class="form-outline">
-                                <input type="number" id="hallCapacity" class="form-control" name="hallCapacity"
-                                    value="<%= hallDetails.capacity %>" style="border: 1px solid rgb(183, 183, 183);"
-                                    min="0" required />
+                                <input type="number" id="hallCapacity" class="form-control" name="hallCapacity" value="<%= hallDetails.capacity %>" style="border: 1px solid rgb(183, 183, 183);" min="0" required />
                             </div>
                         </td>
                     </tr>
@@ -190,14 +140,12 @@
                             <% if (hallDetails.lightingSystem=='Available' ) { %>
                                 <div class="form-outline">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="lightingSystem"
-                                            id="lightingAvailable" value="Available" checked />
+                                        <input class="form-check-input" type="radio" name="lightingSystem" id="lightingAvailable" value="Available" checked />
                                         <label class="form-check-label" for="lightingAvailable">Available</label>
                                     </div>
 
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="lightingSystem"
-                                            id="lightingUnavailable" value="Unavailable" />
+                                        <input class="form-check-input" type="radio" name="lightingSystem" id="lightingUnavailable" value="Unavailable" />
                                         <label class="form-check-label" for="lightingUnavailable">Not
                                             Available</label>
                                     </div>
@@ -205,14 +153,12 @@
                                 <% } else { %>
                                     <div class="form-outline">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="lightingSystem"
-                                                id="lightingAvailable" value="Available" />
+                                            <input class="form-check-input" type="radio" name="lightingSystem" id="lightingAvailable" value="Available" />
                                             <label class="form-check-label" for="lightingAvailable">Available</label>
                                         </div>
 
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="lightingSystem"
-                                                id="lightingUnavailable" value="Unavailable" checked />
+                                            <input class="form-check-input" type="radio" name="lightingSystem" id="lightingUnavailable" value="Unavailable" checked />
                                             <label class="form-check-label" for="lightingUnavailable">Not
                                                 Available</label>
                                         </div>
@@ -227,26 +173,22 @@
                         <td>
                             <% if (hallDetails.soundSystem=='Available' ) { %>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="soundingSystem"
-                                        id="soundAvailable" value="Available" checked />
+                                    <input class="form-check-input" type="radio" name="soundingSystem" id="soundAvailable" value="Available" checked />
                                     <label class="form-check-label" for="soundAvailable">Available</label>
                                 </div>
 
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="soundingSystem"
-                                        id="soundUnavailable" value="Unavailable" />
+                                    <input class="form-check-input" type="radio" name="soundingSystem" id="soundUnavailable" value="Unavailable" />
                                     <label class="form-check-label" for="soundUnavailable">Not Available</label>
                                 </div>
                                 <% } else { %>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="soundingSystem"
-                                            id="soundAvailable" value="Available" />
+                                        <input class="form-check-input" type="radio" name="soundingSystem" id="soundAvailable" value="Available" />
                                         <label class="form-check-label" for="soundAvailable">Available</label>
                                     </div>
 
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="soundingSystem"
-                                            id="soundUnavailable" value="Unavailable" checked />
+                                        <input class="form-check-input" type="radio" name="soundingSystem" id="soundUnavailable" value="Unavailable" checked />
                                         <label class="form-check-label" for="soundUnavailable">Not Available</label>
                                     </div>
                                     <% } %>
@@ -259,27 +201,23 @@
                         <td>
                             <% if (hallDetails.buffet=='Available' ) { %>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="buffet" id="buffetAvailable"
-                                        value="Available" checked />
+                                    <input class="form-check-input" type="radio" name="buffet" id="buffetAvailable" value="Available" checked />
                                     <label class="form-check-label" for="buffetAvailable">Available</label>
                                 </div>
 
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="buffet" id="buffetUnavailable"
-                                        value="Unavailable" />
+                                    <input class="form-check-input" type="radio" name="buffet" id="buffetUnavailable" value="Unavailable" />
                                     <label class="form-check-label" for="buffetUnavailable">Not
                                         Available</label>
                                 </div>
                                 <% } else { %>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="buffet" id="buffetAvailable"
-                                            value="Available" />
+                                        <input class="form-check-input" type="radio" name="buffet" id="buffetAvailable" value="Available" />
                                         <label class="form-check-label" for="buffetAvailable">Available</label>
                                     </div>
 
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="buffet"
-                                            id="buffetUnavailable" value="Unavailable" checked />
+                                        <input class="form-check-input" type="radio" name="buffet" id="buffetUnavailable" value="Unavailable" checked />
                                         <label class="form-check-label" for="buffetUnavailable">Not
                                             Available</label>
                                     </div>
@@ -293,17 +231,13 @@
                         <td>
                             <div style="display: flex;">
                                 <div class="form-outline" style="padding-right: 1%;">
-                                    <input type="number" id="priceFrom" class="form-control" name="priceFrom"
-                                        value="<%= hallDetails.priceFrom %>"
-                                        style="border: 1px solid rgb(183, 183, 183);" min="0" required />
-                                    <label class="form-label" for="priceFrom">From (LKR)</label>
+                                    <input type="number" id="priceFrom" class="form-control" name="priceFrom" value="<%= hallDetails.priceFrom %>" style="border: 1px solid rgb(183, 183, 183);" min="0" required />
+                                    <label class="form-label" for="priceFrom">From (RM)</label>
                                 </div>
 
                                 <div class="form-outline">
-                                    <input type="number" id="priceTo" class="form-control" name="priceTo"
-                                        value="<%= hallDetails.priceTo %>" style="border: 1px solid rgb(183, 183, 183);"
-                                        min="0" required />
-                                    <label class="form-label" for="priceTo">To (LKR)</label>
+                                    <input type="number" id="priceTo" class="form-control" name="priceTo" value="<%= hallDetails.priceTo %>" style="border: 1px solid rgb(183, 183, 183);" min="0" required />
+                                    <label class="form-label" for="priceTo">To (RM)</label>
                                 </div>
                             </div>
                         </td>
@@ -314,8 +248,7 @@
                         <th scope="row" class="table-dark">Description: </th>
                         <td>
                             <div class="form-outline" style="border: 1px solid rgb(183, 183, 183);">
-                                <textarea class="form-control" id="hallDescription" name="hallDescription" rows="4"
-                                    required><%= hallDetails.description %></textarea>
+                                <textarea class="form-control" id="hallDescription" name="hallDescription" rows="4" required><%= hallDetails.description %></textarea>
                             </div>
                         </td>
                     </tr>
@@ -325,8 +258,7 @@
                         <th scope="row" class="table-dark">Images: </th>
                         <td>
                             <div class="form-outline" style="border: 1px solid rgb(183, 183, 183);">
-                                <input class="form-control" type="file" id="hallImages" name="hallImages"
-                                    accept=".jpg, .png" multiple value="<%= hallDetails.image %>" />
+                                <input class="form-control" type="file" id="hallImages" name="hallImages" accept=".jpg, .png" multiple value="<%= hallDetails.image %>" />
                             </div>
                         </td>
                     </tr>
