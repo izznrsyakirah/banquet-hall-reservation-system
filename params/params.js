@@ -1,4 +1,4 @@
-const DATABASECONNECTION = "mongodb+srv://iznnur:OgP2Ce8IJ9XQL2mh@cluster0.grwdp0a.mongodb.net/"
+const DATABASECONNECTION = "mongodb://0.0.0.0:27017"
 
 module.exports = {
     DATABASECONNECTION
